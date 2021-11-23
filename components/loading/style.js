@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 import Lottie from 'lottie-react-native'
 
 export const Container = styled(View)`
-    margin-top: 35%;
+    margin-top: 15%;
 `
 
 export const Load = styled(Lottie)`
