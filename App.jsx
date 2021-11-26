@@ -11,6 +11,7 @@ export default function App() {
   const [fullScreen, setFullScreen] = useState(false)
   const [turma, setTurma] = useState(false)
   const [aluno, setAluno] = useState(false)
+  const [recent, setRecent] = useState(false)
   
   return (
     <SWRConfig value={{
@@ -35,9 +36,14 @@ export default function App() {
       {!fullScreen ? <Container>
         <StatusBar style="auto"/>
         <Logo source={require('./assets/logo-josival-penha.png')}/>
-        {!turma ? <Home onSelectTurma={turma => setTurma(turma)}/> : <Alunos turma={turma} onSelectAluno={aluno => setAluno(aluno)}/>}
+        {!turma ? <Home recent={recent} onSelectTurma={turma => setTurma(turma)}/> : <Alunos turma={turma} onSelectAluno={aluno => setAluno(aluno)}/>}
       </Container> : !turma ? <Home onSelectTurma={turma => setTurma(turma)}/> : !aluno && <Alunos turma={turma} onSelectAluno={aluno => setAluno(aluno)}/>}
-      {aluno && <Camera onFullScreen={fullScreen => setFullScreen(fullScreen)} aluno={aluno}/>}
+      {aluno && <Camera onFullScreen={fullScreen => setFullScreen(fullScreen)} aluno={aluno} onCompleted={() => {
+        setFullScreen(false)
+        setAluno(false)
+        setTurma(false)
+        setRecent(true)
+      }}/>}
       
     </SWRConfig>
   )

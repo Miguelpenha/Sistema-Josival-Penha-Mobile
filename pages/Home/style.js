@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-import { Text } from 'react-native'
+import { Text, FlatList } from 'react-native'
 
 export const Title = styled(Text)`
     color: #ffffff;
@@ -8,4 +8,10 @@ export const Title = styled(Text)`
     font-weight: bold;
     width: 80%;
     text-align: center;
+    align-self: center;
+`
+
+export const Turmas = styled(FlatList)`
+    width: 100%;
+    margin-bottom: 5%;
 `
