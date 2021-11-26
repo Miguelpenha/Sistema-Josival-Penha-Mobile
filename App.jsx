@@ -4,11 +4,13 @@ import { SWRConfig } from 'swr'
 import { AppState } from 'react-native'
 import Home from './pages/Home'
 import Alunos from './pages/Alunos'
+import Camera from './pages/Camera'
 import { Container, Logo } from './style'
 
 export default function App() {
   const [fullScreen, setFullScreen] = useState(false)
   const [turma, setTurma] = useState(false)
+  const [aluno, setAluno] = useState(false)
   
   return (
     <SWRConfig value={{
@@ -33,8 +35,9 @@ export default function App() {
       {!fullScreen ? <Container>
         <StatusBar style="auto"/>
         <Logo source={require('./assets/logo-josival-penha.png')}/>
-        {!turma ? <Home onSelectTurma={turma => setTurma(turma)}/> : <Alunos turma={turma} onFullScreen={fullScreen => setFullScreen(fullScreen)}/>}
-      </Container> : !turma ? <Home onSelectTurma={turma => setTurma(turma)}/> : <Alunos turma={turma} onFullScreen={fullScreen => setFullScreen(fullScreen)}/>}
+        {!turma ? <Home onSelectTurma={turma => setTurma(turma)}/> : <Alunos turma={turma} onSelectAluno={aluno => setAluno(aluno)}/>}
+      </Container> : !turma ? <Home onSelectTurma={turma => setTurma(turma)}/> : !aluno && <Alunos turma={turma} onSelectAluno={aluno => setAluno(aluno)}/>}
+      {aluno && <Camera onFullScreen={fullScreen => setFullScreen(fullScreen)} aluno={aluno}/>}
       
     </SWRConfig>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 import { Title } from './style'
 import LoadingData from '../../components/loadingData'
 import { get } from '../../api'
-import { FlatList} from 'react-native'
+import { FlatList } from 'react-native'
 import Turma from '../../components/Turma'
 
 export default function Home({ onSelectTurma }) {
@@ -11,7 +11,7 @@ export default function Home({ onSelectTurma }) {
   return (
     <LoadingData loading={turmas}>
         <Title>Escolha uma turma</Title>
-        <FlatList data={turmas} renderItem={({ item }) => <Turma id={item._id} nome={item.nome} onClick={onSelectTurma}/>} keyExtractor={item => item._id}/>
+        <FlatList data={turmas} renderItem={({ item }) => <Turma id={item._id} nome={item.nome} onClick={id => onSelectTurma(id)}/>} keyExtractor={item => item._id}/>
     </LoadingData>
   )
 }
