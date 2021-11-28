@@ -8,6 +8,7 @@ export const Title = styled(Text)`
     font-weight: bold;
     width: 80%;
     text-align: center;
+    align-self: center;
     margin-bottom: 8%;
 `
 

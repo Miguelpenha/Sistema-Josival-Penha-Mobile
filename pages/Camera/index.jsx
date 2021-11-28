@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { View, Dimensions, TouchableOpacity, Text } from 'react-native'
+import { View, Dimensions } from 'react-native'
 import { Camera as CameraExpo } from 'expo-camera'
 import * as fileSystem from 'expo-file-system'
 import * as Permissions from 'expo-permissions'
@@ -8,15 +8,12 @@ import { API_KEY, API_URL } from '@env'
 import { Options, Option } from './style'
 import { Svg, Path } from 'react-native-svg'
 
-export default function Camera({ onFullScreen, aluno, onCompleted }) {
+export default function Camera({ route, navigation }) {
+    const { aluno } = route.params
     const [permissionCamera, setPermissionCamera] = useState(false)
     const [typeCamera, setTypeCamera] = useState(CameraExpo.Constants.Type.back)
     const [camera, setCamera] = useState(false)
     const [foto, setFoto] = useState(null)
-
-    useEffect(() => {
-        onFullScreen(true)
-    }, [])
 
     useEffect(() => {
         (async () => {
@@ -32,7 +29,9 @@ export default function Camera({ onFullScreen, aluno, onCompleted }) {
             // MediaLibrary.createAssetAsync(foto.uri).then(resu => {
             //     console.log(resu)
             // })
-            onCompleted()
+            navigation.navigate('Turmas', {
+                success: true
+            })
             await fileSystem.uploadAsync(`${API_URL}/mobile-foto`, foto.uri, {
                 headers: {
                     'Authorization': `key ${API_KEY}`

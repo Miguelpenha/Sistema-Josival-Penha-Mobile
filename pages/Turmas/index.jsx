@@ -1,18 +1,27 @@
 import React from 'react'
-import { Title, Turmas as TurmasFlatList } from './style'
+import { Check, TextCheck, Title, Turmas as TurmasFlatList } from './style'
 import LoadingData from '../../components/loadingData'
 import { get } from '../../api'
 import ContainerPd from '../../components/ContainerPd'
 import Turma from '../../components/Turma'
 
-export default function Turmas({ onSelectTurma, recent }) {
+export default function Turmas({ route, navigation }) {
+  const { success } = route.params
   const { data: turmas } = get('/turmas')
   
   return (
     <ContainerPd>
       <LoadingData loading={turmas}>
+        {success && (
+          <>
+            <Check source={require('../../animations/check.json')} autoPlay loop={false}/>
+            <TextCheck>Foto adicionada com sucesso</TextCheck>
+          </>
+        )}
         <Title>Escolha uma turma</Title>
-        <TurmasFlatList data={turmas} renderItem={({ item }) => <Turma id={item._id} nome={item.nome} onClick={id => onSelectTurma(id)}/>} keyExtractor={item => item._id}/>
+        <TurmasFlatList data={turmas} renderItem={({ item }) => <Turma id={item._id} nome={item.nome} onClick={turma => navigation.navigate('Alunos', {
+          turma
+        })}/>} keyExtractor={item => item._id}/>
       </LoadingData>
     </ContainerPd>
   )

@@ -8,6 +8,8 @@ export const Container = styled(View)`
 
 export const Load = styled(Lottie)`
     width: 70%;
+    margin-left: auto;
+    margin-right: auto;
 `
 
 export const Texto = styled(Text)`

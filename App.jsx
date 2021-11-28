@@ -17,13 +17,21 @@ export default function App() {
       }, headerTitle: () => {
         return (
           <Image style={{width: 186.2875,
-            height: 71.1375, marginBottom: '5%'}} source={require('./assets/logo-josival-penha.png')}/>
+            height: 71.1375, marginBottom: '8%', marginLeft: '27%'}} source={require('./assets/logo-josival-penha.png')}/>
         )
       }}}>
-        <Stack.Screen name="Turmas" component={Turmas}/>
-        <Stack.Screen name="Alunos" component={Alunos} options={{
-
+        <Stack.Screen name="Turmas" component={Turmas} initialParams={{
+          success: false
         }}/>
+        <Stack.Screen name="Alunos" component={Alunos} options={{
+          headerTitle: () => {
+            return (
+              <Image style={{width: 186.2875,
+                height: 71.1375, marginBottom: '8%', marginLeft: '10%'}} source={require('./assets/logo-josival-penha.png')}/>
+            )
+          }
+        }}/>
+        <Stack.Screen name="Camera" component={Camera} options={{headerShown: false}}/>
       </Navigator>
     </NavigationContainer>
   )
