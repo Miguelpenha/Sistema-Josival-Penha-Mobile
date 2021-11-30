@@ -1,15 +1,17 @@
-import React, { useState } from 'react'
-import { AppState, Text, Image, View } from 'react-native'
+import React from 'react'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { Image } from 'react-native'
 import Turmas from './pages/Turmas'
 import Alunos from './pages/Alunos'
 import Camera from './pages/Camera'
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import Foto from './pages/Foto'
 
 const Stack = createNativeStackNavigator()
 
 export default function App() {
   const Navigator = Stack.Navigator
+
   return (
     <NavigationContainer>
       <Navigator initialRouteName="Turmas" screenOptions={{headerStyle: {
@@ -17,7 +19,7 @@ export default function App() {
       }, headerTitle: () => {
         return (
           <Image style={{width: 186.2875,
-            height: 71.1375, marginBottom: '8%', marginLeft: '27%'}} source={require('./assets/logo-josival-penha.png')}/>
+            height: 71.1375, marginBottom: '5%', marginLeft: '20%', marginTop: '5%'}} source={require('./assets/logo-josival-penha.png')}/>
         )
       }}}>
         <Stack.Screen name="Turmas" component={Turmas} initialParams={{
@@ -27,11 +29,16 @@ export default function App() {
           headerTitle: () => {
             return (
               <Image style={{width: 186.2875,
-                height: 71.1375, marginBottom: '8%', marginLeft: '10%'}} source={require('./assets/logo-josival-penha.png')}/>
+                height: 71.1375, marginBottom: '5%', marginTop: '5%'}} source={require('./assets/logo-josival-penha.png')}/>
             )
           }
         }}/>
         <Stack.Screen name="Camera" component={Camera} options={{headerShown: false}}/>
+        <Stack.Screen name="Foto" component={Foto} options={{headerTitle: () => {
+            return (
+              <></>
+            )
+          }}}/>
       </Navigator>
     </NavigationContainer>
   )

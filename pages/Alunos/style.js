@@ -9,7 +9,8 @@ export const Title = styled(Text)`
     width: 80%;
     text-align: center;
     align-self: center;
-    margin-bottom: 8%;
+    margin-bottom: 2%;
+    margin-top: 15%;
 `
 
 export const Alunos = styled(FlatList)`

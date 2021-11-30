@@ -11,10 +11,17 @@ export default function Alunos({ route, navigation }) {
   
   return (
     <ContainerPd>
-      <LoadingData loading={alunos}>
-        <Title>Escolha um aluno para adicionar uma foto</Title>
-        <AlunosFlatList data={alunos} renderItem={({ item }) => <Aluno foto={item.foto.url} id={item._id} nome={item.nome} onClick={aluno => navigation.navigate('Camera', {
+      <LoadingData loading={alunos}> 
+        <AlunosFlatList data={alunos} ListHeaderComponent={() => {
+          return (
+            <>
+              <Title>Escolha um aluno para adicionar uma foto</Title>
+            </>
+          )
+        }} renderItem={({ item }) => <Aluno foto={item.foto} id={item._id} nome={item.nome} onClick={aluno => navigation.navigate('Camera', {
           aluno
+        })} onClickFoto={foto => navigation.navigate('Foto', {
+          foto
         })}/>} keyExtractor={item => item._id}/>
       </LoadingData>
     </ContainerPd>

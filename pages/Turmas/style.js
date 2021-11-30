@@ -9,8 +9,6 @@ export const Check = styled(Lottie)`
     margin-top: 5%;
 `
 
-
-
 export const TextCheck = styled(Text)`
     color: #4efdb7;
     font-size: 25px;

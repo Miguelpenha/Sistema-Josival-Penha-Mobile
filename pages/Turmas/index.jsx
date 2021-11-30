@@ -12,14 +12,19 @@ export default function Turmas({ route, navigation }) {
   return (
     <ContainerPd>
       <LoadingData loading={turmas}>
-        {success && (
-          <>
-            <Check source={require('../../animations/check.json')} autoPlay loop={false}/>
-            <TextCheck>Foto adicionada com sucesso</TextCheck>
-          </>
-        )}
-        <Title>Escolha uma turma</Title>
-        <TurmasFlatList data={turmas} renderItem={({ item }) => <Turma id={item._id} nome={item.nome} onClick={turma => navigation.navigate('Alunos', {
+        <TurmasFlatList data={turmas} ListHeaderComponent={() => {
+          return (
+            <>
+              {success && (
+                <>
+                  <Check source={require('../../animations/check.json')} autoPlay loop={false}/>
+                  <TextCheck>Foto adicionada com sucesso</TextCheck>
+                </>
+              )}
+              <Title>Escolha uma turma</Title>
+            </>
+          )
+        }} renderItem={({ item }) => <Turma id={item._id} nome={item.nome} onClick={turma => navigation.navigate('Alunos', {
           turma
         })}/>} keyExtractor={item => item._id}/>
       </LoadingData>
