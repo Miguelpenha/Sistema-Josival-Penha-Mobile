@@ -18,6 +18,7 @@ export const Texto = styled(Text)`
     font-size: 22px;
     margin-top: 5%;
     width: 85%;
+    padding-right: 10%;
 `
 
 export const Img = styled(Image)`
