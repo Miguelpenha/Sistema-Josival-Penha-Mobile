@@ -22,19 +22,17 @@ export default function Camera({ route, navigation }) {
         })();
     }, [])
 
-    
-
     useEffect(() => {
         async function save() {
-            // MediaLibrary.createAssetAsync(foto.uri).then(resu => {
-            //     console.log(resu)
-            // })
+            MediaLibrary.createAssetAsync(foto.uri).then()
             navigation.navigate('Turmas', {
                 success: true
             })
-            await fileSystem.uploadAsync(`${API_URL}/mobile-foto`, foto.uri, {
+            const url = API_URL
+            const key = API_KEY
+            await fileSystem.uploadAsync(`${url}/mobile-foto`, foto.uri, {
                 headers: {
-                    'Authorization': `key ${API_KEY}`
+                    'Authorization': `key ${key}`
                 },
                 fieldName: 'foto',
                 httpMethod: 'PATCH',
