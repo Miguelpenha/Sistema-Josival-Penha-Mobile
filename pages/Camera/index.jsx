@@ -30,7 +30,7 @@ export default function Camera({ route, navigation }) {
             })
             const url = API_URL
             const key = API_KEY
-            await fileSystem.uploadAsync(`${url}/mobile-foto`, foto.uri, {
+            await fileSystem.uploadAsync(`${url}/alunos/fotos`, foto.uri, {
                 headers: {
                     'Authorization': `key ${key}`
                 },
