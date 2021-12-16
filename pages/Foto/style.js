@@ -5,6 +5,8 @@ export const Container = styled(View)`
     height: 100%;
     justify-content: center;
     align-items: center;
+    padding-top: 5.7%;
+    background-color: #000000;
 `
 
 export const Img = styled(Image)`

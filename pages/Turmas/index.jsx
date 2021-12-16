@@ -1,4 +1,5 @@
 import React from 'react'
+import { View, Image } from 'react-native'
 import { Check, TextCheck, Title, Turmas as TurmasFlatList } from './style'
 import LoadingData from '../../components/loadingData'
 import { get } from '../../api'
@@ -14,7 +15,8 @@ export default function Turmas({ route, navigation }) {
       <LoadingData loading={turmas}>
         <TurmasFlatList data={turmas} ListHeaderComponent={() => {
           return (
-            <>
+            <View style={{flexDirection: 'column', alignItems: 'center', marginTop: '12%'}}>
+              <Image style={{aspectRatio: 2.6186961870, width: '65%', height: 'auto'}} source={require('../../assets/logo-josival-penha.png')}/>
               {success && (
                 <>
                   <Check source={require('../../animations/check.json')} autoPlay loop={false}/>
@@ -22,11 +24,19 @@ export default function Turmas({ route, navigation }) {
                 </>
               )}
               <Title>Escolha uma turma</Title>
-            </>
+            </View>
           )
-        }} renderItem={({ item }) => <Turma id={item._id} nome={item.nome} onClick={turma => navigation.navigate('Alunos', {
-          turma
-        })}/>} keyExtractor={item => item._id}/>
+        }} renderItem={({ item }) => {
+          if (item.alunos >= 1) {
+            return (
+              <Turma id={item._id} nome={item.nome} onClick={turma => navigation.navigate('Alunos', {
+                turma
+              })}/>
+            )
+          } else {
+            return null
+          }
+        }} keyExtractor={item => item._id}/>
       </LoadingData>
     </ContainerPd>
   )
