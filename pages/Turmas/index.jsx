@@ -15,7 +15,7 @@ export default function Turmas({ route, navigation }) {
       <LoadingData loading={turmas}>
         <FlatList data={turmas} ListHeaderComponent={() => {
           return (
-            <View style={{flexDirection: 'column', alignItems: 'center', marginTop: '15%'}}>
+            <View style={{flexDirection: 'column', alignItems: 'center', marginTop: '10%'}}>
               <Image style={{aspectRatio: 2.6186961870, width: '75%', height: 'auto'}} source={require('../../assets/logo-josival-penha.png')}/>
               {success && (
                 <>
