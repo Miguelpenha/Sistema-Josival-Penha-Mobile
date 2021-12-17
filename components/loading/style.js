@@ -8,16 +8,18 @@ export const Container = styled(View)`
 `
 
 export const Logo = styled(Image)`
-    width: 65%;
+    width: 75%;
     height: auto;
     aspect-ratio: 2.6186961870;
 `
 
 export const Load = styled(Lottie)`
     width: 70%;
+    margin-top: 12%;
 `
 
 export const Texto = styled(Text)`
-    color: #ffffff;
+    color: ${props => props.theme.primary};
     font-size: 27px;
+    margin-top: 5%;
 `

@@ -1,6 +1,6 @@
 import React from 'react'
-import { View, Image } from 'react-native'
-import { Check, TextCheck, Title, Turmas as TurmasFlatList } from './style'
+import { View, Image, FlatList } from 'react-native'
+import { Check, TextCheck, Title } from './style'
 import LoadingData from '../../components/loadingData'
 import { get } from '../../api'
 import ContainerPd from '../../components/ContainerPd'
@@ -13,10 +13,10 @@ export default function Turmas({ route, navigation }) {
   return (
     <ContainerPd>
       <LoadingData loading={turmas}>
-        <TurmasFlatList data={turmas} ListHeaderComponent={() => {
+        <FlatList data={turmas} ListHeaderComponent={() => {
           return (
-            <View style={{flexDirection: 'column', alignItems: 'center', marginTop: '12%'}}>
-              <Image style={{aspectRatio: 2.6186961870, width: '65%', height: 'auto'}} source={require('../../assets/logo-josival-penha.png')}/>
+            <View style={{flexDirection: 'column', alignItems: 'center', marginTop: '15%'}}>
+              <Image style={{aspectRatio: 2.6186961870, width: '75%', height: 'auto'}} source={require('../../assets/logo-josival-penha.png')}/>
               {success && (
                 <>
                   <Check source={require('../../animations/check.json')} autoPlay loop={false}/>

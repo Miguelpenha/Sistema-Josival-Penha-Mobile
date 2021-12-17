@@ -10,23 +10,23 @@ export const Check = styled(Lottie)`
 `
 
 export const TextCheck = styled(Text)`
-    color: #4efdb7;
+    color: ${props => props.theme.check};
     font-size: 25px;
     font-weight: bold;
     text-align: center;
 `
 
 export const Title = styled(Text)`
-    color: #ffffff;
+    color: ${props => props.theme.primary};
     font-size: 25px;
-    margin-top: 10%;
+    margin-top: 5%;
     font-weight: bold;
     width: 80%;
     text-align: center;
     align-self: center;
+    margin-bottom: 5%;
 `
 
 export const Turmas = styled(FlatList)`
     width: 100%;
-    margin-bottom: 5%;
 `

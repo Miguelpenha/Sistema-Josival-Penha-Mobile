@@ -1,19 +1,12 @@
 import styled from 'styled-components/native'
-import { Text, FlatList } from 'react-native'
+import { Text } from 'react-native'
 
 export const Title = styled(Text)`
-    color: #ffffff;
+    color: ${props => props.theme.primary};
     font-size: 25px;
-    margin-top: 10%;
+    margin-top: 5%;
     font-weight: bold;
-    width: 80%;
-    text-align: center;
-    align-self: center;
-    margin-bottom: 2%;
-    margin-top: 15%;
-`
-
-export const Alunos = styled(FlatList)`
     width: 100%;
+    text-align: center;
     margin-bottom: 5%;
 `
