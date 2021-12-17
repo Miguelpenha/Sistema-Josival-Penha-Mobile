@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator()
 
 export default function App() {
   const Navigator = Stack.Navigator
-
+  
   return (
     <NavigationContainer>
       <Navigator screenOptions={{
