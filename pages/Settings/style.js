@@ -1,18 +1,18 @@
 import styled from 'styled-components'
-import { View, Text, Switch } from 'react-native'
+import { View, Text, Switch as SwitchRN } from 'react-native'
 
-export const ContainerTheme = styled(View)`
+export const ContainerSwitch = styled(View)`
     flex-direction: row;
     align-content: center;
     justify-content: center;
     margin-top: 5%;
 `
 
-export const TextTheme = styled(Text)`
+export const TextSwitch = styled(Text)`
     font-size: 30px;
     color: ${props => props.theme.primary};
 `
 
-export const SwitchTheme = styled(Switch)`
+export const Switch = styled(SwitchRN)`
     margin-left: 2%;
 `
