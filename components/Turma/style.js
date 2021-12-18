@@ -1,22 +1,22 @@
 import styled from 'styled-components'
-import { TouchableOpacity, Text } from 'react-native'
+import { TouchableOpacity, Text as TextRN } from 'react-native'
 
 export const Container = styled(TouchableOpacity)`
-    background-color: ${props => props.theme.primary};
-    padding: 5%;
-    border-radius: 15px;
-    margin-top: 5%;
     width: 60%;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
+    padding: 5%;
     elevation: 8;
+    display: flex;
+    margin-top: 5%;
+    margin-left: auto;
     margin-bottom: 5%;
+    margin-right: auto;
+    border-radius: 15px;
+    background-color: ${props => props.theme.primary};
 `
 
-export const Texto = styled(Text)`
-    text-align: center;
+export const Text = styled(TextRN)`
     font-size: 23px;
-    color: ${props => props.theme.color};
     font-weight: bold;
+    text-align: center;
+    color: ${props => props.theme.color};
 `

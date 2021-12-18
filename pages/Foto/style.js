@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { View, Image } from 'react-native'
+import ButtonBackStyled from '../../components/ButtonBack'
 
 export const Container = styled(View)`
     height: 100%;
@@ -12,4 +13,10 @@ export const Container = styled(View)`
 export const Img = styled(Image)`
     width: 100%;
     aspect-ratio: ${props => props.foto.width/props.foto.height};
+`
+
+export const ButtonBack = styled(ButtonBackStyled)`
+    position: absolute;
+    left: 0;
+    top: 7%;
 `

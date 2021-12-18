@@ -19,7 +19,7 @@ export const Load = styled(Lottie)`
 `
 
 export const Texto = styled(Text)`
-    color: ${props => props.theme.primary};
-    font-size: 27px;
     margin-top: 5%;
+    font-size: 27px;
+    color: ${props => props.theme.primary};
 `

@@ -1,16 +1,16 @@
 import React from 'react'
-import { Container, Texto, Img } from './style'
-import { TouchableOpacity } from 'react-native'
+import { Text, Container, ContainerImg, Img } from './style'
+import TextLimit from '../TextLimit'
 
 export default function Aluno({ nome, id, onClick, foto, onClickFoto }) {
     return (
         <Container onPress={() => onClick(id)}>
-            <TouchableOpacity style={{width: '26.9%', borderRadius: 30}} onPress={() => onClickFoto(foto)}>
+            <ContainerImg onPress={() => onClickFoto(foto)}>
                 <Img source={{
                     uri: foto.url
                 }}/>
-            </TouchableOpacity>
-            <Texto>{nome}</Texto>
+            </ContainerImg>
+            <TextLimit component={Text} limit={29}>{nome}</TextLimit>
         </Container>
     )
 }

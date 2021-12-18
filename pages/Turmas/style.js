@@ -1,32 +1,52 @@
 import styled from 'styled-components/native'
 import Lottie from 'lottie-react-native'
-import { Text, FlatList } from 'react-native'
+import { View, Image, Text, TouchableOpacity } from 'react-native'
+import { MaterialIcons } from '@expo/vector-icons'
 
 export const Check = styled(Lottie)`
     width: 35%;
+    margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 5%;
 `
 
 export const TextCheck = styled(Text)`
-    color: ${props => props.theme.check};
     font-size: 25px;
     font-weight: bold;
     text-align: center;
+    color: ${props => props.theme.check};
+`
+
+export const Header = styled(View)`
+    margin-top: 10%;
+    align-items: center;
+    flex-direction: column;
+`
+
+export const ContainerSettings = styled(TouchableOpacity)`
+    position: absolute;
+    margin: 1.5%;
+`
+
+export const Settings = styled(MaterialIcons)`
+    color: ${props => props.theme.primary};
+`
+
+export const Logo = styled(Image)`
+    width: 75%;
+    height: auto;
+    aspect-ratio: 2.6186961870;
+    margin-left: auto;
+    margin-right: auto;
 `
 
 export const Title = styled(Text)`
-    color: ${props => props.theme.primary};
-    font-size: 25px;
-    margin-top: 5%;
-    font-weight: bold;
     width: 80%;
+    margin-top: 5%;
+    font-size: 25px;
+    margin-bottom: 5%;
+    font-weight: bold;
     text-align: center;
     align-self: center;
-    margin-bottom: 5%;
-`
-
-export const Turmas = styled(FlatList)`
-    width: 100%;
+    color: ${props => props.theme.primary};
 `

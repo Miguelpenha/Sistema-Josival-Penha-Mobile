@@ -1,20 +1,16 @@
 import styled from 'styled-components'
-import { View, TouchableOpacity, Image } from 'react-native'
-import { Ionicons } from '@expo/vector-icons'
+import { View, Image } from 'react-native'
+import ButtonBackStyled from '../ButtonBack'
 
 export const Container = styled(View)`
     margin-top: 10%;
     flex-direction: row;
 `
 
-export const ButtonBack = styled(TouchableOpacity)`
+export const ButtonBack = styled(ButtonBackStyled)`
     margin-top: 6%;
     margin-left: 2%;
     align-self: flex-start;
-`
-
-export const IconBack = styled(Ionicons)`
-    color: ${props => props.theme.primary};
 `
 
 export const ContainerLogo = styled(View)`

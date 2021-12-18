@@ -1,12 +1,11 @@
 import React from 'react'
-import { Container, ButtonBack, IconBack, ContainerLogo, Logo } from './style'
+import { Container, ButtonBack, ContainerLogo, Logo } from './style'
+
 
 export default function HeaderBack({ onClick }) {
     return (
         <Container>
-            <ButtonBack onPress={onClick}>
-                <IconBack name="arrow-back" size={40}/>
-            </ButtonBack>
+            <ButtonBack onClick={onClick}/>
             <ContainerLogo>
                 <Logo source={require('../../assets/logo-josival-penha.png')}/>
             </ContainerLogo>
