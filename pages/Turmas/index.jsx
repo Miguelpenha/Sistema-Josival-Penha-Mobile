@@ -52,7 +52,7 @@ export default function Turmas({ route, navigation }) {
               <ContainerSettings onPress={() => navigation.navigate('Settings')}>
                 <Settings name="settings" size={35}/>
               </ContainerSettings>
-              <Logo source={require('../../assets/logo-josival-penha.png')}/>
+              <Logo/>
             </View>
             <CheckVeri/>
             <Title>Escolha uma turma</Title>

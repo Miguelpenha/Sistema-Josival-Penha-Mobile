@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { View, Image } from 'react-native'
 import ButtonBackStyled from '../ButtonBack'
+import LogoJP from '../LogoJP'
 
 export const Container = styled(View)`
     margin-top: 10%;
@@ -20,7 +21,7 @@ export const ContainerLogo = styled(View)`
     align-items: flex-start;
 `
 
-export const Logo = styled(Image)`
+export const Logo = styled(LogoJP)`
     width: 90%;
     height: auto;
     aspect-ratio: 2.6186961870;

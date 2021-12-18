@@ -1,13 +1,14 @@
 import styled from 'styled-components'
-import { View, Image, Text } from 'react-native'
+import { View, Text } from 'react-native'
 import Lottie from 'lottie-react-native'
+import LogoJP from '../LogoJP'
 
 export const Container = styled(View)`
     margin-top: 10%;
     align-items: center;
 `
 
-export const Logo = styled(Image)`
+export const Logo = styled(LogoJP)`
     width: 75%;
     height: auto;
     aspect-ratio: 2.6186961870;

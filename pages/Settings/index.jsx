@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import ContainerPd from '../../components/ContainerPd'
 import HeaderBack from '../../components/HeaderBack'
-import { Switch } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { dark as darkTheme, light as lightTheme } from '../../theme'
+import { ContainerTheme, TextTheme, SwitchTheme } from './style'
 
 export default function Settings({ navigation, theme, setTheme }) {
     const [dark, setDark] = useState(theme==='light' ? false : true)
@@ -20,11 +21,14 @@ export default function Settings({ navigation, theme, setTheme }) {
 
         veri().then()
     }, [dark])
-
+    
     return (
         <ContainerPd>
             <HeaderBack onClick={() => navigation.navigate('Turmas', {success: false})}/>
-            <Switch trackColor={{false: '#000000', true: '#ffffff'}} thumbColor={dark ? '#ffffff' : '#000000'} value={dark} onChange={() => dark ? setDark(false) : setDark(true)}/>
+            <ContainerTheme style={{}}>
+                <TextTheme>Tema</TextTheme>
+                <SwitchTheme trackColor={{false: darkTheme.secondary, true: lightTheme.secondary}} thumbColor={dark ? darkTheme.secondary : lightTheme.secondary} value={dark} onChange={() => dark ? setDark(false) : setDark(true)}/>
+            </ContainerTheme>
         </ContainerPd>
     )
 }

@@ -2,6 +2,7 @@ import styled from 'styled-components/native'
 import Lottie from 'lottie-react-native'
 import { View, Image, Text, TouchableOpacity } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
+import LogoJP from '../../components/LogoJP'
 
 export const Check = styled(Lottie)`
     width: 35%;
@@ -32,7 +33,7 @@ export const Settings = styled(MaterialIcons)`
     color: ${props => props.theme.primary};
 `
 
-export const Logo = styled(Image)`
+export const Logo = styled(LogoJP)`
     width: 75%;
     height: auto;
     aspect-ratio: 2.6186961870;
