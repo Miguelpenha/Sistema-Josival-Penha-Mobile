@@ -1,7 +1,6 @@
-import styled from 'styled-components'
-import { TouchableOpacity, Text as TextRN } from 'react-native'
+import styled from 'styled-components/native'
 
-export const Container = styled(TouchableOpacity)`
+export const Container = styled.TouchableOpacity`
     width: 60%;
     padding: 5%;
     elevation: 8;
@@ -14,7 +13,7 @@ export const Container = styled(TouchableOpacity)`
     background-color: ${props => props.theme.primary};
 `
 
-export const Text = styled(TextRN)`
+export const Text = styled.Text`
     font-size: 23px;
     font-weight: bold;
     text-align: center;

@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { View, Text } from 'react-native'
 import Lottie from 'lottie-react-native'
 import LogoJP from '../LogoJP'
 
-export const Container = styled(View)`
+export const Container = styled.View`
     margin-top: 10%;
     align-items: center;
 `
@@ -19,7 +19,7 @@ export const Load = styled(Lottie)`
     margin-top: 12%;
 `
 
-export const Texto = styled(Text)`
+export const Texto = styled.Text`
     margin-top: 5%;
     font-size: 27px;
     color: ${props => props.theme.primary};

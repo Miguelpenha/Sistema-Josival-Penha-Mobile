@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Appearance } from 'react-native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { createStackNavigator } from '@react-navigation/stack'
 import { ThemeProvider } from 'styled-components'
 import { dark, light } from './theme'
 import { NavigationContainer } from '@react-navigation/native'
@@ -11,13 +11,14 @@ import Camera from './pages/Camera'
 import Foto from './pages/Foto'
 import Settings from './pages/Settings'
 import AppLoading from 'expo-app-loading'
-
-const Stack = createNativeStackNavigator()
+import 'react-native-gesture-handler'
 
 export default function App() {
   const [pronto, setPronto] = useState(false)
   const [theme, setTheme] = useState(Appearance.getColorScheme())
   const [modeViewAlunosFind, setModeViewAlunosFind] = useState(false)
+
+  const { Navigator, Screen } = createStackNavigator()
   
   async function themeVeri() {
     try {
@@ -68,21 +69,21 @@ export default function App() {
     return (
       <ThemeProvider theme={theme === 'dark' ? dark : light} style={{color: '#2fcc8d'}}>
         <NavigationContainer>
-          <Stack.Navigator screenOptions={{
+          <Navigator screenOptions={{
             headerShown: false
           }} initialRouteName="Home">
-            <Stack.Screen name="Home" initialParams={{
+            <Screen name="Home" initialParams={{
               success: false
             }}>
               {props => <Home {...props} modeViewFind={modeViewAlunosFind}/>}
-            </Stack.Screen>
-            <Stack.Screen name="Settings">
+            </Screen>
+            <Screen name="Settings">
               {props => <Settings {...props} theme={theme} modeView={modeViewAlunosFind} setTheme={theme => setTheme(theme)} setModeView={view => setModeViewAlunosFind(view)}/>}
-            </Stack.Screen>
-            <Stack.Screen name="Alunos" component={Alunos}/>
-            <Stack.Screen name="Camera" component={Camera}/>
-            <Stack.Screen name="Foto" component={Foto}/>
-          </Stack.Navigator>
+            </Screen>
+            <Screen name="Alunos" component={Alunos}/>
+            <Screen name="Camera" component={Camera}/>
+            <Screen name="Foto" component={Foto}/>
+          </Navigator>
         </NavigationContainer>
       </ThemeProvider>
     )

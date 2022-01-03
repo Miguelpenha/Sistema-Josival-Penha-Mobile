@@ -1,9 +1,8 @@
-import styled from 'styled-components'
-import { View, Image } from 'react-native'
+import styled from 'styled-components/native'
 import ButtonBackStyled from '../ButtonBack'
 import LogoJP from '../LogoJP'
 
-export const Container = styled(View)`
+export const Container = styled.View`
     margin-top: 10%;
     flex-direction: row;
 `
@@ -14,7 +13,7 @@ export const ButtonBack = styled(ButtonBackStyled)`
     align-self: flex-start;
 `
 
-export const ContainerLogo = styled(View)`
+export const ContainerLogo = styled.View`
     flex: 1;
     padding-left: 1%;
     margin-right: 5%;

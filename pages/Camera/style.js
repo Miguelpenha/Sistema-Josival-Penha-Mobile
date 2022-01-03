@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { View, TouchableOpacity } from 'react-native'
 import ButtonBackStyled from '../../components/ButtonBack'
 import { Camera } from 'expo-camera'

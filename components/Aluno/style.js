@@ -1,7 +1,6 @@
-import styled from 'styled-components'
-import { TouchableOpacity, Text as TextRN, Image } from 'react-native'
+import styled from 'styled-components/native'
 
-export const Container = styled(TouchableOpacity)`
+export const Container = styled.TouchableOpacity`
     width: 85%;
     padding: 5%;
     elevation: 8;
@@ -13,18 +12,18 @@ export const Container = styled(TouchableOpacity)`
     background-color: ${props => props.theme.primary};
 `
 
-export const ContainerImg = styled(TouchableOpacity)`
+export const ContainerImg = styled.TouchableOpacity`
     width: auto;
     border-radius: 30px;
 `
 
-export const Img = styled(Image)`
+export const Img = styled.Image`
     width: 60px;
     height: 60px;
     border-radius: 50px;
 `
 
-export const Text = styled(TextRN)`  
+export const Text = styled.Text`  
     width: 90%;
     font-size: 22px;
     text-align: left;

@@ -1,7 +1,6 @@
 import styled from 'styled-components/native'
-import { Text } from 'react-native'
 
-export const Title = styled(Text)`
+export const Title = styled.Text`
     width: 100%;
     margin-top: 5%;
     font-size: 25px;

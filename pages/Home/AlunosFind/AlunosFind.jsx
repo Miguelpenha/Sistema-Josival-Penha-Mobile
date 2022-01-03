@@ -9,11 +9,7 @@ import { get } from '../../../api'
 export default function AlunosFind({ navigation }) {
     const { data: alunos } = get(`/alunos`)
     const [filter, setFilter] = useState('')
-
-    function teste(text) {
-        setFilter(text)
-    }
-
+    
     return (
         <ContainerPd>
             <LoadingData loading={alunos}> 
@@ -25,7 +21,7 @@ export default function AlunosFind({ navigation }) {
                                 <Settings name="settings" size={35}/>
                             </ContainerSettings>
                             <Logo/>
-                            <Find onChangeText={setFilter} value={filter}/>
+                            <Find placeholder="Filtro" value={filter} onChangeText={setFilter}/>
                         </Header>
                     )} 
                     renderItem={({ item }) => {

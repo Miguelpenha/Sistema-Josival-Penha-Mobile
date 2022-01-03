@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components/native'
 import { View, Text, Switch as SwitchRN } from 'react-native'
 
 export const ContainerSwitch = styled(View)`
