@@ -67,7 +67,7 @@ export default function App() {
     return <AppLoading startAsync={veriGeral} onFinish={() => setPronto(true)} onError={(err) => console.log(err)}/>
   } else {
     return (
-      <ThemeProvider theme={theme === 'dark' ? dark : light} style={{color: '#2fcc8d'}}>
+      <ThemeProvider theme={theme === 'dark' ? dark : light}>
         <NavigationContainer>
           <Navigator screenOptions={{
             headerShown: false
