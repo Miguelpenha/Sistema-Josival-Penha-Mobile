@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
 import Lottie from 'lottie-react-native'
-import { View, Image, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import LogoJP from '../../components/LogoJP'
 
