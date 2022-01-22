@@ -25,8 +25,8 @@ export const Header = styled(View)`
 `
 
 export const ContainerSettings = styled(TouchableOpacity)`
-    position: absolute;
     margin: 1.5%;
+    position: absolute;
 `
 
 export const Settings = styled(MaterialIcons)`
@@ -36,9 +36,9 @@ export const Settings = styled(MaterialIcons)`
 export const Logo = styled(LogoJP)`
     width: 75%;
     height: auto;
-    aspect-ratio: 2.6186961870;
     margin-left: auto;
     margin-right: auto;
+    aspect-ratio: 2.6186961870;
 `
 
 export const Title = styled(Text)`
