@@ -29,7 +29,7 @@ export default function AlunosFind({ navigation }) {
                 {!existsAluno && (
                     <ContainerAlertNotFound>
                         <AlertNotFound>
-                            {'Não encontramos nenhum aluno com esse nome :('}
+                            {'Não encontramos nenhum aluno com esse nome '}&#x1F615;
                         </AlertNotFound>
                     </ContainerAlertNotFound>
                 )}

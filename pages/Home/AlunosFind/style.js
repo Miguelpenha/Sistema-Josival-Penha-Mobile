@@ -45,7 +45,7 @@ export const ContainerAlertNotFound = styled.View`
 `
 
 export const AlertNotFound = styled.Text`
-    font-size: 25px;
+    font-size: 21px;
     font-weight: 700;
     color: ${props => props.theme.color};
 `
