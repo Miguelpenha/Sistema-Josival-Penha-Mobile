@@ -13,7 +13,7 @@ export default function AlunosFind({ navigation }) {
     function HeaderFlatList() {
         let existsAluno = false
 
-        alunos.map(aluno => {
+        alunos && alunos.map(aluno => {
             if (aluno.nome.toUpperCase().includes(filter.toUpperCase())) {
                 existsAluno = true
             }
