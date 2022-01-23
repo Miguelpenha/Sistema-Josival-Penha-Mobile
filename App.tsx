@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components'
 import { dark, light } from './theme'
 import { NavigationContainer } from '@react-navigation/native'
 import Home from './pages/Home'
+import Turmas from './pages/Turmas'
 import Alunos from './pages/Alunos'
 import Camera from './pages/Camera'
 import Foto from './pages/Foto'
@@ -72,10 +73,11 @@ export default function App() {
           <Navigator screenOptions={{
             headerShown: false
           }} initialRouteName="Home">
-            <Screen name="Home" initialParams={{
+            <Screen name="Home" component={Home}/>
+            <Screen name="Turmas" initialParams={{
               success: false
             }}>
-              {props => <Home {...props} modeViewFind={modeViewAlunosFind}/>}
+              {props => <Turmas {...props} modeViewFind={modeViewAlunosFind}/>}
             </Screen>
             <Screen name="Settings">
               {props => <Settings {...props} theme={theme} modeView={modeViewAlunosFind} setTheme={theme => setTheme(theme)} setModeView={view => setModeViewAlunosFind(view)}/>}

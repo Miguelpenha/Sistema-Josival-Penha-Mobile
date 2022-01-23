@@ -1,26 +1,11 @@
-import styled from 'styled-components/native'
-import Lottie from 'lottie-react-native'
-import { View, Text, TouchableOpacity } from 'react-native'
+import styled from 'styled-components'
+import { View, TouchableOpacity, Text } from 'react-native'
 import { MaterialIcons } from '@expo/vector-icons'
 import LogoJP from '../../components/LogoJP'
 
-export const Check = styled(Lottie)`
-    width: 35%;
-    margin-top: 5%;
-    margin-left: auto;
-    margin-right: auto;
-`
-
-export const TextCheck = styled(Text)`
-    font-size: 25px;
-    font-weight: bold;
-    text-align: center;
-    color: ${props => props.theme.check};
-`
-
 export const Header = styled(View)`
+    width: 100%;
     margin-top: 10%;
-    align-items: center;
     flex-direction: column;
 `
 
@@ -42,12 +27,30 @@ export const Logo = styled(LogoJP)`
 `
 
 export const Title = styled(Text)`
-    width: 80%;
-    margin-top: 5%;
-    font-size: 25px;
-    margin-bottom: 5%;
+    width: 100%;
+    margin-top: 10%;
+    font-size: 28px;
+    margin-bottom: 15%;
     font-weight: bold;
     text-align: center;
     align-self: center;
     color: ${props => props.theme.primary};
+`
+
+export const Button = styled(TouchableOpacity)`
+    width: 70%;
+    padding: 4%;
+    display: flex;
+    align-self: center;
+    align-items: center;
+    border-radius: 18.93px;
+    justify-content: center;
+    background-color: ${props => props.theme.primary};
+`
+
+export const TextButton = styled(Text)`
+    font-size: 25px;
+    font-weight: bold;
+    text-align: center;
+    color: ${props => props.theme.color};
 `

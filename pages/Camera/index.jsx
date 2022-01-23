@@ -25,18 +25,15 @@ export default function Camera({ route, navigation }) {
 
     useEffect(() => {
         async function save() {
-            MediaLibrary.createAssetAsync(foto.uri).then()
+            await MediaLibrary.createAssetAsync(foto.uri)
 
-            navigation.navigate('Home', {
+            navigation.navigate('Turmas', {
                 success: true
             })
-
-            const url = API_URL
-            const key = API_KEY
-
-            await fileSystem.uploadAsync(`${url}/alunos/fotos`, foto.uri, {
+            
+            await fileSystem.uploadAsync(`${API_URL}/alunos/fotos`, foto.uri, {
                 headers: {
-                    'Authorization': `key ${key}`
+                    'Authorization': `key ${API_KEY}`
                 },
                 fieldName: 'foto',
                 httpMethod: 'PATCH',

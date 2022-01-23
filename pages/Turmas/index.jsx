@@ -1,14 +1,15 @@
 import React, { useContext } from 'react'
 import { get } from '../../api'
 import { View, FlatList } from 'react-native'
-import { Check, TextCheck, Header, ContainerSettings, Settings, Logo, Title } from './style'
+import { Check, TextCheck, Header, Title } from './style'
 import ContainerPd from '../../components/ContainerPd'
 import LoadingData from '../../components/loadingData'
 import Turma from '../../components/Turma'
 import { ThemeContext } from 'styled-components'
 import AlunosFind from './AlunosFind/AlunosFind'
+import HeaderBack from '../../components/HeaderBack'
 
-export default function Home({ route, navigation, modeViewFind }) {
+export default function Turmas({ route, navigation, modeViewFind }) {
   const theme = useContext(ThemeContext)
 
   if (!modeViewFind) {
@@ -49,16 +50,11 @@ export default function Home({ route, navigation, modeViewFind }) {
       <ContainerPd>
         <LoadingData loading={turmas}>
           <FlatList data={turmas} ListHeaderComponent={() => (
-            <Header>
-              <View style={{flexDirection: 'row', width: '100%'}}>
-                <ContainerSettings onPress={() => navigation.navigate('Settings')}>
-                  <Settings name="settings" size={35}/>
-                </ContainerSettings>
-                <Logo/>
-              </View>
+            <View>
+              <HeaderBack onClick={() => navigation.goBack()}/>
               <CheckVeri/>
               <Title>Escolha uma turma</Title>
-            </Header>
+            </View>
           )} renderItem={({ item }) => {
             if (item.alunos >= 1) {
               return (

@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import ContainerPd from '../../../components/ContainerPd'
-import { Header, ContainerSettings, Settings, Logo, Find, ContainerAlertNotFound, AlertNotFound } from './style'
-import LoadingData from '../../../components/loadingData'
-import { FlatList } from 'react-native'
-import Aluno from '../../../components/Aluno'
 import { get } from '../../../api'
+import ContainerPd from '../../../components/ContainerPd'
+import LoadingData from '../../../components/loadingData'
+import { FlatList, View } from 'react-native'
+import HeaderBack from '../../../components/HeaderBack'
+import { Find, ContainerAlertNotFound, AlertNotFound } from './style'
+import Aluno from '../../../components/Aluno'
 
 export default function AlunosFind({ navigation }) {
     const { data: alunos } = get(`/alunos`)
@@ -20,11 +21,8 @@ export default function AlunosFind({ navigation }) {
         })
         
         return (
-            <Header>
-                <ContainerSettings onPress={() => navigation.navigate('Settings')}>
-                    <Settings name="settings" size={35}/>
-                </ContainerSettings>
-                <Logo/>
+            <View>
+                <HeaderBack onClick={() => navigation.goBack()}/>
                 <Find placeholder="Filtro" value={filter} onChangeText={setFilter}/>
                 {!existsAluno && (
                     <ContainerAlertNotFound>
@@ -33,7 +31,7 @@ export default function AlunosFind({ navigation }) {
                         </AlertNotFound>
                     </ContainerAlertNotFound>
                 )}
-            </Header>
+            </View>
         )
     }
     
