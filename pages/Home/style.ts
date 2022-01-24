@@ -46,6 +46,7 @@ export const Button = styled(TouchableOpacity)`
     border-radius: 18.93px;
     justify-content: center;
     background-color: ${props => props.theme.primary};
+    margin-bottom: 8%;
 `
 
 export const TextButton = styled(Text)`

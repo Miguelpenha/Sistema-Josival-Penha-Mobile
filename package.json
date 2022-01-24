@@ -41,7 +41,8 @@
     "react-native-web": "0.17.1",
     "styled-components": "^5.3.3",
     "swr": "^1.0.1",
-    "swr-react-native": "^0.1.2"
+    "swr-react-native": "^0.1.2",
+    "@react-native-picker/picker": "2.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

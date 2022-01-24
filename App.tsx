@@ -11,6 +11,7 @@ import Alunos from './pages/Alunos'
 import Camera from './pages/Camera'
 import Foto from './pages/Foto'
 import Settings from './pages/Settings'
+import Pagamentos from './pages/Pagamentos'
 import AppLoading from 'expo-app-loading'
 import 'react-native-gesture-handler'
 
@@ -85,6 +86,7 @@ export default function App() {
             <Screen name="Alunos" component={Alunos}/>
             <Screen name="Camera" component={Camera}/>
             <Screen name="Foto" component={Foto}/>
+            <Screen name="Pagamentos" component={Pagamentos}/>
           </Navigator>
         </NavigationContainer>
       </ThemeProvider>

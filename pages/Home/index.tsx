@@ -9,6 +9,7 @@ type RootStackParamList = {
   Home: undefined
   Settings: undefined
   Turmas: undefined
+  Pagamentos: undefined
   Profile: { userId: string }
   Feed: { sort: 'latest' | 'top' } | undefined
 }
@@ -30,6 +31,9 @@ export default function Home({ navigation }: Iprops) {
         <Title>Selecione uma opção</Title>
         <Button onPress={() => navigation.navigate('Turmas')}>
           <TextButton>Adicionar foto a um aluno</TextButton>
+        </Button>
+        <Button onPress={() => navigation.navigate('Pagamentos')}>
+          <TextButton>Adicionar pagamento</TextButton>
         </Button>
       </LoadingData>
     </ContainerPd>
