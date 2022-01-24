@@ -3,9 +3,9 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { get } from '../../api'
 import ContainerPd from '../../components/ContainerPd'
 import LoadingData from '../../components/loadingData'
-import { View } from 'react-native'
+import { View, Text } from 'react-native'
 import HeaderBack from '../../components/HeaderBack'
-import { Picker } from './style'
+import DropDown from './DropDown'
 
 type RootStackParamList = {
     Pagamentos: undefined
@@ -15,25 +15,23 @@ type RootStackParamList = {
   
 type Iprops = NativeStackScreenProps<RootStackParamList, 'Pagamentos'>
 
-export default function Pagamentos({ navigation }: Iprops) {
-    const { data: turmas } = get('/turmas')
-    const [selectedLanguage, setSelectedLanguage] = useState('')
+interface Ialuno {
+    nome: string
+    id: string
+}
 
+export default function Pagamentos({ navigation }: Iprops) {
+    const alunos: Ialuno[] = get('/alunos').data
+    const [aluno, setAluno] = useState(alunos && alunos[0])
+    
     return (
         <ContainerPd>
-            <LoadingData loading={turmas}>
+            <LoadingData loading={alunos}>
                 <View>
                     <HeaderBack onClick={() => navigation.goBack()}/>
                 </View>
-                <Picker
-                    selectedValue={selectedLanguage}
-                    onValueChange={(itemValue, itemIndex) =>
-                        setSelectedLanguage(String(itemValue))
-                    }
-                >
-                    <Picker.Item label="JavaScript" value="js"/>
-                    <Picker.Item label="Java" value="java"/>
-                </Picker>
+                <DropDown values={alunos} onChange={(aluno: Ialuno) => setAluno(aluno)}/>
+                <Text style={{color: '#ffffff', fontSize: 40, marginTop: '20%', alignSelf: 'center'}}>nome: {aluno.nome}</Text>
             </LoadingData>
         </ContainerPd>
     )
