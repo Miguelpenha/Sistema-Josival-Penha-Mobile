@@ -61,7 +61,12 @@ export default function Turmas({ route, navigation, modeViewFind }) {
                 <Turma 
                   id={item._id} 
                   nome={item.nome} 
-                  onClick={turma => navigation.navigate('Alunos', {turma})}
+                  onClick={turma => (
+                    navigation.navigate('Alunos', {
+                      url: `/turmas/alunos/${turma}`,
+                      next: 'camera:aluno'
+                    })
+                  )}
                 />
               )
             }

@@ -8,26 +8,28 @@ interface ionClickFoto {
 }
 
 interface onClick {
-    (aluno: string): void
+    (aluno: Iprops['aluno']): void
 }
 
 interface Iprops {
-    nome: string
-    id: string
+    aluno: {
+        nome: string
+        id: string
+        foto: Inavigation['Foto']['foto']
+    }
     onClick: onClick
-    foto: Inavigation['Foto']['foto']
     onClickFoto: ionClickFoto
 }
 
-const Aluno: FC<Iprops> = ({ nome, id, onClick, foto, onClickFoto }) => {
+const Aluno: FC<Iprops> = ({ aluno, onClick, onClickFoto }) => {
     return (
-        <Container onPress={() => onClick(id)}>
-            <ContainerImg onPress={() => onClickFoto(foto)}>
+        <Container onPress={() => onClick(aluno)}>
+            <ContainerImg onPress={() => onClickFoto(aluno.foto)}>
                 <Img source={{
-                    uri: foto.url
+                    uri: aluno.foto.url
                 }}/>
             </ContainerImg>
-            <TextLimit component={Text} limit={29}>{nome}</TextLimit>
+            <TextLimit component={Text} limit={29}>{aluno.nome}</TextLimit>
         </Container>
     )
 }

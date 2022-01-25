@@ -9,17 +9,17 @@ import Aluno from '../../components/Aluno'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { Inavigation } from '../../types'
 
-type Iprops = NativeStackScreenProps<Inavigation, 'Pagamentos'>
+type Iprops = NativeStackScreenProps<Inavigation, 'Alunos'>
 
 export default function Alunos({ route, navigation }: Iprops) {
-  const { turma } = route.params
-  const { data: alunos } = get(`/turmas/alunos/${turma}`)
+  const { url, next } = route.params
+  const { data: alunos } = get(url)
   
   return (
     <ContainerPd>
       <LoadingData loading={alunos}> 
         <FlatList 
-          data={alunos} 
+          data={alunos}
           ListHeaderComponent={() => (
             <View>
               <HeaderBack onClick={() => navigation.goBack()}/>
@@ -27,11 +27,15 @@ export default function Alunos({ route, navigation }: Iprops) {
             </View>
           )} 
           renderItem={({ item: aluno }) => (
-            <Aluno 
-              foto={aluno.foto}
-              id={aluno._id}
-              nome={aluno.nome}
-              onClick={aluno => navigation.navigate('Camera', { aluno })}
+            <Aluno
+              aluno={aluno}
+              onClick={aluno => {
+                if (next === 'camera:aluno') {
+                  navigation.navigate('Camera', { aluno: aluno.id })
+                } else if (next === 'pagamentos:aluno') {
+                  navigation.navigate('Pagamentos', { aluno })
+                }
+              }}
               onClickFoto={foto => navigation.navigate('Foto', { foto })}
             />
           )} 

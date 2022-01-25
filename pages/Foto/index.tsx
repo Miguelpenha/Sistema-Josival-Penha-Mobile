@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { FC } from 'react'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { Inavigation } from '../../types'
 import { Container, Img, ButtonBack } from './style'
 
-export default function Foto({ route, navigation }) {
+type Iprops = NativeStackScreenProps<Inavigation, 'Foto'>
+
+const Foto: FC<Iprops> = ({ route, navigation }) => {
     const { foto } = route.params
-   
+    
     return (
         <Container>
             <Img source={{
@@ -13,3 +17,5 @@ export default function Foto({ route, navigation }) {
         </Container>
     )
 }
+
+export default Foto
