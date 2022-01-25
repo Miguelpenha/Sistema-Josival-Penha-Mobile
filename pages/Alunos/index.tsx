@@ -6,8 +6,12 @@ import { FlatList, View } from 'react-native'
 import HeaderBack from '../../components/HeaderBack'
 import { Title } from './style'
 import Aluno from '../../components/Aluno'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { Inavigation } from '../../types'
 
-export default function Alunos({ route, navigation }) {
+type Iprops = NativeStackScreenProps<Inavigation, 'Pagamentos'>
+
+export default function Alunos({ route, navigation }: Iprops) {
   const { turma } = route.params
   const { data: alunos } = get(`/turmas/alunos/${turma}`)
   
@@ -19,16 +23,16 @@ export default function Alunos({ route, navigation }) {
           ListHeaderComponent={() => (
             <View>
               <HeaderBack onClick={() => navigation.goBack()}/>
-              <Title>Escolha um aluno para adicionar uma foto</Title>
+              <Title>Escolha um aluno</Title>
             </View>
           )} 
-          renderItem={({ item }) => (
+          renderItem={({ item: aluno }) => (
             <Aluno 
-              foto={item.foto} 
-              id={item._id} 
-              nome={item.nome} 
-              onClick={aluno => navigation.navigate('Camera', {aluno})} 
-              onClickFoto={foto => navigation.navigate('Foto', {foto})}
+              foto={aluno.foto}
+              id={aluno._id}
+              nome={aluno.nome}
+              onClick={aluno => navigation.navigate('Camera', { aluno })}
+              onClickFoto={foto => navigation.navigate('Foto', { foto })}
             />
           )} 
           keyExtractor={item => item._id}

@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-import ButtonBackStyled from '../ButtonBack'
+import ButtonBackNotStyled from '../ButtonBack'
 import LogoJP from '../LogoJP'
 
 export const Container = styled.View`
@@ -7,7 +7,7 @@ export const Container = styled.View`
     flex-direction: row;
 `
 
-export const ButtonBack = styled(ButtonBackStyled)`
+export const ButtonBack = styled(ButtonBackNotStyled)`
     margin-top: 6%;
     margin-left: 2%;
     align-self: flex-start;

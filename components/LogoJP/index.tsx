@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React, { FC } from 'react'
+import { useTheme } from 'styled-components'
 import { Image } from 'react-native'
-import { ThemeContext } from 'styled-components'
 
-export default function LogoJP(props) {
-    const theme = useContext(ThemeContext)
+const LogoJP: FC = (props) => {
+    const theme = useTheme()
 
     if (theme.name === 'dark') {
         return <Image {...props} source={require('../../assets/Logo-Josival-Penha-Dark.png')}/>
@@ -11,3 +11,5 @@ export default function LogoJP(props) {
         return <Image {...props} source={require('../../assets/Logo-Josival-Penha-Light.png')}/>
     }
 }
+
+export default LogoJP

@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { FC } from 'react'
 import { Container, ButtonBack, ContainerLogo, Logo } from './style'
 
-export default function HeaderBack({ onClick }) {
+interface Iprops {
+    onClick: Function
+}
+
+const HeaderBack: FC<Iprops> = ({ onClick }) => {
     return (
         <Container>
             <ButtonBack onClick={onClick}/>
@@ -11,3 +15,5 @@ export default function HeaderBack({ onClick }) {
         </Container>
     )
 }
+
+export default HeaderBack

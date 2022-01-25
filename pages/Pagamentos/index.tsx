@@ -8,8 +8,6 @@ import HeaderBack from '../../components/HeaderBack'
 
 type RootStackParamList = {
     Pagamentos: undefined
-    Profile: { userId: string }
-    Feed: { sort: 'latest' | 'top' } | undefined
 }
   
 type Iprops = NativeStackScreenProps<RootStackParamList, 'Pagamentos'>

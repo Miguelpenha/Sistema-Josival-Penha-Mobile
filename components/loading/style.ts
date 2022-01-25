@@ -1,5 +1,4 @@
 import styled from 'styled-components/native'
-import { View, Text } from 'react-native'
 import Lottie from 'lottie-react-native'
 import LogoJP from '../LogoJP'
 
