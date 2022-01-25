@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { get } from '../../api'
 import { View, FlatList } from 'react-native'
-import { Check, TextCheck, Header, Title } from './style'
+import { Check, TextCheck, Title } from './style'
 import ContainerPd from '../../components/ContainerPd'
 import LoadingData from '../../components/loadingData'
 import Turma from '../../components/Turma'

@@ -45,9 +45,7 @@ export default function AlunosFind({ navigation }) {
                         if (item.nome.toUpperCase().includes(filter.toUpperCase())) {
                             return (
                                 <Aluno 
-                                    foto={item.foto} 
-                                    id={item._id} 
-                                    nome={item.nome} 
+                                    aluno={item}
                                     onClick={aluno => navigation.navigate('Camera', {aluno})} 
                                     onClickFoto={foto => navigation.navigate('Foto', {foto})}
                                 />

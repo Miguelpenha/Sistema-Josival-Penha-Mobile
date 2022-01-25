@@ -1,6 +1,5 @@
 import styled from 'styled-components/native'
 import Lottie from 'lottie-react-native'
-import { Text } from 'react-native'
 
 export const Check = styled(Lottie)`
     width: 35%;
@@ -9,14 +8,14 @@ export const Check = styled(Lottie)`
     margin-right: auto;
 `
 
-export const TextCheck = styled(Text)`
+export const TextCheck = styled.Text`
     font-size: 25px;
     font-weight: bold;
     text-align: center;
     color: ${props => props.theme.check};
 `
 
-export const Title = styled(Text)`
+export const Title = styled.Text`
     width: 80%;
     margin-top: 5%;
     font-size: 25px;
