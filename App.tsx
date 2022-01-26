@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Appearance } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack'
+import { Inavigation } from './types'
 import { ThemeProvider } from 'styled-components'
 import { dark, light } from './theme'
 import { NavigationContainer } from '@react-navigation/native'
@@ -17,10 +18,10 @@ import 'react-native-gesture-handler'
 
 export default function App() {
   const [pronto, setPronto] = useState(false)
-  const [theme, setTheme] = useState(Appearance.getColorScheme())
-  const [modeViewAlunosFind, setModeViewAlunosFind] = useState(false)
-
-  const { Navigator, Screen } = createStackNavigator()
+  const [theme, setTheme] = useState<'light' | 'dark' | null | undefined>(Appearance.getColorScheme())
+  const [modeViewAlunosFind, setModeViewAlunosFind] = useState(true)
+  
+  const { Navigator, Screen } = createStackNavigator<Inavigation>()
   
   async function themeVeri() {
     try {
@@ -33,7 +34,11 @@ export default function App() {
           setTheme('dark')
         }
       } else {
-        setTheme(await AsyncStorage.getItem('theme'))
+        if (await AsyncStorage.getItem('theme') === 'light') {
+          setTheme('light')
+        } else {
+          setTheme('dark')
+        }
       }
     } catch {
 
@@ -45,16 +50,16 @@ export default function App() {
       if (await AsyncStorage.getItem('modeViewAlunosFind') === null) {
         await AsyncStorage.setItem('modeViewAlunosFind', modeViewAlunosFind ? 'true' : 'false')
       } else {
-        setModeViewAlunosFind((await AsyncStorage.getItem('modeViewAlunosFind')) === 'true' ? true : false)
+        setModeViewAlunosFind((await AsyncStorage.getItem('modeViewAlunosFind')) === 'false' ? false : true)
       }
     } catch {
 
     }
   }
 
-  function veriGeral() {
-    themeVeri().then()
-    modeViewAlunosFindVeri().then()
+  async function veriGeral() {
+    await themeVeri()
+    await modeViewAlunosFindVeri()
   }
 
   useEffect(() => {
@@ -94,14 +99,18 @@ export default function App() {
           <Navigator screenOptions={{
             headerShown: false
           }} initialRouteName="Home">
-            <Screen name="Home" component={Home}/>
-            <Screen name="Turmas" initialParams={{
-              success: false
-            }}>
-              {props => <Turmas {...props} modeViewFind={modeViewAlunosFind}/>}
+            <Screen name="Home">
+              {props => <Home {...props} veriGeral={veriGeral} find={modeViewAlunosFind}/>}
             </Screen>
+            <Screen name="Turmas" initialParams={{ success: false }} component={Turmas}/>
             <Screen name="Settings">
-              {props => <Settings {...props} theme={theme} modeView={modeViewAlunosFind} setTheme={theme => setTheme(theme)} setModeView={view => setModeViewAlunosFind(view)}/>}
+              {props => <Settings
+                {...props}
+                theme={theme}
+                modeView={modeViewAlunosFind}
+                setTheme={theme => setTheme(theme)}
+                setModeView={view => setModeViewAlunosFind(view)}
+              />}
             </Screen>
             <Screen name="Alunos" component={Alunos}/>
             <Screen name="Camera" component={Camera}/>

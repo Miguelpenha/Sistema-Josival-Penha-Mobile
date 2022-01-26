@@ -1,9 +1,13 @@
 import React, { FC } from 'react'
 import { Container } from './style'
+import { StatusBar } from 'expo-status-bar'
 
 const ContainerPd: FC = ({ children }) => {
     return (
-        <Container>{children}</Container>
+        <Container>
+            <StatusBar/>
+            {children}
+        </Container>
     )
 }
 

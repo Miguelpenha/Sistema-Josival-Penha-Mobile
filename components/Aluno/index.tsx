@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Container, ContainerImg, Img, Text } from './style'
 import TextLimit from '../TextLimit'
-import { Inavigation } from '../../types'
+import { Inavigation, Ialuno } from '../../types'
 
 interface ionClickFoto {
     (foto: Inavigation['Foto']['foto']): void
@@ -12,11 +12,7 @@ interface onClick {
 }
 
 interface Iprops {
-    aluno: {
-        nome: string
-        id: string
-        foto: Inavigation['Foto']['foto']
-    }
+    aluno: Ialuno
     onClick: onClick
     onClickFoto: ionClickFoto
 }

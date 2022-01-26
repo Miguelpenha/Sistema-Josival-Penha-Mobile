@@ -24,3 +24,13 @@ export const AlertNotFound = styled.Text`
     font-weight: 700;
     color: ${props => props.theme.color};
 `
+
+export const Title = styled.Text`
+    width: 100%;
+    font-size: 30px;
+    margin-top: 2.5%;
+    margin-bottom: 5%;
+    font-weight: bold;
+    text-align: center;
+    color: ${props => props.theme.primary};
+`

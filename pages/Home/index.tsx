@@ -6,10 +6,20 @@ import ContainerPd from '../../components/ContainerPd'
 import LoadingData from '../../components/loadingData'
 import { Header, ContainerSettings, Settings, Logo, Title, Button, TextButton } from './style'
 
-type Iprops = NativeStackScreenProps<Inavigation, 'Alunos'>
+type iveriGeral = {
+  (): Promise<void>
+}
 
-export default function Home({ navigation }: Iprops) {
+interface Iprops {
+  navigation: NativeStackScreenProps<Inavigation, 'Alunos'>['navigation']
+  veriGeral: iveriGeral
+  find: boolean
+}
+
+export default function Home({ navigation, veriGeral, find }: Iprops) {
   const { data: turmas } = get('/turmas')
+
+  veriGeral().then()
   
   return (
     <ContainerPd>
@@ -21,7 +31,12 @@ export default function Home({ navigation }: Iprops) {
           <Logo/>
         </Header>
         <Title>Selecione uma opção</Title>
-        <Button onPress={() => navigation.navigate('Turmas')}>
+        <Button onPress={() => find ? navigation.navigate('Alunos', {
+          next: 'camera:aluno',
+          url: '/alunos'
+        }) : navigation.navigate('Turmas', {
+          success: false
+        })}>
           <TextButton>Adicionar foto a um aluno</TextButton>
         </Button>
         <Button onPress={() => navigation.navigate('Alunos', {

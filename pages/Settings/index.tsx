@@ -1,11 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { Inavigation } from '../../types'
 import ContainerPd from '../../components/ContainerPd'
 import HeaderBack from '../../components/HeaderBack'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { dark as darkTheme, light as lightTheme } from '../../theme'
 import { ContainerSwitch, TextSwitch, Switch } from './style'
 
-export default function Settings({ navigation, theme, modeView, setTheme, setModeView }) {
+type IsetTheme = {
+    (theme: Iprops['theme']): void
+}
+
+type IsetModeView = {
+    (view: boolean): void
+}
+
+interface Iprops {
+    navigation: NativeStackScreenProps<Inavigation, 'Settings'>['navigation']
+    theme: 'light' | 'dark' | null | undefined
+    modeView: boolean
+    setTheme: IsetTheme
+    setModeView: IsetModeView
+}
+
+const Settings: FC<Iprops> = ({ navigation, theme, modeView, setTheme, setModeView }) => {
     const [dark, setDark] = useState(theme==='light' ? false : true)
     const [modeViewAlunosFind, setModeViewAlunosFind] = useState(modeView)
 
@@ -51,3 +69,5 @@ export default function Settings({ navigation, theme, modeView, setTheme, setMod
         </ContainerPd>
     )
 }
+
+export default Settings
