@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { Inavigation } from './types'
 import { ThemeProvider } from 'styled-components'
 import { dark, light } from './theme'
+import { StatusBar } from 'expo-status-bar'
 import { NavigationContainer } from '@react-navigation/native'
 import Home from './pages/Home'
 import Turmas from './pages/Turmas'
@@ -75,6 +76,7 @@ export default function App() {
   } else {
     return (
       <ThemeProvider theme={theme === 'dark' ? dark : light}>
+        <StatusBar style={theme === 'dark' ? 'light' : 'dark'}/>
         <NavigationContainer theme={theme === 'dark' ? {
           colors: {
             background: dark.backgroundColor,

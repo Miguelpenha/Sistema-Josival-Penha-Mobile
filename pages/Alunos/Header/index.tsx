@@ -1,6 +1,7 @@
 import React, { FC } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { Inavigation, Ialuno } from '../../../types'
+import { useTheme } from 'styled-components'
 import { View } from 'react-native'
 import HeaderBack from '../../../components/HeaderBack'
 import { Find, Title, ContainerAlertNotFound, AlertNotFound } from './style'
@@ -13,6 +14,7 @@ interface Iprops {
 }
 
 const Header: FC<Iprops> = ({ navigation, alunos, filter, setFilter }) => {
+    const theme = useTheme()
     let existsAluno = false
     
     alunos.map(aluno => {
@@ -28,15 +30,15 @@ const Header: FC<Iprops> = ({ navigation, alunos, filter, setFilter }) => {
                 value={filter}
                 onChangeText={setFilter}
                 placeholder="Pesquisar um aluno"
+                placeholderTextColor={theme.color}
             />
-            {!existsAluno && <Title>Escolha um aluno</Title>}
-            {!existsAluno && (
+            {!existsAluno ? (
                 <ContainerAlertNotFound>
                     <AlertNotFound>
                         {'Não encontramos nenhum aluno com esse nome '}&#x1F615;
                     </AlertNotFound>
                 </ContainerAlertNotFound>
-            )}
+            ) : <Title>Escolha um aluno</Title>}
         </View>
     )
 }

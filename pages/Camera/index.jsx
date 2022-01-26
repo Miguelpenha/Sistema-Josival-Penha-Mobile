@@ -4,7 +4,7 @@ import { Camera as CameraExpo } from 'expo-camera'
 import * as fileSystem from 'expo-file-system'
 import * as MediaLibrary from 'expo-media-library'
 import { API_KEY, API_URL } from '@env'
-import { IconMaterial, Container, ContainerCamera, Options, ButtonBack, ContainerFlip, ContainerCircle, IconFontAwesome, ContainerFlash } from './style'
+import { IconMaterial, Container, ContainerCamera, CameraComponent, Options, ButtonBack, ContainerFlip, ContainerCircle, IconFontAwesome, ContainerFlash } from './style'
 
 export default function Camera({ route, navigation }) {
     const { aluno } = route.params
@@ -22,7 +22,7 @@ export default function Camera({ route, navigation }) {
 
         veri().then()
     }, [])
-
+    
     useEffect(() => {
         async function save() {
             await MediaLibrary.createAssetAsync(foto.uri)
@@ -66,31 +66,35 @@ export default function Camera({ route, navigation }) {
 
     return (
         <Container>
-            <ContainerCamera 
-                ratio="16:9"
-                height={height}
-                type={typeCamera}
-                flashMode={flashCamera}
-                ref={ref => setCamera(ref)}
-            >
-                <Options>
-                    <ButtonBack onClick={() => navigation.goBack()}/>
-                    <ContainerFlip 
-                        onPress={() => setTypeCamera(typeCamera === CameraExpo.Constants.Type.back? CameraExpo.Constants.Type.front : CameraExpo.Constants.Type.back)}
-                    >
-                        <IconMaterial name="refresh" size={54}/>
-                    </ContainerFlip>
-                    <ContainerCircle 
-                        onPress={async () => setFoto(await camera.takePictureAsync())}
-                    >
-                        <IconFontAwesome name="circle-thin" size={66}/>
-                    </ContainerCircle>
-                    <ContainerFlash
-                        onPress={() => setFlashCamera(flashCamera === CameraExpo.Constants.FlashMode.off? CameraExpo.Constants.FlashMode.torch : CameraExpo.Constants.FlashMode.off)}
-                    >
-                        <VeriFlash/>
-                    </ContainerFlash>
-                </Options>
+            <ContainerCamera>
+                <CameraComponent
+                    ratio="16:9"
+                    height={height}
+                    type={typeCamera}
+                    flashMode={flashCamera}
+                    ref={ref => setCamera(ref)}
+                >
+                    <Options>
+                        <ButtonBack onClick={() => navigation.goBack()}/>
+                        <ContainerFlip 
+                            onPress={() => setTypeCamera(typeCamera === CameraExpo.Constants.Type.back? CameraExpo.Constants.Type.front : CameraExpo.Constants.Type.back)}
+                        >
+                            <IconMaterial name="refresh" size={54}/>
+                        </ContainerFlip>
+                        <ContainerCircle 
+                            onPress={async () => (
+                                setFoto(await camera.takePictureAsync())
+                            )}
+                        >
+                            <IconFontAwesome name="circle-thin" size={66}/>
+                        </ContainerCircle>
+                        <ContainerFlash
+                            onPress={() => setFlashCamera(flashCamera === CameraExpo.Constants.FlashMode.off? CameraExpo.Constants.FlashMode.torch : CameraExpo.Constants.FlashMode.off)}
+                        >
+                            <VeriFlash/>
+                        </ContainerFlash>
+                    </Options>
+                </CameraComponent>
             </ContainerCamera>
         </Container>
     )

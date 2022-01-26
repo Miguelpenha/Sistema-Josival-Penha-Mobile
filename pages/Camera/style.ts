@@ -1,26 +1,34 @@
 import styled from 'styled-components/native'
-import { View, TouchableOpacity } from 'react-native'
 import ButtonBackStyled from '../../components/ButtonBack'
-import { Camera } from 'expo-camera'
+import { Camera as CameraNotStyled } from 'expo-camera'
 import { MaterialIcons, FontAwesome } from '@expo/vector-icons'
+
+interface ICameraComponent {
+    height: number
+}
 
 export const IconMaterial = styled(MaterialIcons)`
     color: ${props => props.theme.primary};
 `
 
-export const Container = styled(View)`
+export const Container = styled.View`
     flex: 1;
-    padding-top: 4.5%;
+    margin-top: 4.5%;
     justify-content: center;
-    background-color: #000000;
+    background-color: ${props => props.theme.backgroundColor};
 `
 
-export const ContainerCamera = styled(Camera)`
-    width: 100%
-    height: ${props => props.height+'px'};
+export const ContainerCamera = styled.View`
+    width: 100%;
+    overflow: hidden;
+    align-self: center;
 `
 
-export const Options = styled(View)`
+export const CameraComponent = styled(CameraNotStyled)<ICameraComponent>`
+    height: ${props => `${props.height}px`};
+`
+
+export const Options = styled.View`
     flex: 1;
     flex-direction: row;
 `
@@ -31,13 +39,13 @@ export const ButtonBack = styled(ButtonBackStyled)`
     align-self: flex-start;
 `
 
-export const ContainerFlip = styled(TouchableOpacity)`
+export const ContainerFlip = styled.TouchableOpacity`
     margin: 20px;
     margin-right: auto;
     align-self: flex-end;
 `
 
-export const ContainerCircle = styled(TouchableOpacity)`
+export const ContainerCircle = styled.TouchableOpacity`
     margin: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -49,7 +57,7 @@ export const IconFontAwesome = styled(FontAwesome)`
     color: ${props => props.theme.primary};
 `
 
-export const ContainerFlash = styled(TouchableOpacity)`
+export const ContainerFlash = styled.TouchableOpacity`
     margin: 20px;
     align-self: flex-end;
 `
