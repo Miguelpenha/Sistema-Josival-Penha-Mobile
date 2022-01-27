@@ -4,7 +4,7 @@ import { Inavigation } from '../../types'
 import { get } from '../../api'
 import ContainerPd from '../../components/ContainerPd'
 import LoadingData from '../../components/loadingData'
-import { Header, ContainerSettings, Settings, Logo, Title, Button, TextButton } from './style'
+import { Header, Logo, ContainerSettings, Settings, Title, Button, TextButton } from './style'
 
 type iveriGeral = {
   (): Promise<void>
@@ -25,18 +25,20 @@ export default function Home({ navigation, veriGeral, find }: Iprops) {
     <ContainerPd>
       <LoadingData loading={turmas}>
         <Header>
+          <Logo/>
           <ContainerSettings onPress={() => navigation.navigate('Settings')}>
             <Settings name="settings" size={35}/>
           </ContainerSettings>
-          <Logo/>
         </Header>
         <Title>Selecione uma opção</Title>
-        <Button onPress={() => find ? navigation.navigate('Alunos', {
-          next: 'camera:aluno',
-          url: '/alunos'
-        }) : navigation.navigate('Turmas', {
-          success: false
-        })}>
+        <Button 
+          onPress={() => find ? navigation.navigate('Alunos', {
+            next: 'camera:aluno',
+            url: '/alunos'
+          }) : navigation.navigate('Turmas', {
+            success: false
+          })}
+        >
           <TextButton>Adicionar foto a um aluno</TextButton>
         </Button>
         <Button onPress={() => navigation.navigate('Alunos', {

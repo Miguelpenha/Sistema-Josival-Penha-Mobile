@@ -10,6 +10,7 @@ export interface Itheme {
 export interface Ialuno {
   id: string
   nome: string
+  turma: string
   foto: {
     url: string
     width: number

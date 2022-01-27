@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Container, ContainerImg, Img, Text } from './style'
+import { Container, ContainerImg, Img, ContainerData, Text } from './style'
 import TextLimit from '../TextLimit'
 import { Inavigation, Ialuno } from '../../types'
 
@@ -25,7 +25,10 @@ const Aluno: FC<Iprops> = ({ aluno, onClick, onClickFoto }) => {
                     uri: aluno.foto.url
                 }}/>
             </ContainerImg>
-            <TextLimit component={Text} limit={29}>{aluno.nome}</TextLimit>
+            <ContainerData>
+                <TextLimit component={Text} limit={27}>{aluno.nome}</TextLimit>
+                <TextLimit component={Text} limit={27}>{aluno.turma}</TextLimit>
+            </ContainerData>
         </Container>
     )
 }

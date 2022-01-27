@@ -23,13 +23,16 @@ export const Img = styled.Image`
     border-radius: 50px;
 `
 
+export const ContainerData = styled.View`
+    max-width: 80%;
+`
+
 export const Text = styled.Text`  
-    width: 90%;
-    font-size: 22px;
+    width: 100%;
+    font-size: 18px;
     text-align: left;
     padding-left: 2%;
     margin-top: 1.5%;
     font-weight: bold;
-    padding-right: 10%;
     color: ${props => props.theme.color};
 `
