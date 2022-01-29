@@ -30,10 +30,13 @@ export default function Camera({ route, navigation }) {
             navigation.navigate('Turmas', {
                 success: true
             })
+
+            const url = API_URL
+            const key = API_KEY
             
-            await fileSystem.uploadAsync(`${API_URL}/alunos/fotos`, foto.uri, {
+            await fileSystem.uploadAsync(`${url}/alunos/fotos`, foto.uri, {
                 headers: {
-                    'Authorization': `key ${API_KEY}`
+                    'Authorization': `key ${key}`
                 },
                 fieldName: 'foto',
                 httpMethod: 'PATCH',
