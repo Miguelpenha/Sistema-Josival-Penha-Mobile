@@ -1,13 +1,9 @@
 import axios from 'axios'
-import { API_URL, API_KEY } from '@env'
-
-const url = API_URL
-const key = API_KEY
 
 const api = axios.create({
-    baseURL: url,
+    baseURL: process.env.API_URL,
     headers: {
-        'Authorization': `key ${key}`
+        'Authorization': `key ${process.env.API_KEY}`
     }
 })
 

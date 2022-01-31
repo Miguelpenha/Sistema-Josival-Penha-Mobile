@@ -3,7 +3,6 @@ import { Dimensions } from 'react-native'
 import { Camera as CameraExpo } from 'expo-camera'
 import * as fileSystem from 'expo-file-system'
 import * as MediaLibrary from 'expo-media-library'
-import { API_KEY, API_URL } from '@env'
 import { IconMaterial, Container, ContainerCamera, CameraComponent, Options, ButtonBack, ContainerFlip, ContainerCircle, IconFontAwesome, ContainerFlash } from './style'
 
 export default function Camera({ route, navigation }) {
@@ -31,9 +30,9 @@ export default function Camera({ route, navigation }) {
                 success: true
             })
             
-            await fileSystem.uploadAsync(`${API_URL}/alunos/fotos`, foto.uri, {
+            await fileSystem.uploadAsync(`${process.env.API_URL}/alunos/fotos`, foto.uri, {
                 headers: {
-                    'Authorization': `key ${API_KEY}`
+                    'Authorization': `key ${process.env.API_KEY}`
                 },
                 fieldName: 'foto',
                 httpMethod: 'PATCH',
