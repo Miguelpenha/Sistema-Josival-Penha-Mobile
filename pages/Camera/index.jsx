@@ -4,7 +4,6 @@ import { Camera as CameraExpo } from 'expo-camera'
 import * as fileSystem from 'expo-file-system'
 import * as MediaLibrary from 'expo-media-library'
 import { IconMaterial, Container, ContainerCamera, CameraComponent, Options, ButtonBack, ContainerFlip, ContainerCircle, IconFontAwesome, ContainerFlash } from './style'
-import { url, key } from '../../env'
 
 export default function Camera({ route, navigation }) {
     const { aluno } = route.params
@@ -25,11 +24,11 @@ export default function Camera({ route, navigation }) {
     
     useEffect(() => {
         async function save() {
-            await MediaLibrary.createAssetAsync(foto.uri)
-
             navigation.navigate('Turmas', {
                 success: true
             })
+
+            // await MediaLibrary.createAssetAsync(foto.uri)
             
             await fileSystem.uploadAsync(`${process.env.API_URL}/alunos/fotos`, foto.uri, {
                 headers: {
