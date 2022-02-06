@@ -31,9 +31,9 @@ export default function Camera({ route, navigation }) {
                 success: true
             })
             
-            await fileSystem.uploadAsync(`${url}/alunos/fotos`, foto.uri, {
+            await fileSystem.uploadAsync(`${process.env.API_URL}/alunos/fotos`, foto.uri, {
                 headers: {
-                    'Authorization': `key ${key}`
+                    'Authorization': `key ${process.env.API_KEY}`
                 },
                 fieldName: 'foto',
                 httpMethod: 'PATCH',
