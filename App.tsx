@@ -45,7 +45,7 @@ export default function App() {
 
     }
   }
-
+  
   async function modeViewAlunosFindVeri() {
     try {
       if (await AsyncStorage.getItem('modeViewAlunosFind') === null) {
