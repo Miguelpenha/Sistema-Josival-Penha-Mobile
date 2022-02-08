@@ -4,7 +4,6 @@ import { Camera as CameraExpo } from 'expo-camera'
 import * as fileSystem from 'expo-file-system'
 import * as MediaLibrary from 'expo-media-library'
 import { IconMaterial, Container, ContainerCamera, CameraComponent, Options, ButtonBack, ContainerFlip, ContainerCircle, IconFontAwesome, ContainerFlash } from './style'
-import { url, key } from '../../env'
 
 export default function Camera({ route, navigation }) {
     const { aluno } = route.params
@@ -13,7 +12,7 @@ export default function Camera({ route, navigation }) {
     const [flashCamera, setFlashCamera] = useState(CameraExpo.Constants.FlashMode.off)
     const [camera, setCamera] = useState(false)
     const [foto, setFoto] = useState(null)
-
+    
     useEffect(() => {
         async function veri() {
             const { status } = await CameraExpo.requestCameraPermissionsAsync()
@@ -31,9 +30,9 @@ export default function Camera({ route, navigation }) {
 
             // await MediaLibrary.createAssetAsync(foto.uri)
             
-            await fileSystem.uploadAsync(`${url}/alunos/fotos`, foto.uri, {
+            await fileSystem.uploadAsync(`${process.env.API_URL}/alunos/fotos`, foto.uri, {
                 headers: {
-                    'Authorization': `key ${key}`
+                    'Authorization': `key ${process.env.API_KEY}`
                 },
                 fieldName: 'foto',
                 httpMethod: 'PATCH',
