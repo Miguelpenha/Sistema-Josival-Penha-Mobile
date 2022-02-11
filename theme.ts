@@ -1,4 +1,6 @@
-export const dark = {
+import { Itheme } from './types'
+
+export const dark: Itheme = {
     name: 'dark',
     backgroundColor: '#121212',
     secondary: '#333333',
@@ -7,7 +9,7 @@ export const dark = {
     check: '#2fcc8d'
 }
 
-export const light = {
+export const light: Itheme = {
     name: 'light',
     backgroundColor: '#ffffff',
     secondary: '#cccccc',

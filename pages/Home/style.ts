@@ -13,13 +13,13 @@ export const Header = styled.View`
 export const Logo = styled(LogoJP)`
     width: 75%;
     height: auto;
-    margin-left: 12%;
+    margin-right: 12%;
     aspect-ratio: 2.6186961870;
 `
 
 export const ContainerSettings = styled.TouchableOpacity`
     margin: 1.5%;
-    margin-left: auto;
+    margin-right: auto;
 `
 
 export const Settings = styled(MaterialIcons)`

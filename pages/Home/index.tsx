@@ -25,10 +25,10 @@ export default function Home({ navigation, veriGeral, find }: Iprops) {
     <ContainerPd>
       <LoadingData loading={turmas}>
         <Header>
-          <Logo/>
           <ContainerSettings onPress={() => navigation.navigate('Settings')}>
-            <Settings name="settings" size={35}/>
+            <Settings name="settings" size={40}/>
           </ContainerSettings>
+          <Logo/>
         </Header>
         <Title>Selecione uma opção</Title>
         <Button 

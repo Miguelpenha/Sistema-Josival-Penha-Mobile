@@ -1,18 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { FC, useState, useEffect, useRef } from 'react'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { Inavigation } from '../../types'
 import { Dimensions } from 'react-native'
-import { Camera as CameraExpo } from 'expo-camera'
+import { Camera as CameraExpo, CameraCapturedPicture } from 'expo-camera'
 import * as fileSystem from 'expo-file-system'
 import * as MediaLibrary from 'expo-media-library'
 import { IconMaterial, Container, ContainerCamera, CameraComponent, Options, ButtonBack, ContainerFlip, ContainerCircle, IconFontAwesome, ContainerFlash } from './style'
 import { url, key } from '../../env'
 
-export default function Camera({ route, navigation }) {
+type Iprops = NativeStackScreenProps<Inavigation, 'Camera'>
+
+const Camera: FC<Iprops> = ({ route, navigation }) => {
     const { aluno } = route.params
     const [permissionCamera, setPermissionCamera] = useState(false)
     const [typeCamera, setTypeCamera] = useState(CameraExpo.Constants.Type.back)
     const [flashCamera, setFlashCamera] = useState(CameraExpo.Constants.FlashMode.off)
-    const [camera, setCamera] = useState(false)
-    const [foto, setFoto] = useState(null)
+    const [camera, setCamera] = useState<CameraExpo | null>(null)
+    const [foto, setFoto] = useState<CameraCapturedPicture | null>(null)
     
     useEffect(() => {
         async function veri() {
@@ -31,7 +35,7 @@ export default function Camera({ route, navigation }) {
 
             // await MediaLibrary.createAssetAsync(foto.uri)
             
-            await fileSystem.uploadAsync(`${url}/alunos/fotos`, foto.uri, {
+            await fileSystem.uploadAsync(`${url}/alunos/fotos`, foto!.uri, {
                 headers: {
                     'Authorization': `key ${key}`
                 },
@@ -52,12 +56,12 @@ export default function Camera({ route, navigation }) {
     const dimensions = useRef(Dimensions.get('window'))
     const screenWidth = dimensions.current.width
     const height = Math.round((screenWidth*16)/9)
-
+    
     function VeriFlash() {
         if (flashCamera === CameraExpo.Constants.FlashMode.off) {
-            return <IconMaterial name="flash-on" size={54}/>
+            return <IconMaterial name="flash-on" size="54"/>
         } else {
-            return <IconMaterial name="flash-off" size={54}/>
+            return <IconMaterial name="flash-off" size="54"/>
         }
     }
 
@@ -80,7 +84,7 @@ export default function Camera({ route, navigation }) {
                         </ContainerFlip>
                         <ContainerCircle 
                             onPress={async () => (
-                                setFoto(await camera.takePictureAsync())
+                                setFoto(await camera!.takePictureAsync())
                             )}
                         >
                             <IconFontAwesome name="circle-thin" size={66}/>
@@ -96,3 +100,5 @@ export default function Camera({ route, navigation }) {
         </Container>
     )
 }
+
+export default Camera
