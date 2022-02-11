@@ -59,9 +59,9 @@ const Camera: FC<Iprops> = ({ route, navigation }) => {
     
     function VeriFlash() {
         if (flashCamera === CameraExpo.Constants.FlashMode.off) {
-            return <IconMaterial name="flash-on" size="54"/>
+            return <IconMaterial name="flash-on" size={54}/>
         } else {
-            return <IconMaterial name="flash-off" size="54"/>
+            return <IconMaterial name="flash-off" size={54}/>
         }
     }
 
