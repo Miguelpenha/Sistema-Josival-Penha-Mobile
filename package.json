@@ -41,7 +41,8 @@
     "react-native-web": "^0.17.7",
     "styled-components": "^5.3.3",
     "swr": "^1.2.2",
-    "swr-react-native": "^0.1.2"
+    "swr-react-native": "^0.1.2",
+    "expo-updates": "~0.10.15"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
