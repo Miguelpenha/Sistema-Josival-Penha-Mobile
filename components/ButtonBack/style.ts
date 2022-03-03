@@ -1,6 +1,8 @@
 import styled from 'styled-components/native'
-import { Ionicons } from '@expo/vector-icons'
+import { MaterialIcons } from '@expo/vector-icons'
 
-export const Icon = styled(Ionicons)`
-    color: ${props => props.theme.primary};
+export const Icon = styled(MaterialIcons)`
+    color: ${props => props.theme.secondaryColor};
+    left: 20%;
+    margin-right: 5%;
 `

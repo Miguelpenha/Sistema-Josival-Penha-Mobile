@@ -17,7 +17,7 @@ interface Iprops {
 
 export default function Alunos({ route, navigation }: Iprops) {
   const [filter, setFilter] = useState('')
-  const { url, next } = route.params
+  const { url, next, title } = route.params
   const { data: alunos }: { data: Ialuno[] } = get(url)
   
   return (
@@ -27,31 +27,29 @@ export default function Alunos({ route, navigation }: Iprops) {
           data={alunos}
           ListHeaderComponent={(
             <Header
+              title={title}
               alunos={alunos}
               filter={filter}
               setFilter={setFilter}
               navigation={navigation}
             />
           )}
-          renderItem={({ item: aluno }) => {
-            if (aluno.nome.toUpperCase().includes(filter.toUpperCase())) {
-              return (
-                <Aluno
-                  aluno={aluno}
-                  onClick={aluno => {
-                    if (next === 'camera:aluno') {
-                      navigation.navigate('Camera', { aluno: aluno.id })
-                    } else if (next === 'pagamentos:aluno') {
-                      navigation.navigate('Pagamentos', { aluno })
-                    }
-                  }}
-                  onClickFoto={foto => navigation.navigate('Foto', { foto })}
-                />
-              )
-            } else {
-              return null
-            }
-          }}
+          renderItem={({ item: aluno }) => (
+            <Aluno
+              aluno={aluno}
+              filter={aluno => (
+                aluno.nome.toUpperCase().includes(filter.toUpperCase())
+              )}
+              onClickFoto={foto => navigation.navigate('Foto', { foto })}
+              onClick={aluno => {
+                if (next === 'camera:aluno') {
+                  navigation.navigate('Camera', { aluno: aluno.id })
+                } else if (next === 'pagamentos:aluno') {
+                  navigation.navigate('Pagamentos', { aluno })
+                }
+              }}
+            />
+          )}
           keyExtractor={aluno => aluno.id}
         />
       </LoadingData>

@@ -14,6 +14,7 @@ import Camera from './pages/Camera'
 import Foto from './pages/Foto'
 import Settings from './pages/Settings'
 import Pagamentos from './pages/Pagamentos'
+import SelectMonth from './pages/SelectMonth'
 import AppLoading from 'expo-app-loading'
 import 'react-native-gesture-handler'
 
@@ -118,6 +119,7 @@ export default function App() {
             <Screen name="Camera" component={Camera}/>
             <Screen name="Foto" component={Foto}/>
             <Screen name="Pagamentos" component={Pagamentos}/>
+            <Screen name="SelectMonth" component={SelectMonth}/>
           </Navigator>
         </NavigationContainer>
       </ThemeProvider>

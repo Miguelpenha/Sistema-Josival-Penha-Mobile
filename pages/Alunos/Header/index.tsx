@@ -11,9 +11,10 @@ interface Iprops {
     alunos: Ialuno[]
     filter: string
     setFilter: React.Dispatch<React.SetStateAction<string>>
+    title?: string
 }
 
-const Header: FC<Iprops> = ({ navigation, alunos, filter, setFilter }) => {
+const Header: FC<Iprops> = ({ navigation, alunos, filter, setFilter, title }) => {
     const theme = useTheme()
     let existsAluno = false
     
@@ -25,20 +26,21 @@ const Header: FC<Iprops> = ({ navigation, alunos, filter, setFilter }) => {
     
     return (
         <View>
-            <HeaderBack onClick={() => navigation.goBack()}/>
+            <HeaderBack title={title} onClick={() => navigation.goBack()}/>
             <Find
                 value={filter}
                 onChangeText={setFilter}
                 placeholder="Pesquisar um aluno"
                 placeholderTextColor={theme.color}
+                selectionColor={theme.secondaryColor}
             />
-            {!existsAluno ? (
+            {!existsAluno && (
                 <ContainerAlertNotFound>
                     <AlertNotFound>
-                        {'Não encontramos nenhum aluno com esse nome '}&#x1F615;
+                        Não encontramos nenhum aluno com esse nome &#x1F615;
                     </AlertNotFound>
                 </ContainerAlertNotFound>
-            ) : <Title>Escolha um aluno</Title>}
+            )}
         </View>
     )
 }

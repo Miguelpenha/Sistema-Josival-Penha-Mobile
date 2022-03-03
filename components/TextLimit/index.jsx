@@ -1,17 +1,11 @@
 import React from 'react'
 
 export default function TextLimit({ children, component: Component, limit }) {
-    let novo = ''
+    let text = React.Children.toArray(children)[0]
 
-    for (let letra in children) {
-        if (letra >= limit) {
-            if (!novo.includes('...')) {
-                novo += '...'
-            }
-        } else {
-            novo += children[letra]
-        }
+    if (typeof text === 'string') {
+        return <Component>{text.substring(0, limit).concat('...')}</Component>  
+    } else {
+        return null
     }
-
-    return <Component>{novo}</Component>
 }
