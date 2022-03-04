@@ -1,7 +1,9 @@
 import React, { FC, memo } from 'react'
-import { Container, ContainerImg, Img, ContainerData, Text, ContainerPagamentos, ContainerStatus, Status, ContainerIconBack, IconBack } from './style'
-import TextLimit from '../TextLimit'
 import { Ialuno } from '../../types'
+import TextLimit from '../TextLimit'
+import calcIdade from '../../utils/calcIdade'
+import { Container, ContainerImg, Img, ContainerData, Text, ContainerStatus, Status, IconBack } from './style'
+import veriPago from '../../utils/veriPago'
 
 interface ionClickFoto {
     (foto: Ialuno['foto']): void
@@ -20,43 +22,34 @@ interface Iprops {
     filter: Ifilter
     onClick: IonClick
     onClickFoto: ionClickFoto
+    financeiro?: boolean
 }
 
-const Aluno: FC<Iprops> = ({ aluno, filter, onClick, onClickFoto }) => {
-    function calcIdade(nascimento: string) {
-        const newNascimento = new Date(`${nascimento.split('/')[2]}-${nascimento.split('/')[1]}-${nascimento.split('/')[0]}`)
-
-        return Math.floor(
-            Math.ceil(
-                Math.abs(newNascimento.getTime()-new Date().getTime())/(1000*3600*24)
-            )/365.25
-        )
-    }
-
+const Aluno: FC<Iprops> = ({ aluno, filter, onClick, onClickFoto, financeiro }) => {
     const TextBold: FC = ({ children }) => <Text bold>{children}</Text>
-
+    const onClickEvent = () => onClick(aluno)
+    const onClickFotoEvent = () => onClickFoto(aluno.foto)
+    
     if (filter(aluno)) {
         return (
-            <Container onPress={() => onClick(aluno)}>
-                <ContainerImg onPress={() => onClickFoto(aluno.foto)}>
+            <Container onPress={onClickEvent}>
+                <ContainerImg onPress={onClickFotoEvent}>
                     <Img source={{
                         uri: aluno.foto.url
                     }}/>
                 </ContainerImg>
                 <ContainerData>
-                    <TextLimit component={TextBold} limit={16}>{aluno.nome}</TextLimit>
-                    <TextLimit component={Text} limit={16}>
+                    <TextLimit component={TextBold} limit={financeiro ? 14 : 26}>{aluno.nome}</TextLimit>
+                    <TextLimit component={Text} limit={financeiro ? 14 : 26}>
                         {calcIdade(aluno.nascimento)} anos
                     </TextLimit>
                 </ContainerData>
-                <ContainerPagamentos>
-                    <ContainerStatus>
-                        <Status>Em Dia</Status>
+                {financeiro && (
+                    <ContainerStatus pago={veriPago(aluno.pagamentos,)}>
+                        <Status>{veriPago(aluno.pagamentos)}</Status>
                     </ContainerStatus>
-                    <ContainerIconBack onPress={() => {}}>
-                        <IconBack name="arrow-forward-ios"/>
-                    </ContainerIconBack>
-                </ContainerPagamentos>
+                )}
+                <IconBack name="arrow-forward-ios" size={20}/>
             </Container>
         )
     } else {

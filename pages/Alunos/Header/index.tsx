@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { Inavigation, Ialuno } from '../../../types'
 import { useTheme } from 'styled-components'
 import { View } from 'react-native'
 import HeaderBack from '../../../components/HeaderBack'
-import { Find, Title, ContainerAlertNotFound, AlertNotFound } from './style'
+import { Find, ContainerAlertNotFound, AlertNotFound, ContainerButtonAtrasadosOrNo, ButtonAtrasadosOrNo, TextButtonAtrasadosOrNo } from './style'
 
 interface Iprops {
     navigation: NativeStackScreenProps<Inavigation, 'Alunos'>['navigation']
@@ -12,9 +12,11 @@ interface Iprops {
     filter: string
     setFilter: React.Dispatch<React.SetStateAction<string>>
     title?: string
+    atrasados: boolean
+    setAtrasados: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Header: FC<Iprops> = ({ navigation, alunos, filter, setFilter, title }) => {
+const Header: FC<Iprops> = ({ navigation, alunos, filter, setFilter, title, atrasados, setAtrasados}) => {
     const theme = useTheme()
     let existsAluno = false
     
@@ -41,8 +43,29 @@ const Header: FC<Iprops> = ({ navigation, alunos, filter, setFilter, title }) =>
                     </AlertNotFound>
                 </ContainerAlertNotFound>
             )}
+            {existsAluno && (
+                <ContainerButtonAtrasadosOrNo>
+                    <ButtonAtrasadosOrNo
+                        primary
+                        atrasados={!atrasados}
+                        onPress={() => setAtrasados(false)}
+                    >
+                        <TextButtonAtrasadosOrNo atrasados={!atrasados}>
+                            Todos
+                        </TextButtonAtrasadosOrNo>
+                    </ButtonAtrasadosOrNo>
+                    <ButtonAtrasadosOrNo 
+                        atrasados={atrasados}
+                        onPress={() => setAtrasados(true)}
+                    >
+                        <TextButtonAtrasadosOrNo atrasados={atrasados}>
+                            Atrasados
+                        </TextButtonAtrasadosOrNo>
+                    </ButtonAtrasadosOrNo>
+                </ContainerButtonAtrasadosOrNo>
+            )}
         </View>
     )
 }
 
-export default Header
+export default memo(Header)

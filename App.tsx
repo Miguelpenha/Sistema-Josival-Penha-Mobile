@@ -22,7 +22,6 @@ export default function App() {
   const [pronto, setPronto] = useState(false)
   const [theme, setTheme] = useState<'light' | 'dark' | null | undefined>(Appearance.getColorScheme())
   const [modeViewAlunosFind, setModeViewAlunosFind] = useState(true)
-  
   const { Navigator, Screen } = createStackNavigator<Inavigation>()
   
   async function themeVeri() {
@@ -77,7 +76,10 @@ export default function App() {
   } else {
     return (
       <ThemeProvider theme={theme === 'dark' ? dark : light}>
-        <StatusBar style={theme === 'dark' ? 'light' : 'dark'}/>
+        <StatusBar
+          animated={true}
+          style={theme === 'dark' ? 'light' : 'dark'}
+        />
         <NavigationContainer theme={theme === 'dark' ? {
           colors: {
             background: dark.backgroundColor,

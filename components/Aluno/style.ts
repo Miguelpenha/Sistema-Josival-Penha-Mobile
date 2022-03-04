@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components/native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { MaterialIcons } from '@expo/vector-icons'
+import { IveriPago } from '../../types'
 
 export const Container = styled.TouchableOpacity`
     width: 95%;
@@ -36,34 +37,36 @@ interface Itext {
 
 export const Text = styled.Text<Itext>`  
     width: 100%;
-    
     text-align: left;
     padding-left: 2%;
+    font-size: ${RFPercentage(2.5)}px;
+    color: ${props => props.theme.secondaryColor};
     ${props => props.bold && css`
         font-weight: bold;
     `}
-    font-size: ${RFPercentage(2.5)}px;
-    color: ${props => props.theme.secondaryColor};
 `
 
-export const ContainerPagamentos = styled.View`
-    width: 70%;
+interface IContainerStatus {
+    pago: IveriPago
+}
+
+export const ContainerStatus = styled.View<IContainerStatus>`
+    right: 12%;
+    width: 30%;
+    padding: 10%;
+    position: absolute;
+    align-self: center;
+    border-radius: 20px;
     justify-content: center;
-    padding-left: 1%;
-    flex-direction: row;
-    align-items: center;
-`
-
-export const ContainerStatus = styled.View`
-    width: 32%;
-    padding-right: 4%;
-    padding-left: 4%;
-    margin-right: 5%;
-    border-radius: 15px;
-    height: 80%;
-    align-items: center;
-    flex-direction: row;
-    background-color: ${props => props.theme.check};
+    background-color: ${props => {
+        if (props.pago === 'Em dia') {
+            return props.theme.receita
+        } else if (props.pago === 'Em espera') {
+            return props.theme.emEspera
+        } else if (props.pago === 'Atrasado') {
+            return props.theme.despesa
+        }
+    }};
 `
 
 export const Status = styled.Text`
@@ -72,10 +75,10 @@ export const Status = styled.Text`
     color: ${props => props.theme.color};
 `
 
-export const ContainerIconBack = styled.TouchableOpacity`
-    margin-right: 40%;
-`
-
 export const IconBack= styled(MaterialIcons)`
+    right: 0;
+    margin-left: 3.5%;
+    position: absolute;
+    align-self: center;
     color: ${props => props.theme.secondaryColor};
 `

@@ -27,7 +27,7 @@ export function post(url: string, dataParams?: object, config?: object) {
     const { data, error } = useSWR(url, async url => {
         const response = await base.post(url, dataParams, config)
         const data = await response.data
-
+        
         return data
     })
     

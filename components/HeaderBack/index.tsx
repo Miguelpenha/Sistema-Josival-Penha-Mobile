@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import { Container, ButtonBack, ContainerLogo, Title, Logo } from './style'
 
 interface Iprops {
@@ -19,4 +19,4 @@ const HeaderBack: FC<Iprops> = ({ onClick, title }) => {
     )
 }
 
-export default HeaderBack
+export default memo(HeaderBack)

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 import { StyleProp } from 'react-native'
 import { TouchableOpacity, ViewStyle } from 'react-native'
 import { Icon } from './style'
@@ -16,4 +16,4 @@ const ButtonBack: FC<Iprops> = ({ onClick, style, ...rest }) => {
     )
 }
 
-export default ButtonBack
+export default memo(ButtonBack)

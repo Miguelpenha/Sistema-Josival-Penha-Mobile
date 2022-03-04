@@ -7,7 +7,10 @@ export const dark: Itheme = {
     secondaryColor: '#797979',
     primary: '#0768e6',
     color: '#f1f0f0',
-    check: '#2fcc8d'
+    check: '#2fcc8d',
+    receita: '#60BF92',
+    despesa: '#EF5252',
+    emEspera: '#cccccc'
 }
 
 export const light: Itheme = {
@@ -17,5 +20,8 @@ export const light: Itheme = {
     secondaryColor: '#797979',
     primary: '#0872FC',
     color: '#ffffff',
-    check: '#4efdb7'
+    check: '#4efdb7',
+    receita: '#60BF92',
+    despesa: '#EF5252',
+    emEspera: '#cccccc'
 }
