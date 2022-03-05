@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components/native'
+import { MotiView, MotiText } from 'moti'
 
 interface IFind {
     financeiro?: boolean
@@ -33,7 +34,7 @@ export const AlertNotFound = styled.Text`
     color: ${props => props.theme.color};
 `
 
-export const ContainerButtonAtrasadosOrNo = styled.TouchableOpacity`
+export const ContainerButtonAtrasadosOrNo = styled.View`
     width: 80%;
     margin-top: 6%;
     margin-bottom: 6%;
@@ -43,26 +44,27 @@ export const ContainerButtonAtrasadosOrNo = styled.TouchableOpacity`
 
 interface IButtonAtrasadosOrNo {
     primary?: boolean
-    atrasados: boolean
 }
 
-export const ButtonAtrasadosOrNo = styled.TouchableOpacity<IButtonAtrasadosOrNo>`
-    width: 40%;
+export const ButtonAtrasadosOrNo = styled(MotiView)<IButtonAtrasadosOrNo>`
+    width: 100%;
     padding: 3%;
     align-items: center;
     border-radius: 20px;
-    background-color: ${props => props.atrasados ? props.theme.backgroundColor : props.theme.primary};
 
-    ${props => props.primary && css`
+    ${props => props.primary ? css`
         margin-right: 4%;
+        background-color: ${props => props.theme.primary};
+    ` : css`
+        background-color: ${props => props.theme.backgroundColor};
     `}
 `
 
 interface ITextButtonAtrasadosOrNo {
-    atrasados: boolean
+    primary?: boolean
 }
 
-export const TextButtonAtrasadosOrNo = styled.Text<ITextButtonAtrasadosOrNo>`
+export const TextButtonAtrasadosOrNo = styled(MotiText)<ITextButtonAtrasadosOrNo>`
     font-size: 18px;
-    color: ${props => props.atrasados ? props.theme.primary : props.theme.color};
+    color: ${props => props.primary ? props.theme.color : props.theme.primary};
 `

@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler'
 import React, { useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Appearance } from 'react-native'
@@ -16,7 +17,6 @@ import Settings from './pages/Settings'
 import Pagamentos from './pages/Pagamentos'
 import SelectMonth from './pages/SelectMonth'
 import AppLoading from 'expo-app-loading'
-import 'react-native-gesture-handler'
 
 export default function App() {
   const [pronto, setPronto] = useState(false)
