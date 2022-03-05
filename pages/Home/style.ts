@@ -1,5 +1,6 @@
 import styled from 'styled-components/native'
 import LogoJP from '../../components/LogoJP'
+import { RFPercentage } from 'react-native-responsive-fontsize'
 import { MaterialIcons } from '@expo/vector-icons'
 
 export const Header = styled.View`
@@ -38,8 +39,8 @@ export const Title = styled.Text`
 `
 
 export const Button = styled.TouchableOpacity`
-    width: 70%;
-    padding: 5%;
+    width: 80%;
+    padding: 7%;
     display: flex;
     margin-bottom: 8%;
     align-self: center;
@@ -50,7 +51,7 @@ export const Button = styled.TouchableOpacity`
 `
 
 export const TextButton = styled.Text`
-    font-size: 22px;
+    font-size: ${RFPercentage(3.2)}px;
     font-weight: bold;
     text-align: center;
     color: ${props => props.theme.color};
