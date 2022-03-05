@@ -19,18 +19,19 @@ interface Ifilter {
 
 interface Iprops {
     aluno: Ialuno
-    filter: Ifilter
+    filter?: Ifilter
     onClick: IonClick
     onClickFoto: ionClickFoto
     financeiro?: boolean
+    backIcon?: boolean
 }
 
-const Aluno: FC<Iprops> = ({ aluno, filter, onClick, onClickFoto, financeiro }) => {
+const Aluno: FC<Iprops> = ({ aluno, filter, onClick, onClickFoto, financeiro, backIcon=true }) => {
     const TextBold: FC = ({ children }) => <Text bold>{children}</Text>
     const onClickEvent = () => onClick(aluno)
     const onClickFotoEvent = () => onClickFoto(aluno.foto)
-    console.log()
-    if (filter(aluno)) {
+    
+    if (!filter || filter(aluno)) {
         return (
             <Container onPress={onClickEvent}>
                 <ContainerImg onPress={onClickFotoEvent}>
@@ -49,7 +50,7 @@ const Aluno: FC<Iprops> = ({ aluno, filter, onClick, onClickFoto, financeiro }) 
                         <Status>{veriPago(aluno.pagamentos)}</Status>
                     </ContainerStatus>
                 )}
-                <IconBack name="arrow-forward-ios" size={20}/>
+                {backIcon && <IconBack name="arrow-forward-ios" size={20}/>}
             </Container>
         )
     } else {
