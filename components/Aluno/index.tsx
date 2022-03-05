@@ -29,7 +29,7 @@ const Aluno: FC<Iprops> = ({ aluno, filter, onClick, onClickFoto, financeiro }) 
     const TextBold: FC = ({ children }) => <Text bold>{children}</Text>
     const onClickEvent = () => onClick(aluno)
     const onClickFotoEvent = () => onClickFoto(aluno.foto)
-    
+    console.log()
     if (filter(aluno)) {
         return (
             <Container onPress={onClickEvent}>
@@ -41,7 +41,7 @@ const Aluno: FC<Iprops> = ({ aluno, filter, onClick, onClickFoto, financeiro }) 
                 <ContainerData>
                     <TextLimit component={TextBold} limit={financeiro ? 14 : 26}>{aluno.nome}</TextLimit>
                     <TextLimit component={Text} limit={financeiro ? 14 : 26}>
-                        {calcIdade(aluno.nascimento)} anos
+                         {`${calcIdade(aluno.nascimento)} anos`}
                     </TextLimit>
                 </ContainerData>
                 {financeiro && (

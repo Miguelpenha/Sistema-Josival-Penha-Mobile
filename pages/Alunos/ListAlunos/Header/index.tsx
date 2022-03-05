@@ -1,9 +1,9 @@
 import React, { FC, memo } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { Inavigation, Ialuno } from '../../../types'
+import { Inavigation, Ialuno } from '../../../../types'
 import { useTheme } from 'styled-components'
 import { View } from 'react-native'
-import HeaderBack from '../../../components/HeaderBack'
+import HeaderBack from '../../../../components/HeaderBack'
 import { Find, ContainerAlertNotFound, AlertNotFound, ContainerButtonAtrasadosOrNo, ButtonAtrasadosOrNo, TextButtonAtrasadosOrNo } from './style'
 
 interface Iprops {
@@ -14,9 +14,10 @@ interface Iprops {
     title?: string
     atrasados: boolean
     setAtrasados: React.Dispatch<React.SetStateAction<boolean>>
+    financeiro?: boolean
 }
 
-const Header: FC<Iprops> = ({ navigation, alunos, filter, setFilter, title, atrasados, setAtrasados}) => {
+const Header: FC<Iprops> = ({ navigation, alunos, filter, setFilter, title, atrasados, setAtrasados, financeiro }) => {
     const theme = useTheme()
     let existsAluno = false
     
@@ -31,6 +32,7 @@ const Header: FC<Iprops> = ({ navigation, alunos, filter, setFilter, title, atra
             <HeaderBack title={title} onClick={() => navigation.goBack()}/>
             <Find
                 value={filter}
+                financeiro={financeiro}
                 onChangeText={setFilter}
                 placeholder="Pesquisar um aluno"
                 placeholderTextColor={theme.color}
@@ -43,7 +45,7 @@ const Header: FC<Iprops> = ({ navigation, alunos, filter, setFilter, title, atra
                     </AlertNotFound>
                 </ContainerAlertNotFound>
             )}
-            {existsAluno && (
+            {financeiro && existsAluno && (
                 <ContainerButtonAtrasadosOrNo>
                     <ButtonAtrasadosOrNo
                         primary

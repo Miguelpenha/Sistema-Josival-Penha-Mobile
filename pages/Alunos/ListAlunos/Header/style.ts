@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components/native'
 
-export const Find = styled.TextInput`
+interface IFind {
+    financeiro?: boolean
+}
+
+export const Find = styled.TextInput<IFind>`
     width: 80%;
     padding: 15px;
     font-size: 20px;
@@ -8,6 +12,10 @@ export const Find = styled.TextInput`
     border-radius: 12px;
     color: ${props => props.theme.color};
     background-color: ${props => props.theme.secondary};
+
+    ${props => !props.financeiro && css`
+        margin-bottom: 3%;
+    `}
 `
 
 export const ContainerAlertNotFound = styled.View`
