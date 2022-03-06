@@ -1,3 +1,4 @@
+import { RFPercentage } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 
 export const Container = styled.View`
@@ -16,15 +17,18 @@ export const ContainerTitles = styled.View`
 
 export const Mês = styled.Text`
     margin-left: -2%;
+    font-size: ${RFPercentage(2.5)}px;
     color: ${props => props.theme.secondaryColor};
 `
 
 export const Status = styled.Text`
     margin-left: 5%;
+    font-size: ${RFPercentage(2.5)}px;
     color: ${props => props.theme.secondaryColor};
 `
 
 export const Vencimento = styled.Text`
     margin-right: 7%;
+    font-size: ${RFPercentage(2.5)}px;
     color: ${props => props.theme.secondaryColor};
 `

@@ -19,7 +19,7 @@ export const Container = styled.TouchableOpacity`
 
 export const Month = styled.Text`
     font-size: ${RFPercentage(3.2)}px;
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.secondaryColor};
 `
 
 interface IContainerStatus {
@@ -28,8 +28,8 @@ interface IContainerStatus {
 
 export const ContainerStatus = styled.View<IContainerStatus>`
     left: 35%;
-    width: 28%;
-    padding: 3%;
+    width: 30%;
+    padding: 4%;
     position: absolute;
     border-radius: 20px;
     background-color: ${props => {
@@ -52,7 +52,7 @@ export const Status = styled.Text`
 export const Vencimento = styled.Text`
     left: 68%;
     position: absolute;
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.secondaryColor};
 `
 
 export const IconBack= styled(MaterialIcons)`

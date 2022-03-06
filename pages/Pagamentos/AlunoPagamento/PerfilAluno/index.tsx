@@ -20,7 +20,7 @@ const PerfilAluno: FC<Iprops> = ({ aluno, onPress }) => {
                     uri: aluno.foto.url
                 }}/>
             </ContainerImage>
-            <TextLimit component={Name} limit={19}>{aluno.nome}</TextLimit>
+            <TextLimit component={Name} limit={26}>{aluno.nome}</TextLimit>
         </Container>
     )
 }

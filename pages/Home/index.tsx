@@ -44,7 +44,7 @@ export default function Home({ navigation, veriGeral, find }: Iprops) {
         <Button onPress={() => navigation.navigate('Alunos', {
           next: 'pagamentos:aluno',
           url: '/alunos',
-          title: 'Escolha um Aluno',
+          title: 'Escolher Aluno',
           financeiro: true
         })}>
           <TextButton>Adicionar pagamento</TextButton>

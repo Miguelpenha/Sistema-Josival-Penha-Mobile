@@ -12,7 +12,7 @@ export const Container = styled.View`
 export const ButtonBack = styled(ButtonBackNotStyled)`
     margin-top: 5%;
     margin-left: 2%;
-    margin-bottom: 4%;
+    margin-bottom: 4.5%;
     align-self: flex-start;
 `
 

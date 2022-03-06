@@ -52,8 +52,8 @@ interface IContainerStatus {
 
 export const ContainerStatus = styled.View<IContainerStatus>`
     right: 12%;
-    width: 30%;
-    padding: 10%;
+    width: 32%;
+    padding: 5%;
     position: absolute;
     align-self: center;
     border-radius: 20px;

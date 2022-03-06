@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Ialuno } from '../../../types'
 import dinero from 'dinero.js'
-import { Container, Informations, ContainerInfo, TitleInfo, ContainerTextInfo, TextInfo } from './style'
+import { Container, Informations, ContainerInfo, TitleInfo, ContainerTextInfo, ButtonContainerTextInfo, TextInfo, IconBottom } from './style'
 import PerfilAluno from './PerfilAluno'
 import calcIdade from '../../../utils/calcIdade'
 
@@ -43,9 +43,10 @@ const AlunoPagamento: FC<Iprops> = ({ aluno, onPress }) => {
                 </ContainerInfo>
                 <ContainerInfo>
                     <TitleInfo>Valor: </TitleInfo>
-                    <ContainerTextInfo>
+                    <ButtonContainerTextInfo>
                         <TextInfo>{mensalidade}</TextInfo>
-                    </ContainerTextInfo>
+                        {/* <IconBottom name="expand-more" size={10}/> */}
+                    </ButtonContainerTextInfo>
                 </ContainerInfo>
             </Informations>
         </Container>

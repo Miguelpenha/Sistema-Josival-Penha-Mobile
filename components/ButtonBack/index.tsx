@@ -11,7 +11,7 @@ interface Iprops {
 const ButtonBack: FC<Iprops> = ({ onClick, style, ...rest }) => {
     return (
         <TouchableOpacity style={[style]} onPress={() => onClick()} {...rest}>
-            <Icon name="arrow-back-ios" size={20}/>
+            <Icon name="arrow-back-ios" size={22}/>
         </TouchableOpacity>
     )
 }
