@@ -1,8 +1,10 @@
-import React, { FC } from 'react'
+import React, { FC, useState } from 'react'
 import { Ialuno } from '../../../types'
 import dinero from 'dinero.js'
-import { Container, Informations, ContainerInfo, TitleInfo, ContainerTextInfo, ButtonContainerTextInfo, TextInfo, IconBottom } from './style'
 import PerfilAluno from './PerfilAluno'
+import { Informations, TitleInfo, ContainerTextInfo, ButtonContainerTextInfo, TextInfo, IconBottom } from './style'
+import { View } from 'react-native'
+import EditValueMensalidade from './EditValueMensalidade'
 import calcIdade from '../../../utils/calcIdade'
 
 dinero.globalLocale = 'pt-br'
@@ -17,39 +19,40 @@ interface Iprops {
 }
 
 const AlunoPagamento: FC<Iprops> = ({ aluno, onPress }) => {
+    const [open, setOpen] = useState(false)
     const max = Math.max(
         ...Object.keys(aluno.pagamentos).map(mês => (
             aluno.pagamentos[mês].valueBruto
         )
     ))
-
     const mensalidade = dinero({ amount: max, currency: 'BRL' }).toFormat()
     
     return (
-        <Container>
+        <>
             <PerfilAluno aluno={aluno} onPress={onPress}/>
             <Informations>
-                <ContainerInfo>
+                <View>
                     <TitleInfo>Turma: </TitleInfo>
                     <ContainerTextInfo>
                         <TextInfo>{aluno.turma}</TextInfo>
                     </ContainerTextInfo>
-                </ContainerInfo>
-                <ContainerInfo>
+                </View>
+                <View>
                     <TitleInfo>Idade: </TitleInfo>
                     <ContainerTextInfo>
                         <TextInfo>{calcIdade(aluno.nascimento)} anos</TextInfo>
                     </ContainerTextInfo>
-                </ContainerInfo>
-                <ContainerInfo>
+                </View>
+                <View>
                     <TitleInfo>Valor: </TitleInfo>
-                    <ButtonContainerTextInfo>
-                        <TextInfo>{mensalidade}</TextInfo>
-                        {/* <IconBottom name="expand-more" size={10}/> */}
+                    <ButtonContainerTextInfo onPress={() => setOpen(!open)}>
+                        <TextInfo button>{mensalidade}</TextInfo>
+                        <IconBottom name={open ? 'expand-less' : 'expand-more'} size={20}/>
                     </ButtonContainerTextInfo>
-                </ContainerInfo>
+                </View>
             </Informations>
-        </Container>
+            <EditValueMensalidade open={open} setOpen={setOpen}/>
+        </>
     )
 }
 

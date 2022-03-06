@@ -2,7 +2,7 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
 
 export const Container = styled.View`
-    margin-top: 8%;
+    margin-top: 16%;
     padding-bottom: 2%;
     border-bottom-width: 2px;
     border-bottom-color: ${props => props.theme.secondaryColor};

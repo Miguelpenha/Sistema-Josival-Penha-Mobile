@@ -1,22 +1,13 @@
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { MaterialIcons } from '@expo/vector-icons'
 
-export const Container = styled.View`
-    
-`
-
 export const Informations = styled.View`
-    width: 95%;
-    margin-top: 5%;
-    align-self: center;
+    width: 100%;
+    margin-top: 3%;
     align-items: center;
     flex-direction: row;
-    justify-content: space-evenly;
-`
-
-export const ContainerInfo = styled.View`
-    
+    justify-content: space-around;
 `
 
 export const TitleInfo = styled.Text`
@@ -26,26 +17,38 @@ export const TitleInfo = styled.Text`
     color: ${props => props.theme.secondaryColor};
 `
 
-export const ContainerTextInfo = styled.View`
-    width: 100%;
+const styleContainerTextInfo = css`
     padding: 4%;
-    border-radius: 20px;
+    border-radius: ${RFPercentage(3.6)}px;
     background-color: ${props => props.theme.secondary};
+`
+
+export const ContainerTextInfo = styled.View`
+    ${styleContainerTextInfo}
 `
 
 export const ButtonContainerTextInfo = styled.TouchableOpacity`
-    width: 100%;
-    padding: 4%;
-    border-radius: 20px;
-    background-color: ${props => props.theme.secondary};
+    width: 85%;
+    flex-direction: row;
+    
+    ${styleContainerTextInfo}
 `
 
-export const TextInfo = styled.Text`
+interface ITextInfo {
+    button?: boolean
+}
+
+export const TextInfo = styled.Text<ITextInfo>`
     text-align: center;
     font-size: ${RFPercentage(2.5)}px;
     color: ${props => props.theme.color};
+
+    ${props => props.button && css`
+        padding-left: 4%;
+    `}
 `
 
 export const IconBottom = styled(MaterialIcons)`
-    
+    margin-right: 2%;
+    color: ${props => props.theme.color};
 `
