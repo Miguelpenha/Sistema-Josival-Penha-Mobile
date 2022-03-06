@@ -4,7 +4,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { FlatList } from 'react-native'
 import Header from './Header'
 import Aluno from '../../../components/Aluno'
-import veriPago from '../../../utils/veriPago'
+import { veriPago2 } from '../../../utils/veriPago'
 
 interface Iprops {
     alunos: Ialuno[]
@@ -26,7 +26,7 @@ const ListAlunos: FC<Iprops> = ({ alunos, title, filter, setFilter, atrasados, n
           filter={aluno => {
             if (aluno.nome.toUpperCase().includes(filter.toUpperCase())) {
               if (atrasados) {
-                if (veriPago(aluno.pagamentos) === 'Atrasado') {
+                if (veriPago2(aluno.pagamentos) === 'Atrasado') {
                   return true
                 } else {
                   return false

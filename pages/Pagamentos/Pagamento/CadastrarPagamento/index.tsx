@@ -1,16 +1,16 @@
 import React, { FC } from 'react'
-import { Container, Text } from './style'
+import { Container, Title } from './style'
 
 interface Iprops {
     open: boolean
     setOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const EditValueMensalidade: FC<Iprops> = ({ open }) => {
+const CadastrarPagamento: FC<Iprops> = ({ open, setOpen }) => {
     if (open) {
         return (
             <Container>
-                <Text>asd</Text>
+                <Title>Cadastro de pagamento</Title>
             </Container>
         )
     } else {
@@ -18,4 +18,4 @@ const EditValueMensalidade: FC<Iprops> = ({ open }) => {
     }
 }
 
-export default EditValueMensalidade
+export default CadastrarPagamento

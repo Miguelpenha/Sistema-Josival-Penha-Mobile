@@ -1,4 +1,5 @@
 export type IveriPago = 'Em dia' | 'Atrasado' | 'Em espera'
+export type IveriPago2 = 'Em dia' | 'Atrasado'
 
 export interface Itheme {
   name: string

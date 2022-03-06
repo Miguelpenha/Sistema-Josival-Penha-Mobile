@@ -10,7 +10,7 @@ export const dark: Itheme = {
     check: '#2fcc8d',
     receita: '#60BF92',
     despesa: '#EF5252',
-    emEspera: '#cccccc'
+    emEspera: '#D0BF23'
 }
 
 export const light: Itheme = {
@@ -23,5 +23,5 @@ export const light: Itheme = {
     check: '#4efdb7',
     receita: '#60BF92',
     despesa: '#EF5252',
-    emEspera: '#cccccc'
+    emEspera: '#D0BF23'
 }

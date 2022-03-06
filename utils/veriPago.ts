@@ -1,8 +1,9 @@
 import { Ipagamentos, IlistPagamentos } from '../types'
-import { IveriPago } from '../types'
+import { IveriPago, IveriPago2 } from '../types'
 import 'intl'
 import 'intl/locale-data/jsonp/pt-BR'
 import { DateTime } from 'luxon'
+import mesesNumber from './mesesNumber'
 
 function veriPago(pagamentos: Ipagamentos, mês?: IlistPagamentos): IveriPago {
     const mêsPagamento: IlistPagamentos = mês || DateTime.now().toLocaleString().split('/')[1]
@@ -31,6 +32,27 @@ function veriPago(pagamentos: Ipagamentos, mês?: IlistPagamentos): IveriPago {
             return 'Atrasado'
         }
     }
+}
+
+function veriPago2(pagamentos: Ipagamentos): IveriPago2 {
+    let atrasado = false
+
+    mesesNumber.map(mês => {
+        if (veriPago(pagamentos, mês) === 'Atrasado') {
+            atrasado = true
+        }
+    })
+    
+    if (atrasado) {
+        return 'Atrasado'
+    } else {
+        return 'Em dia'
+    }
+}
+
+export {
+    veriPago,
+    veriPago2
 }
 
 export default veriPago

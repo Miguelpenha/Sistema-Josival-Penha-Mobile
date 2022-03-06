@@ -18,7 +18,7 @@ const Alunos: FC<Iprops> = ({ route, navigation }) => {
   const { data: alunos }: { data: Ialuno[] } = get(url)
   const [filter, setFilter] = useState('')
   const [atrasados, setAtrasados] = useState(false)
-
+  
   return (
     <ContainerPd>
       <LoadingData loading={alunos}>

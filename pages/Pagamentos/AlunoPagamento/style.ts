@@ -18,34 +18,40 @@ export const TitleInfo = styled.Text`
 `
 
 const styleContainerTextInfo = css`
-    padding: 4%;
     border-radius: ${RFPercentage(3.6)}px;
     background-color: ${props => props.theme.secondary};
 `
 
 export const ContainerTextInfo = styled.View`
+    padding: 4%;
+
     ${styleContainerTextInfo}
 `
 
 export const ButtonContainerTextInfo = styled.TouchableOpacity`
     width: 85%;
+    padding: 1%;
     flex-direction: row;
-    
+    align-items: center;
+
     ${styleContainerTextInfo}
 `
 
-interface ITextInfo {
-    button?: boolean
-}
-
-export const TextInfo = styled.Text<ITextInfo>`
+const styleTextInfo = css`
     text-align: center;
     font-size: ${RFPercentage(2.5)}px;
     color: ${props => props.theme.color};
+`
 
-    ${props => props.button && css`
-        padding-left: 4%;
-    `}
+export const TextInfo = styled.Text`
+    ${styleTextInfo}
+`
+
+export const InputTextInfo = styled.TextInput`
+    height: 80%;
+    padding-left: 6%;
+    
+    ${styleTextInfo}
 `
 
 export const IconBottom = styled(MaterialIcons)`

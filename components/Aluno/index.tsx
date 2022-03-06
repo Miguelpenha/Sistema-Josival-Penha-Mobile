@@ -3,7 +3,7 @@ import { Ialuno } from '../../types'
 import TextLimit from '../TextLimit'
 import calcIdade from '../../utils/calcIdade'
 import { Container, ContainerImg, Img, ContainerData, Text, ContainerStatus, Status, IconBack } from './style'
-import veriPago from '../../utils/veriPago'
+import { veriPago2 } from '../../utils/veriPago'
 
 interface ionClickFoto {
     (foto: Ialuno['foto']): void
@@ -46,8 +46,8 @@ const Aluno: FC<Iprops> = ({ aluno, filter, onClick, onClickFoto, financeiro, ba
                     </TextLimit>
                 </ContainerData>
                 {financeiro && (
-                    <ContainerStatus pago={veriPago(aluno.pagamentos,)}>
-                        <Status>{veriPago(aluno.pagamentos)}</Status>
+                    <ContainerStatus pago={veriPago2(aluno.pagamentos)}>
+                        <Status>{veriPago2(aluno.pagamentos)}</Status>
                     </ContainerStatus>
                 )}
                 {backIcon && <IconBack name="arrow-forward-ios" size={20}/>}

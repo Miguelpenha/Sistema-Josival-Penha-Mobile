@@ -1,10 +1,9 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useRef, createRef } from 'react'
 import { Ialuno } from '../../../types'
 import dinero from 'dinero.js'
 import PerfilAluno from './PerfilAluno'
-import { Informations, TitleInfo, ContainerTextInfo, ButtonContainerTextInfo, TextInfo, IconBottom } from './style'
-import { View } from 'react-native'
-import EditValueMensalidade from './EditValueMensalidade'
+import { Informations, TitleInfo, ContainerTextInfo, ButtonContainerTextInfo, TextInfo, InputTextInfo, IconBottom } from './style'
+import { View, TextInput } from 'react-native'
 import calcIdade from '../../../utils/calcIdade'
 
 dinero.globalLocale = 'pt-br'
@@ -19,7 +18,7 @@ interface Iprops {
 }
 
 const AlunoPagamento: FC<Iprops> = ({ aluno, onPress }) => {
-    const [open, setOpen] = useState(false)
+    let textInputRef = useRef<TextInput>(null)
     const max = Math.max(
         ...Object.keys(aluno.pagamentos).map(mês => (
             aluno.pagamentos[mês].valueBruto
@@ -45,13 +44,12 @@ const AlunoPagamento: FC<Iprops> = ({ aluno, onPress }) => {
                 </View>
                 <View>
                     <TitleInfo>Valor: </TitleInfo>
-                    <ButtonContainerTextInfo onPress={() => setOpen(!open)}>
-                        <TextInfo button>{mensalidade}</TextInfo>
-                        <IconBottom name={open ? 'expand-less' : 'expand-more'} size={20}/>
+                    <ButtonContainerTextInfo onPress={() => textInputRef.current?.focus()}>
+                        <InputTextInfo ref={textInputRef as any}>{mensalidade}</InputTextInfo>
+                        <IconBottom name="expand-more" size={20}/>
                     </ButtonContainerTextInfo>
                 </View>
             </Informations>
-            <EditValueMensalidade open={open} setOpen={setOpen}/>
         </>
     )
 }

@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components/native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { MaterialIcons } from '@expo/vector-icons'
-import { IveriPago } from '../../types'
+import { IveriPago2 } from '../../types'
 
 export const Container = styled.TouchableOpacity`
     width: 95%;
@@ -41,13 +41,14 @@ export const Text = styled.Text<Itext>`
     padding-left: 2%;
     font-size: ${RFPercentage(2.5)}px;
     color: ${props => props.theme.secondaryColor};
+
     ${props => props.bold && css`
         font-weight: bold;
     `}
 `
 
 interface IContainerStatus {
-    pago: IveriPago
+    pago: IveriPago2
 }
 
 export const ContainerStatus = styled.View<IContainerStatus>`
@@ -61,8 +62,6 @@ export const ContainerStatus = styled.View<IContainerStatus>`
     background-color: ${props => {
         if (props.pago === 'Em dia') {
             return props.theme.receita
-        } else if (props.pago === 'Em espera') {
-            return props.theme.emEspera
         } else if (props.pago === 'Atrasado') {
             return props.theme.despesa
         }

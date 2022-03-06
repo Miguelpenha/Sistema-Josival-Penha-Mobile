@@ -1,17 +1,30 @@
-import styled from 'styled-components/native'
-import { IveriPago } from '../../../types'
+import styled, { css } from 'styled-components/native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
+import { IveriPago } from '../../../types'
 import { MaterialIcons } from '@expo/vector-icons'
 
-export const Container = styled.TouchableOpacity`
+interface IContainer {
+    open: boolean
+}
+
+export const Container = styled.View<IContainer>`
     width: 98%;
-    padding: 3.5%;
     margin-top: 1.8%;
+    margin-bottom: 1.8%;
+    
+    ${props => props.open && css`
+        border-radius: ${RFPercentage(2.7)}px;
+        background-color: ${props.theme.primary};
+    `}
+`
+
+export const ContainerPagamento = styled.TouchableOpacity`
+    width: 100%;
+    padding: 3.5%;
     align-self: center;
     align-items: center;
-    margin-bottom: 1.8%;
     flex-direction: row;
-    border-radius: 15px;
+    border-radius: ${RFPercentage(2.7)}px;
     flex-direction: row;
     border: 2px solid ${props => props.theme.secondary};
     background-color: ${props => props.theme.backgroundColor};

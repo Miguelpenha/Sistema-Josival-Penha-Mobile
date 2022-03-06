@@ -37,19 +37,7 @@ const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
                 <ListPagamentos>
                     <ContainerPagamentos>
                         {mesesNumber.map((mês, index) => (
-                            <Pagamento
-                                mês={mês}
-                                key={index}
-                                index={index}
-                                aluno={aluno}
-                                onPress={() => (
-                                    navigation.navigate('AddPagamento', {
-                                        aluno: aluno,
-                                        mês: mês,
-                                        mêsName: meses[index]
-                                    })
-                                )}
-                            />
+                            <Pagamento mês={mês} key={index} index={index} aluno={aluno}/>
                         ))} 
                     </ContainerPagamentos>
                 </ListPagamentos>
