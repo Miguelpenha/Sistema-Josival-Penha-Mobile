@@ -19,7 +19,7 @@ export const TitleInfo = styled.Text`
 
 const styleContainerTextInfo = css`
     border-radius: ${RFPercentage(3.6)}px;
-    background-color: ${props => props.theme.secondary};
+    background-color: ${props => props.theme.primary};
 `
 
 export const ContainerTextInfo = styled.View`

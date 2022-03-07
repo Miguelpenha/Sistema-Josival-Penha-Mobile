@@ -1,5 +1,5 @@
 import React, { FC, memo } from 'react'
-import DatePicker, { getFormatedDate } from 'react-native-modern-datepicker'
+import DatePicker from 'react-native-modern-datepicker'
 
 interface Iprops {
     date: string
@@ -7,12 +7,16 @@ interface Iprops {
 }
 
 const Calendar: FC<Iprops> = ({ date, setDate }) => {
-    console.log(getFormatedDate('2022-06-03', 'YYYY/MM/DD'))
+    function convertDate(date: string) {
+        return `${date.split('/')[2]}/${date.split('/')[1]}/${date.split('/')[0]}`
+    }
+
     return (
         <DatePicker
             mode="calendar"
-            onSelectChange={date => setDate(date)}
-            selected="2022/06/03"
+            onSelectedChange={date => setDate(convertDate(date))}
+            selected={convertDate(date)}
+            current={convertDate(date)}
             options={{
                 defaultFont: 'Roboto',
                 headerFont: 'Roboto', 

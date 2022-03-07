@@ -1,8 +1,6 @@
-import React, { FC, useState, useRef, memo } from 'react'
+import React, { FC, useState, memo } from 'react'
 import { Ipagamento } from '../../../../types'
-import { Container, ContainerDate, LabelDate, ContainerInputDate, InputDate } from './style'
-import Calendar from '../../Calendar'
-import { Modalize } from 'react-native-modalize'
+import { Container, Campo, Label, ContainerInputDate, InputDate, ContainerInputValor, InputValor, Button, TextButton } from './style'
 
 interface IsetDate {
     (date: string): void
@@ -10,7 +8,7 @@ interface IsetDate {
 
 interface IopenModalDate {
     (date: string, setDate: IsetDate): void
-}
+} 
 
 interface Iprops {
     open: boolean
@@ -20,17 +18,27 @@ interface Iprops {
 }
 
 const CadastrarPagamento: FC<Iprops> = ({ open, pagamento, setOpen, openModalDate }) => {
-    const [date, setDate] = useState('')
+    const [date, setDate] = useState(pagamento.vencimento)
+    const [valor, setValor] = useState(pagamento.value)
 
     if (open) {
         return (
             <Container>
-                <ContainerDate>
-                    <LabelDate>Data</LabelDate>
-                    <ContainerInputDate onPress={() => openModalDate(pagamento.vencimento, date => setDate(date))}>
-                        <InputDate>{pagamento.vencimento}</InputDate>
+                <Campo>
+                    <Label>Data</Label>
+                    <ContainerInputDate onPress={() => openModalDate(date, date => setDate(date))}>
+                        <InputDate>{date}</InputDate>
                     </ContainerInputDate>
-                </ContainerDate>
+                </Campo>
+                <Campo>
+                    <Label>Valor</Label>
+                    <ContainerInputValor>
+                        <InputValor onChangeText={setValor}>{valor}</InputValor>
+                    </ContainerInputValor>
+                </Campo>
+                <Button>
+                    <TextButton>Salvar</TextButton>
+                </Button>
             </Container>
         )
     } else {

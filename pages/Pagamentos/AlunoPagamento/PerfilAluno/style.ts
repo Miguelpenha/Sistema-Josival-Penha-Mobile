@@ -7,7 +7,7 @@ export const Container = styled.View`
     align-self: center;
     flex-direction: row;
     border-radius: 20px;
-    background-color: ${props => props.theme.secondary};
+    background-color: ${props => props.theme.primary};
 `
 
 export const ContainerImage = styled.TouchableOpacity`

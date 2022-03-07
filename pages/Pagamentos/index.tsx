@@ -29,9 +29,12 @@ const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
     const { aluno } = route.params
     const [modalDate, setModalDate] = useState<imodalDate>(null)
     const modalDateRef = useRef<Modalize>(null)
-    const openModalDate = (props: imodalDate) => {
+    const openModalDate = (date: string, setDate: IsetDate) => {
         modalDateRef.current.open()
-        setModalDate(props)
+        setModalDate({
+            date,
+            setDate
+        })
     }
     
     return (
@@ -53,14 +56,12 @@ const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
                 <ListPagamentos>
                     <ContainerPagamentos>
                         {mesesNumber.map((mês, index) => (
-                            <Pagamento mês={mês} key={index} index={index} aluno={aluno} openModalDate={(date, setDate) => {
-                                openModalDate({date, setDate})
-                            }}/>
-                        ))} 
+                            <Pagamento mês={mês} key={index} index={index} aluno={aluno} openModalDate={openModalDate}/>
+                        ))}
                     </ContainerPagamentos>
                 </ListPagamentos>
                 <Modalize ref={modalDateRef}>
-                    <Calendar date={`${modalDate?.date.split('/')[2]}-${modalDate?.date.split('/')[1]}-${modalDate?.date.split('/')[0]}`} setDate={modalDate?.setDate}/>
+                    <Calendar date={modalDate?.date} setDate={modalDate?.setDate}/>
                 </Modalize>
             </LoadingData>
         </ContainerPd>
