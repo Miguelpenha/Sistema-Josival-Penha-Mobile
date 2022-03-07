@@ -8,7 +8,7 @@ interface IContainer {
 }
 
 export const Container = styled.View<IContainer>`
-    width: 98%;
+    width: 95%;
     margin-top: 1.8%;
     margin-bottom: 1.8%;
     
@@ -16,6 +16,7 @@ export const Container = styled.View<IContainer>`
         border-radius: ${RFPercentage(2.7)}px;
         background-color: ${props.theme.primary};
     `}
+    align-self: center;
 `
 
 export const ContainerPagamento = styled.TouchableOpacity`

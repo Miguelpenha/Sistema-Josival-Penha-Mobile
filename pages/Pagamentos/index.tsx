@@ -1,7 +1,8 @@
-import React, { FC } from 'react'
+import React, { FC, useState, useRef } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { Inavigation } from '../../types'
 import { get } from '../../api'
+import { Modalize } from 'react-native-modalize'
 import ContainerPd from '../../components/ContainerPd'
 import LoadingData from '../../components/loadingData'
 import { ListPagamentos, ContainerPagamentos } from './style'
@@ -10,13 +11,28 @@ import AlunoPagamento from './AlunoPagamento'
 import HeaderPagamentos from './HeaderPagamentos'
 import mesesNumber from '../../utils/mesesNumber'
 import Pagamento from './Pagamento'
-import meses from '../../utils/meses'
+import Calendar from './Calendar'
 
 type Iprops = NativeStackScreenProps<Inavigation, 'Pagamentos'>
+
+interface IsetDate {
+    (date: string): void
+}
+
+interface imodalDate {
+    date: string
+    setDate: IsetDate
+}
 
 const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
     const { data: turmas } = get('/turmas')
     const { aluno } = route.params
+    const [modalDate, setModalDate] = useState<imodalDate>(null)
+    const modalDateRef = useRef<Modalize>(null)
+    const openModalDate = (props: imodalDate) => {
+        modalDateRef.current.open()
+        setModalDate(props)
+    }
     
     return (
         <ContainerPd>
@@ -37,10 +53,15 @@ const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
                 <ListPagamentos>
                     <ContainerPagamentos>
                         {mesesNumber.map((mês, index) => (
-                            <Pagamento mês={mês} key={index} index={index} aluno={aluno}/>
+                            <Pagamento mês={mês} key={index} index={index} aluno={aluno} openModalDate={(date, setDate) => {
+                                openModalDate({date, setDate})
+                            }}/>
                         ))} 
                     </ContainerPagamentos>
                 </ListPagamentos>
+                <Modalize ref={modalDateRef}>
+                    <Calendar date={`${modalDate?.date.split('/')[2]}-${modalDate?.date.split('/')[1]}-${modalDate?.date.split('/')[0]}`} setDate={modalDate?.setDate}/>
+                </Modalize>
             </LoadingData>
         </ContainerPd>
     )
