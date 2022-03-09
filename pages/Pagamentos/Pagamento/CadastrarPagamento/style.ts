@@ -7,10 +7,14 @@ export const Container = styled.View`
     padding-top: 4%;
     padding-bottom: 8%;
     align-self: center;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-direction: column;
     border-radius: ${RFPercentage(2.7)}px;
     background-color: ${props => props.theme.primary};
+`
+
+export const Row1 = styled.View`
+    flex-direction: row;
+    justify-content: space-evenly;
 `
 
 export const Campo = styled.View`
@@ -53,16 +57,16 @@ export const InputValor = styled.TextInput`
 `
 
 export const Button = styled.TouchableOpacity`
-    width: 25%;
-    height: 65%;
+    width: 35%;
     padding: 2%;
-    margin-top: 5%;
+    margin-top: 8%;
     align-self: center;
     align-items: center;
-    border-radius: ${RFPercentage(2.5)}px;
+    border-radius: ${RFPercentage(2.9)}px;
     background-color: ${props => props.theme.check};
 `
 
 export const TextButton = styled.Text`
+    font-size: ${RFPercentage(3.2)}px;;
     color: ${props => props.theme.color};
 `

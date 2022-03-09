@@ -2,10 +2,11 @@ import React, { FC, useState, useRef } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { Inavigation } from '../../types'
 import { get } from '../../api'
+import { useTheme } from 'styled-components'
 import { Modalize } from 'react-native-modalize'
 import ContainerPd from '../../components/ContainerPd'
 import LoadingData from '../../components/loadingData'
-import { ListPagamentos, ContainerPagamentos } from './style'
+import { ListPagamentos, ContainerPagamentos, ButtonCalendar, TextButtonCalendar } from './style'
 import HeaderBack from '../../components/HeaderBack'
 import AlunoPagamento from './AlunoPagamento'
 import HeaderPagamentos from './HeaderPagamentos'
@@ -27,6 +28,7 @@ interface imodalDate {
 const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
     const { data: turmas } = get('/turmas')
     const { aluno } = route.params
+    const theme = useTheme()
     const [modalDate, setModalDate] = useState<imodalDate>(null)
     const modalDateRef = useRef<Modalize>(null)
     const openModalDate = (date: string, setDate: IsetDate) => {
@@ -36,6 +38,7 @@ const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
             setDate
         })
     }
+    const closeModalDate = () => modalDateRef.current.close()
     
     return (
         <ContainerPd>
@@ -60,8 +63,11 @@ const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
                         ))}
                     </ContainerPagamentos>
                 </ListPagamentos>
-                <Modalize ref={modalDateRef}>
-                    <Calendar date={modalDate?.date} setDate={modalDate?.setDate}/>
+                <Modalize ref={modalDateRef} modalStyle={{backgroundColor: theme.backgroundColor}}>
+                    <Calendar date={modalDate?.date} setDate={modalDate?.setDate}/> 
+                    <ButtonCalendar onPress={closeModalDate}>
+                        <TextButtonCalendar>Confirmar</TextButtonCalendar>
+                    </ButtonCalendar>
                 </Modalize>
             </LoadingData>
         </ContainerPd>

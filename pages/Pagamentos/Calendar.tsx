@@ -1,4 +1,5 @@
 import React, { FC, memo } from 'react'
+import { useTheme } from 'styled-components'
 import DatePicker from 'react-native-modern-datepicker'
 
 interface Iprops {
@@ -7,6 +8,7 @@ interface Iprops {
 }
 
 const Calendar: FC<Iprops> = ({ date, setDate }) => {
+    const theme = useTheme()
     function convertDate(date: string) {
         return `${date.split('/')[2]}/${date.split('/')[1]}/${date.split('/')[0]}`
     }
@@ -19,8 +21,15 @@ const Calendar: FC<Iprops> = ({ date, setDate }) => {
             current={convertDate(date)}
             options={{
                 defaultFont: 'Roboto',
-                headerFont: 'Roboto', 
-            }} 
+                headerFont: 'Roboto',
+                backgroundColor: theme.backgroundColor,
+                textHeaderColor: theme.primary,
+                textDefaultColor: theme.secondaryColor,
+                selectedTextColor: theme.color,
+                mainColor: theme.primary,
+                textSecondaryColor: theme.secondaryColor,
+                borderColor: theme.primary
+            }}
             configs={{
                 dayNames: [
                     'Domingo',

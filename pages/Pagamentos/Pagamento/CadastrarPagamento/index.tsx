@@ -1,6 +1,6 @@
 import React, { FC, useState, memo } from 'react'
 import { Ipagamento } from '../../../../types'
-import { Container, Campo, Label, ContainerInputDate, InputDate, ContainerInputValor, InputValor, Button, TextButton } from './style'
+import { Container, Row1, Campo, Label, ContainerInputDate, InputDate, ContainerInputValor, InputValor, Button, TextButton } from './style'
 
 interface IsetDate {
     (date: string): void
@@ -24,18 +24,20 @@ const CadastrarPagamento: FC<Iprops> = ({ open, pagamento, setOpen, openModalDat
     if (open) {
         return (
             <Container>
-                <Campo>
-                    <Label>Data</Label>
-                    <ContainerInputDate onPress={() => openModalDate(date, date => setDate(date))}>
-                        <InputDate>{date}</InputDate>
-                    </ContainerInputDate>
-                </Campo>
-                <Campo>
-                    <Label>Valor</Label>
-                    <ContainerInputValor>
-                        <InputValor onChangeText={setValor}>{valor}</InputValor>
-                    </ContainerInputValor>
-                </Campo>
+                <Row1>
+                    <Campo>
+                        <Label>Data</Label>
+                        <ContainerInputDate onPress={() => openModalDate(date, date => setDate(date))}>
+                            <InputDate>{date}</InputDate>
+                        </ContainerInputDate>
+                    </Campo>
+                    <Campo>
+                        <Label>Valor</Label>
+                        <ContainerInputValor>
+                            <InputValor onChangeText={setValor}>{valor}</InputValor>
+                        </ContainerInputValor>
+                    </Campo>
+                </Row1>
                 <Button>
                     <TextButton>Salvar</TextButton>
                 </Button>
