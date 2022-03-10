@@ -70,3 +70,19 @@ export const TextButton = styled.Text`
     font-size: ${RFPercentage(3.2)}px;;
     color: ${props => props.theme.color};
 `
+
+export const ContainerSwitch = styled.View`
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5%;
+`
+
+export const TextSwitchPago = styled.Text`
+    font-size: ${RFPercentage(3.2)}px;
+    color: ${props => props.theme.color};
+`
+
+export const SwitchPago = styled.Switch`
+    margin-left: 5%;
+`

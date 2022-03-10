@@ -1,6 +1,7 @@
 import React, { FC, useState, memo } from 'react'
 import { Ipagamento } from '../../../../types'
-import { Container, Row1, Campo, Label, ContainerInputDate, InputDate, ContainerInputValor, InputValor, Button, TextButton } from './style'
+import { useTheme } from 'styled-components'
+import { Container, Row1, Campo, Label, ContainerInputDate, InputDate, ContainerInputValor, InputValor, Button, TextButton, ContainerSwitch, TextSwitchPago, SwitchPago } from './style'
 
 interface IsetDate {
     (date: string): void
@@ -20,6 +21,8 @@ interface Iprops {
 const CadastrarPagamento: FC<Iprops> = ({ open, pagamento, setOpen, openModalDate }) => {
     const [date, setDate] = useState(pagamento.vencimento)
     const [valor, setValor] = useState(pagamento.value)
+    const [pago, setPago] = useState(pagamento.pago)
+    const theme = useTheme()
 
     if (open) {
         return (
@@ -38,6 +41,15 @@ const CadastrarPagamento: FC<Iprops> = ({ open, pagamento, setOpen, openModalDat
                         </ContainerInputValor>
                     </Campo>
                 </Row1>
+                <ContainerSwitch>
+                    <TextSwitchPago>Pago</TextSwitchPago>
+                    <SwitchPago
+                        value={pago}
+                        thumbColor={theme.color}
+                        onValueChange={() => setPago(!pago)}
+                        trackColor={{false: theme.despesa, true: theme.receita}}
+                    />
+                </ContainerSwitch>
                 <Button>
                     <TextButton>Salvar</TextButton>
                 </Button>
