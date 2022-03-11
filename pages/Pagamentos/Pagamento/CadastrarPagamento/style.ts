@@ -56,26 +56,11 @@ export const InputValor = styled.TextInput`
     ${styleInput}
 `
 
-export const Button = styled.TouchableOpacity`
-    width: 35%;
-    padding: 2%;
-    margin-top: 8%;
-    align-self: center;
-    align-items: center;
-    border-radius: ${RFPercentage(2.9)}px;
-    background-color: ${props => props.theme.check};
-`
-
-export const TextButton = styled.Text`
-    font-size: ${RFPercentage(3.2)}px;;
-    color: ${props => props.theme.color};
-`
-
 export const ContainerSwitch = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-top: 5%;
+    margin-top: 3%;
 `
 
 export const TextSwitchPago = styled.Text`
@@ -85,4 +70,19 @@ export const TextSwitchPago = styled.Text`
 
 export const SwitchPago = styled.Switch`
     margin-left: 5%;
+`
+
+export const Button = styled.TouchableOpacity`
+    width: 35%;
+    padding: 2%;
+    margin-top: 4%;
+    align-self: center;
+    align-items: center;
+    border-radius: ${RFPercentage(2.9)}px;
+    background-color: ${props => props.theme.check};
+`
+
+export const TextButton = styled.Text`
+    font-size: ${RFPercentage(3.2)}px;;
+    color: ${props => props.theme.color};
 `

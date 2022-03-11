@@ -1,7 +1,7 @@
 import React, { FC, useState, memo } from 'react'
 import { Ipagamento } from '../../../../types'
 import { useTheme } from 'styled-components'
-import { Container, Row1, Campo, Label, ContainerInputDate, InputDate, ContainerInputValor, InputValor, Button, TextButton, ContainerSwitch, TextSwitchPago, SwitchPago } from './style'
+import { Container, Row1, Campo, Label, ContainerInputDate, InputDate, ContainerInputValor, InputValor, ContainerSwitch, TextSwitchPago, SwitchPago, Button, TextButton } from './style'
 
 interface IsetDate {
     (date: string): void
