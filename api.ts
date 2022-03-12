@@ -24,12 +24,12 @@ export function get(url: string, config?: object) {
 }
 
 export function post(url: string, dataParams?: object, config?: object) {
-    const { data, error } = useSWR(url, async url => {
+    const { data, error, mutate } = useSWR(url, async url => {
         const response = await base.post(url, dataParams, config)
         const data = await response.data
         
         return data
     })
     
-    return { data, error }
+    return { data, error, mutate }
 }

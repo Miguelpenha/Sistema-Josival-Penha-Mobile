@@ -1,6 +1,6 @@
 import React, { FC, useState, useRef } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { Inavigation } from '../../types'
+import { Ialuno, Inavigation } from '../../types'
 import { get } from '../../api'
 import { useTheme } from 'styled-components'
 import { Modalize } from 'react-native-modalize'
@@ -26,8 +26,8 @@ interface imodalDate {
 }
 
 const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
-    const { data: turmas } = get('/turmas')
-    const { aluno } = route.params
+    const { aluno: alunoParams } = route.params
+    const { data: aluno, mutate } = get(`/alunos/${alunoParams.id}`)
     const theme = useTheme()
     const [modalDate, setModalDate] = useState<imodalDate>(null)
     const modalDateRef = useRef<Modalize>(null)
@@ -42,7 +42,7 @@ const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
     
     return (
         <ContainerPd>
-            <LoadingData loading={turmas}>
+            <LoadingData loading={aluno}>
                 <HeaderBack
                     title="Escolher pagamento"
                     onClick={() => navigation.goBack()}
@@ -59,7 +59,7 @@ const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
                 <ListPagamentos>
                     <ContainerPagamentos>
                         {mesesNumber.map((mês, index) => (
-                            <Pagamento mês={mês} key={index} index={index} aluno={aluno} openModalDate={openModalDate}/>
+                            <Pagamento mês={mês} key={index} index={index} aluno={aluno} openModalDate={openModalDate} onSubmit={() => mutate().then(() => mutate().then())}/>
                         ))}
                     </ContainerPagamentos>
                 </ListPagamentos>
