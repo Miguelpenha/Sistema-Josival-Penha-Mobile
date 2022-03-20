@@ -44,7 +44,7 @@ const CadastrarPagamento: FC<Iprops> = ({ open, pagamento, setOpen, openModalDat
                     <Campo>
                         <Label>Valor</Label>
                         <ContainerInputValor>
-                            <InputValor onChangeText={value => {
+                            <InputValor keyboardType="decimal-pad" onChangeText={value => {
                                 value.includes(',') ? null : value = `${value},00`
                                 let precoBruto = Number(
                                     value.replace('.', '')
@@ -58,7 +58,7 @@ const CadastrarPagamento: FC<Iprops> = ({ open, pagamento, setOpen, openModalDat
                         </ContainerInputValor>
                     </Campo>
                 </Row1>
-                <ContainerSwitch>
+                <ContainerSwitch>  
                     <TextSwitchPago>Pago</TextSwitchPago>
                     <SwitchPago
                         value={pago}

@@ -1,9 +1,9 @@
-import React, { FC, useRef, createRef } from 'react'
+import React, { FC, useRef, createRef, useState } from 'react'
 import { Ialuno } from '../../../types'
 import dinero from 'dinero.js'
 import PerfilAluno from './PerfilAluno'
 import { Informations, TitleInfo, ContainerTextInfo, ButtonContainerTextInfo, TextInfo, InputTextInfo, IconBottom } from './style'
-import { View, TextInput } from 'react-native'
+import { View } from 'react-native'
 import calcIdade from '../../../utils/calcIdade'
 
 dinero.globalLocale = 'pt-br'
@@ -12,19 +12,28 @@ interface IonPress {
     (): void
 }
 
+interface IsetMensalidade {
+    (mensalidade: string): void
+}
+
+interface IopenModalMensalidade {
+    (mensalidade: string, setMensalidade: IsetMensalidade): void
+}
+
 interface Iprops {
     aluno: Ialuno
     onPress: IonPress
+    openModalMensalidade: IopenModalMensalidade
 }
 
-const AlunoPagamento: FC<Iprops> = ({ aluno, onPress }) => {
-    let textInputRef = useRef<TextInput>(null)
+const AlunoPagamento: FC<Iprops> = ({ aluno, onPress, openModalMensalidade }) => {
+    const [open, setOpen] = useState(false)
     const max = Math.max(
         ...Object.keys(aluno.pagamentos).map(mês => (
             aluno.pagamentos[mês].valueBruto
         )
     ))
-    const mensalidade = dinero({ amount: max, currency: 'BRL' }).toFormat()
+    const [mensalidade, setMensalidade] = useState(dinero({ amount: max, currency: 'BRL' }).toFormat())
     
     return (
         <>
@@ -44,9 +53,12 @@ const AlunoPagamento: FC<Iprops> = ({ aluno, onPress }) => {
                 </View>
                 <View>
                     <TitleInfo>Valor: </TitleInfo>
-                    <ButtonContainerTextInfo onPress={() => textInputRef.current?.focus()}>
-                        <InputTextInfo ref={textInputRef as any}>{mensalidade}</InputTextInfo>
-                        <IconBottom name="expand-more" size={20}/>
+                    <ButtonContainerTextInfo onPress={() => {
+                        setOpen(!open)
+                        openModalMensalidade(mensalidade, setMensalidade)
+                    }}>
+                        <InputTextInfo>{mensalidade}</InputTextInfo>
+                        <IconBottom name={open ? 'expand-less' : 'expand-more'} size={20}/>
                     </ButtonContainerTextInfo>
                 </View>
             </Informations>

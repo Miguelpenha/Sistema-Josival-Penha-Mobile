@@ -18,7 +18,7 @@ export const Row1 = styled.View`
 `
 
 export const Campo = styled.View`
-    width: 35%;
+    width: 40%;
 `
 
 export const Label = styled.Text`

@@ -47,7 +47,7 @@ export const TextInfo = styled.Text`
     ${styleTextInfo}
 `
 
-export const InputTextInfo = styled.TextInput`
+export const InputTextInfo = styled.Text`
     height: 80%;
     padding-left: 6%;
     
