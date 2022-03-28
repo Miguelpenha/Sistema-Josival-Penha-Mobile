@@ -18,8 +18,22 @@ import Pagamentos from './pages/Pagamentos'
 import AddPagamento from './pages/AddPagamento'
 import SelectMonth from './pages/SelectMonth'
 import AppLoading from 'expo-app-loading'
+import * as Updates from "expo-updates"
 
 export default function App() {
+  useEffect(() => {
+    async function updateApp() {
+      const { isAvailable } = await Updates.checkForUpdateAsync()
+
+      if (isAvailable) {
+        await Updates.fetchUpdateAsync()
+        await Updates.reloadAsync()
+      }
+    }
+
+    updateApp()
+  }, [])
+
   const [pronto, setPronto] = useState(false)
   const [theme, setTheme] = useState<'light' | 'dark' | null | undefined>(Appearance.getColorScheme())
   const [modeViewAlunosFind, setModeViewAlunosFind] = useState(true)
