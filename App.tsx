@@ -31,7 +31,7 @@ export default function App() {
       }
     }
 
-    updateApp()
+    process.env.NODE_ENV === 'production' && updateApp().then()
   }, [])
 
   const [pronto, setPronto] = useState(false)
