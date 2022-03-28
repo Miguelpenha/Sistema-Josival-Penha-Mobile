@@ -39,7 +39,7 @@ export default function Home({ navigation, veriGeral, find }: Iprops) {
             success: false
           })}
         >
-          <TextButton>Adicionar foto a um aluno 2</TextButton>
+          <TextButton>Adicionar foto a um aluno</TextButton>
         </Button>
         <Button onPress={() => navigation.navigate('Alunos', {
           next: 'pagamentos:aluno',
