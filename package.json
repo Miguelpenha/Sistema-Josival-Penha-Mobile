@@ -9,7 +9,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "build:android": "expo build:android"
+    "build:android:production": "expo build:android --release-channel production",
+    "build:android:development": "expo build:android --release-channel development"
   },
   "dependencies": {
     "@expo/vector-icons": "^12.0.5",

@@ -26,8 +26,10 @@ export default function App() {
       const { isAvailable } = await Updates.checkForUpdateAsync()
 
       if (isAvailable) {
-        await Updates.fetchUpdateAsync()
-        await Updates.reloadAsync()
+        if (Updates.releaseChannel === 'production') {
+          await Updates.fetchUpdateAsync()
+          await Updates.reloadAsync()
+        }
       }
     }
 
