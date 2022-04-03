@@ -12,14 +12,15 @@ export const Header = styled.View`
 `
 
 export const Logo = styled(LogoJP)`
-    width: 75%;
+    width: 70%;
     height: auto;
-    margin-right: 12%;
+    margin-right: 14%;
     aspect-ratio: 2.6186961870;
 `
 
 export const ContainerSettings = styled.TouchableOpacity`
     margin: 1.5%;
+    margin-left: 2%;
     margin-right: auto;
 `
 
