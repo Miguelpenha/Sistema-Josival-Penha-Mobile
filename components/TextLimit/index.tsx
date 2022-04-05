@@ -1,7 +1,12 @@
-import React from 'react'
+import react, { FC } from 'react'
 
-export default function TextLimit({ children, component: Component, limit }) {
-    let text = React.Children.toArray(children)[0]
+interface Iprops {
+    component: FC
+    limit: number
+}
+
+const TextLimit: FC<Iprops> = ({ children, component: Component, limit }) => {
+    let text = react.Children.toArray(children)[0]
 
     if (typeof text === 'string') {
         if (text.length > limit) {
@@ -13,3 +18,5 @@ export default function TextLimit({ children, component: Component, limit }) {
         return null
     }
 }
+
+export default TextLimit

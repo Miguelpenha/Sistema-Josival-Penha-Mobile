@@ -4,12 +4,15 @@ import { Image } from 'react-native'
 
 const LogoJP: FC = (props) => {
     const theme = useTheme()
-
-    if (theme.name === 'dark') {
-        return <Image {...props} source={require('../../assets/Logo-Josival-Penha-Dark.png')}/>
-    } else {
-        return <Image {...props} source={require('../../assets/Logo-Josival-Penha-Light.png')}/>
-    }
+    
+    return (
+        <Image
+            {...props}
+            source={
+                require(`../../assets/Logo-Josival-Penha-${theme.name === 'dark' ? 'Dark' : 'Light'}.png`)
+            }
+        />
+    )
 }
 
 export default LogoJP

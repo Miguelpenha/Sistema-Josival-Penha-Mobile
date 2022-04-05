@@ -4,7 +4,7 @@ import { Inavigation } from '../../types'
 import { Dimensions } from 'react-native'
 import { Camera as CameraExpo, CameraCapturedPicture } from 'expo-camera'
 import * as fileSystem from 'expo-file-system'
-import * as MediaLibrary from 'expo-media-library'
+// import * as MediaLibrary from 'expo-media-library'
 import { IconMaterial, Container, ContainerCamera, CameraComponent, Options, ButtonBack, ContainerFlip, ContainerCircle, IconFontAwesome, ContainerFlash } from './style'
 import { url, key } from '../../env'
 

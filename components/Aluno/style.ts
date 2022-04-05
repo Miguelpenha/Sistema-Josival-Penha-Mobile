@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components/native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
-import { heightPercentageToDP as hp } from 'react-native-responsive-screen'
 import { MaterialIcons } from '@expo/vector-icons'
 import { IveriPago2 } from '../../types'
 

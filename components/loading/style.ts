@@ -1,6 +1,6 @@
 import styled from 'styled-components/native'
-import Lottie from 'lottie-react-native'
 import LogoJP from '../LogoJP'
+import Lottie from 'lottie-react-native'
 
 export const Container = styled.View`
     margin-top: 10%;

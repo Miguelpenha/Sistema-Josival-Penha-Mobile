@@ -62,11 +62,7 @@ export type Inavigation = {
   Pagamentos: {
     aluno: Ialuno
   }
-  AddPagamento: {
-    aluno: Ialuno
-    mês: string
-    mêsName: string
-  }
+  AddPagamento: undefined
   SelectMonth: {
     aluno: Ialuno
   }

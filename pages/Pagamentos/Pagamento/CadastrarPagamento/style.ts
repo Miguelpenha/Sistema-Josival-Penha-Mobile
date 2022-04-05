@@ -57,10 +57,10 @@ export const InputValor = styled.TextInput`
 `
 
 export const ContainerSwitch = styled.View`
+    margin-top: 3%;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-top: 3%;
 `
 
 export const TextSwitchPago = styled.Text`
@@ -83,6 +83,6 @@ export const Button = styled.TouchableOpacity`
 `
 
 export const TextButton = styled.Text`
-    font-size: ${RFPercentage(3.2)}px;;
+    font-size: ${RFPercentage(3.2)}px;
     color: ${props => props.theme.color};
 `

@@ -10,13 +10,13 @@ interface IContainer {
 export const Container = styled.View<IContainer>`
     width: 95%;
     margin-top: 1.8%;
+    align-self: center;
     margin-bottom: 1.8%;
     
     ${props => props.open && css`
         border-radius: ${RFPercentage(2.7)}px;
         background-color: ${props.theme.primary};
     `}
-    align-self: center;
 `
 
 export const ContainerPagamento = styled.TouchableOpacity`
@@ -25,8 +25,8 @@ export const ContainerPagamento = styled.TouchableOpacity`
     align-self: center;
     align-items: center;
     flex-direction: row;
-    border-radius: ${RFPercentage(2.7)}px;
     flex-direction: row;
+    border-radius: ${RFPercentage(2.7)}px;
     border: 2px solid ${props => props.theme.secondary};
     background-color: ${props => props.theme.backgroundColor};
 `

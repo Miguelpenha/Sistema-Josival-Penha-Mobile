@@ -1,17 +1,12 @@
 import React, { FC, useState, memo } from 'react'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { Inavigation, Ialuno } from '../../types'
 import { get } from '../../api'
 import ContainerPd from '../../components/ContainerPd'
 import LoadingData from '../../components/loadingData'
-import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { Inavigation, Ialuno } from '../../types'
 import ListAlunos from './ListAlunos'
 
-type NativeStackScreenPropsNavigationRoute = NativeStackScreenProps<Inavigation, 'Alunos'>
-
-interface Iprops {
-  navigation: NativeStackScreenPropsNavigationRoute['navigation']
-  route: NativeStackScreenPropsNavigationRoute['route']
-}
+type Iprops = NativeStackScreenProps<Inavigation, 'Alunos'>
 
 const Alunos: FC<Iprops> = ({ route, navigation }) => {
   const { url, next, title, financeiro } = route.params

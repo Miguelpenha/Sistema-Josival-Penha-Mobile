@@ -2,17 +2,18 @@ import React, { FC } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { Inavigation } from '../../types'
 import { get } from '../../api'
-import meses from '../../utils/meses'
 import ContainerPd from '../../components/ContainerPd'
 import LoadingData from '../../components/loadingData'
-import { Months, Button, TextButton } from './style'
 import HeaderBack from '../../components/HeaderBack'
+import { Months, Button, TextButton } from './style'
+import meses from '../../utils/meses'
 
-type Iprops = NativeStackScreenProps<Inavigation, 'SelectMonth'>
+interface Iprops {
+    navigation: NativeStackScreenProps<Inavigation, 'SelectMonth'>['navigation']
+}
 
-const SelectMonth: FC<Iprops> = ({ route, navigation }) => {
+const SelectMonth: FC<Iprops> = ({ navigation }) => {
     const { data: turmas } = get('/turmas')
-    const { aluno } = route.params
     
     return (
         <ContainerPd>

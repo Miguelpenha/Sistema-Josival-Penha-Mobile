@@ -34,26 +34,23 @@ export const ContainerMensalidade = styled.View`
 `
 
 export const TitleMensalidade = styled.Text`
-    font-size: ${RFPercentage(3.6)}px;
-    color: ${props => props.theme.color};
+    margin-top: 10%;
     font-weight: bold;
     text-align: center;
-    margin-top: 10%;
+    font-size: ${RFPercentage(3.6)}px;
+    color: ${props => props.theme.color};
 `
 
 export const InputMensalidade = styled.TextInput`
-    border-radius: ${RFPercentage(1.8)}px;
-    align-self: center;
     width: 50%;
     margin-top: 10%;
+    align-self: center;
     padding: 2% 2% 2% 2%;
-    color: ${props => props.theme.color};
     font-size: ${RFPercentage(3.6)}px;
+    color: ${props => props.theme.color};
+    border-radius: ${RFPercentage(1.8)}px;
     background-color: ${props => props.theme.primary};
 `
-
-import convertPxToPercentage from '../../utils/convertPxToPercentage'
-convertPxToPercentage(10)
 
 export const ButtonSubmitMensalidade = styled.TouchableOpacity`
     width: 35%;
@@ -66,6 +63,6 @@ export const ButtonSubmitMensalidade = styled.TouchableOpacity`
 `
 
 export const TextButtonSubmitMensalidade = styled.Text`
-    font-size: ${RFPercentage(3.2)}px;;
+    font-size: ${RFPercentage(3.2)}px;
     color: ${props => props.theme.color};
 `

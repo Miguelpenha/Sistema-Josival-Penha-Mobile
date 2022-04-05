@@ -1,5 +1,5 @@
 import styled from 'styled-components/native'
-import { Inavigation } from '../../types'
+import { Ialuno } from '../../types'
 import ButtonBackNotStyled from '../../components/ButtonBack'
 
 export const Container = styled.View`
@@ -10,7 +10,11 @@ export const Container = styled.View`
     background-color: #000000;
 `
 
-export const Img = styled.Image<Inavigation['Foto']>`
+interface IImg {
+    foto: Ialuno['foto']
+}
+
+export const Img = styled.Image<IImg>`
     width: 100%;
     aspect-ratio: ${props => props.foto.width/props.foto.height};
 `

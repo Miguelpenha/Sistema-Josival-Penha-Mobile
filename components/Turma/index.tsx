@@ -2,14 +2,14 @@ import React, { FC } from 'react'
 import { Container, Text } from './style'
 import TextLimit from '../TextLimit'
 
-type ionClick = {
+type IonClick = {
     (turma: Iprops['id']): void
 }
 
 interface Iprops {
     nome: string
     id: string
-    onClick: ionClick
+    onClick: IonClick
 }
 
 const Turma: FC<Iprops> = ({ nome, id, onClick }) => {

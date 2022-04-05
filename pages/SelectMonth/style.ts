@@ -5,12 +5,12 @@ export const Months = styled.FlatList`
 `
 
 export const Button = styled.TouchableOpacity`
+    padding: 5%;
     flex-grow: 1;
     padding: 10%;
     flex-basis: 0;
-    margin: 4% 5% 4% 5%;
-    padding: 5%;
     align-self: center;
+    margin: 4% 5% 4% 5%;
     align-items: center;
     border-radius: 18.93px;
     justify-content: center;

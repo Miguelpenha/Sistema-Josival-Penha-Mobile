@@ -6,11 +6,12 @@ import ContainerPd from '../../components/ContainerPd'
 import LoadingData from '../../components/loadingData'
 import HeaderBack from '../../components/HeaderBack'
 
-type Iprops = NativeStackScreenProps<Inavigation, 'AddPagamento'>
+interface Iprops {
+    navigation: NativeStackScreenProps<Inavigation, 'AddPagamento'>['navigation']
+}
 
-const AddPagamento: FC<Iprops> = ({ route, navigation }) => {
+const AddPagamento: FC<Iprops> = ({ navigation }) => {
     const { data: turmas } = get('/turmas')
-    const { aluno, mês, mêsName } = route.params
     
     return (
         <ContainerPd>

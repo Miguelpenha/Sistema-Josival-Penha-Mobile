@@ -1,6 +1,6 @@
 import React, { FC, memo } from 'react'
-import { Ialuno, Inavigation } from '../../../types'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
+import { Ialuno, Inavigation } from '../../../types'
 import { FlatList } from 'react-native'
 import Header from './Header'
 import Aluno from '../../../components/Aluno'

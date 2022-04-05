@@ -2,13 +2,13 @@ import React, { FC } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { Inavigation } from '../../types'
 import { get } from '../../api'
-import { View, FlatList } from 'react-native'
-import { Title } from './style'
 import ContainerPd from '../../components/ContainerPd'
 import LoadingData from '../../components/loadingData'
-import Turma from '../../components/Turma'
+import { FlatList, View } from 'react-native'
 import HeaderBack from '../../components/HeaderBack'
+import { Title } from './style'
 import Check from './Check'
+import Turma from '../../components/Turma'
 
 type Iprops = NativeStackScreenProps<Inavigation, 'Turmas'>
 
