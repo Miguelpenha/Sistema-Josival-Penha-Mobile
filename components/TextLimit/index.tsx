@@ -1,4 +1,4 @@
-import react, { FC } from 'react'
+import React, { FC } from 'react'
 
 interface Iprops {
     component: FC
@@ -6,7 +6,7 @@ interface Iprops {
 }
 
 const TextLimit: FC<Iprops> = ({ children, component: Component, limit }) => {
-    let text = react.Children.toArray(children)[0]
+    let text = React.Children.toArray(children)[0]
 
     if (typeof text === 'string') {
         if (text.length > limit) {
