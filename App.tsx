@@ -18,13 +18,13 @@ import Pagamentos from './pages/Pagamentos'
 import AddPagamento from './pages/AddPagamento'
 import SelectMonth from './pages/SelectMonth'
 import AppLoading from 'expo-app-loading'
-import * as Updates from "expo-updates"
+import * as Updates from 'expo-updates'
 
 export default function App() {
   useEffect(() => {
     async function updateApp() {
       const { isAvailable } = await Updates.checkForUpdateAsync()
-
+      
       if (isAvailable) {
         if (Updates.releaseChannel === 'production') {
           await Updates.fetchUpdateAsync()

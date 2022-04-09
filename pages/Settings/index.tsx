@@ -5,7 +5,8 @@ import ContainerPd from '../../components/ContainerPd'
 import HeaderBack from '../../components/HeaderBack'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { dark as darkTheme, light as lightTheme } from '../../theme'
-import { ContainerSwitch, TextSwitch, Switch } from './style'
+import { ContainerSwitch, TextSwitch, Switch, Version } from './style'
+import Constants from 'expo-constants'
 
 type IsetTheme = {
     (theme: Iprops['theme']): void
@@ -66,6 +67,7 @@ const Settings: FC<Iprops> = ({ navigation, theme, modeView, setTheme, setModeVi
                 <TextSwitch>Buscar alunos</TextSwitch>
                 <Switch trackColor={{false: darkTheme.secondary, true: lightTheme.secondary}} thumbColor={dark ? darkTheme.secondary : lightTheme.secondary} value={modeViewAlunosFind} onChange={() => modeViewAlunosFind ? setModeViewAlunosFind(false) : setModeViewAlunosFind(true)}/>
             </ContainerSwitch>
+            <Version>Versão {Constants.manifest.version}</Version>
         </ContainerPd>
     )
 }

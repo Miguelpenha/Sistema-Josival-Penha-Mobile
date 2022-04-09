@@ -1,0 +1,20 @@
+{
+  "cli": {
+    "version": ">= 0.49.0"
+  },
+  "build": {
+    "development": {
+      "releaseChannel": "development",
+      "developmentClient": true,
+      "distribution": "internal",
+      "node": "16.14.2"
+    },
+    "production": {
+      "releaseChannel": "production",
+      "node": "16.14.2",
+      "android": {
+        "buildType": "apk"
+      }
+    }
+  }
+}
