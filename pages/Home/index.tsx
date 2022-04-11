@@ -49,6 +49,9 @@ export default function Home({ navigation, veriGeral, find }: Iprops) {
         })}>
           <TextButton>Adicionar pagamento</TextButton>
         </Button>
+        <Button onPress={() => navigation.navigate('Financeiro')}>
+          <TextButton>Financeiro</TextButton>
+        </Button>
       </LoadingData>
     </ContainerPd>
   )

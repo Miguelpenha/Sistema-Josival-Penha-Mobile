@@ -1,20 +1,33 @@
 import React, { FC, memo } from 'react'
-import { Container, ButtonBack, ContainerLogo, Title, Logo } from './style'
+import { ViewStyle, TextStyle, ImageStyle } from 'react-native'
+import { Container, ButtonBack, ContainerHeader, Title, Logo } from './style'
 
 interface Iprops {
-    onClick: Function
     title?: string
+    logo?: boolean
+    style?: ViewStyle
+    onClick: Function
+    styleTitle?: TextStyle
+    styleLogo?: ImageStyle
+    iconSizeButtonBack?: number
+    styleButtonBack?: ViewStyle
+    styleButtonBackIcon?: TextStyle
+    styleContainerHeader?: ViewStyle
 }
 
-const HeaderBack: FC<Iprops> = ({ onClick, title }) => {
+const HeaderBack: FC<Iprops> = ({ style, onClick, styleButtonBack, iconSizeButtonBack, styleButtonBackIcon, styleContainerHeader, title, styleTitle, logo=true, styleLogo }) => {
     return (
-        <Container>
-            <ButtonBack onClick={onClick}/>
-            <ContainerLogo>
-                {title ? (
-                    <Title>{title}</Title>
-                ) : <Logo/>}
-            </ContainerLogo>
+        <Container style={style}>
+            <ButtonBack
+                onClick={onClick}
+                style={styleButtonBack}
+                iconSize={iconSizeButtonBack}
+                styleIcon={styleButtonBackIcon}
+            />
+            <ContainerHeader style={styleContainerHeader}>
+                {title && <Title style={styleTitle}>{title}</Title>}
+                {!title && logo && <Logo style={styleLogo}/>}
+            </ContainerHeader>
         </Container>
     )
 }

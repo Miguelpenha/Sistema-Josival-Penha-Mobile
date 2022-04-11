@@ -3,7 +3,7 @@ import ButtonBackNotStyled from '../ButtonBack'
 import LogoJP from '../LogoJP'
 
 export const Container = styled.View`
-    margin-top: 10%;
+    padding-top: 10%;
     margin-bottom: 5%;
     align-items: center;
     flex-direction: row;
@@ -16,7 +16,7 @@ export const ButtonBack = styled(ButtonBackNotStyled)`
     align-self: flex-start;
 `
 
-export const ContainerLogo = styled.View`
+export const ContainerHeader = styled.View`
     flex: 1;
     padding-left: 1%;
     margin-right: 5%;

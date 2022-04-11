@@ -62,6 +62,7 @@ export type Inavigation = {
   Pagamentos: {
     aluno: Ialuno
   }
+  Financeiro: undefined
   AddPagamento: undefined
   SelectMonth: {
     aluno: Ialuno

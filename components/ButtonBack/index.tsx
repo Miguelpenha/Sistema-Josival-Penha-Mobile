@@ -1,17 +1,18 @@
 import React, { FC, memo } from 'react'
-import { StyleProp } from 'react-native'
-import { TouchableOpacity, ViewStyle } from 'react-native'
+import { ViewStyle, TextStyle, TouchableOpacity } from 'react-native'
 import { Icon } from './style'
 
 interface Iprops {
     onClick: Function
-    style?: StyleProp<ViewStyle>
+    style?: ViewStyle
+    styleIcon?: TextStyle
+    iconSize?: number
 }
 
-const ButtonBack: FC<Iprops> = ({ onClick, style, ...rest }) => {
+const ButtonBack: FC<Iprops> = ({ onClick, style, styleIcon, iconSize, ...rest }) => {
     return (
         <TouchableOpacity style={[style]} onPress={() => onClick()} {...rest}>
-            <Icon name="arrow-back-ios" size={22}/>
+            <Icon name="arrow-back-ios" size={iconSize ? iconSize : 22} style={styleIcon}/>
         </TouchableOpacity>
     )
 }

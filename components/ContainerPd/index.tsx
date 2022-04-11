@@ -1,9 +1,14 @@
 import React, { FC } from 'react'
+import { ViewStyle } from 'react-native'
 import { Container } from './style'
 
-const ContainerPd: FC = ({ children }) => {
+interface Iprops {
+    style?: ViewStyle
+}
+
+const ContainerPd: FC<Iprops> = ({ children, ...props }) => {
     return (
-        <Container>{children}</Container>
+        <Container {...props}>{children}</Container>
     )
 }
 

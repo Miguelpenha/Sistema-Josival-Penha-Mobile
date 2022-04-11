@@ -1,8 +1,12 @@
 import React, { FC } from 'react'
 import { useTheme } from 'styled-components'
-import { Image } from 'react-native'
+import { ImageStyle, Image } from 'react-native'
 
-const LogoJP: FC = (props) => {
+interface Iprops {
+    style?: ImageStyle
+}
+
+const LogoJP: FC<Iprops> = (props) => {
     const theme = useTheme()
 
     return (

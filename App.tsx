@@ -16,6 +16,7 @@ import Foto from './pages/Foto'
 import Settings from './pages/Settings'
 import Pagamentos from './pages/Pagamentos'
 import AddPagamento from './pages/AddPagamento'
+import Financeiro from './pages/Financeiro'
 import SelectMonth from './pages/SelectMonth'
 import AppLoading from 'expo-app-loading'
 import * as Updates from 'expo-updates'
@@ -139,6 +140,7 @@ export default function App() {
             <Screen name="Foto" component={Foto}/>
             <Screen name="Pagamentos" component={Pagamentos}/>
             <Screen name="AddPagamento" component={AddPagamento}/>
+            <Screen name="Financeiro" component={Financeiro}/>
             <Screen name="SelectMonth" component={SelectMonth}/>
           </Navigator>
         </NavigationContainer>
