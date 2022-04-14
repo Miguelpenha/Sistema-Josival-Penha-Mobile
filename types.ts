@@ -23,6 +23,15 @@ export interface Ipagamento {
   vencimentoSistema: String
 }
 
+export interface Isaldo {
+  saldo: string
+  saldoBruto: number
+  receitas: string
+  receitasBrutas: number
+  despesas: string
+  despesasBrutas: Number
+}
+
 interface Imeses {
   '01': Ipagamento
   '02': Ipagamento
