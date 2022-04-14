@@ -62,7 +62,7 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
                                 isLoading={month && saldo ? false : true}
                                 containerStyle={{}}
                                 layout={[
-                                    { key: 'saldo', width: '80%' , height: RFPercentage(8.6), alignSelf: 'center' }
+                                    { key: 'saldo', width: '80%' , height: RFPercentage(7.25), alignSelf: 'center' }
                                 ]}
                                 boneColor={theme.secondary}
                                 highlightColor={theme.backgroundColor}

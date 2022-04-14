@@ -56,7 +56,7 @@ export const ValueSelect = styled.Text`
 `
 
 export const ContainerBalance = styled.View`
-    margin-top: 15%;
+    margin-top: 12%;
 `
 
 export const TitleBalance = styled.Text`
@@ -76,7 +76,7 @@ export const Balance = styled.View`
 export const BalanceText = styled.Text`
     font-weight: bold;
     align-self: center;
-    font-size: ${RFPercentage(6.4)}px;
+    font-size: ${RFPercentage(5.4)}px;
     color: ${props => props.theme.primary};
 `
 
