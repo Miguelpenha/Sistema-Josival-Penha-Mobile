@@ -72,7 +72,7 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
     }, [month])
 
     function veriPercentage(): boolean {
-        if (saldoOld) {
+        if (typeof saldoOld != 'undefined' && saldoOld != null) {
             if (saldo.saldoBruto >= saldoOld.saldoBruto) {
                 return true
             } else {
@@ -132,10 +132,10 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
                                     <ContainerPercentageBalance>
                                         <IconPercentageBalance
                                             size={22}
-                                            receita={veriPercentage()}
-                                            name={`arrow-${veriPercentage() ? 'upward' : 'downward'}`}
+                                            receita={saldoOld && veriPercentage()}
+                                            name={`arrow-${saldoOld && veriPercentage() ? 'upward' : 'downward'}`}
                                         />
-                                        <PercentageBalance receita={veriPercentage()}>{veriPercentageNumber()}%</PercentageBalance>
+                                        <PercentageBalance receita={saldoOld && veriPercentage()}>{veriPercentageNumber()}%</PercentageBalance>
                                     </ContainerPercentageBalance>
                                 </SkeletonContent>
                             </HeaderBalance>
