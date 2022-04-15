@@ -72,7 +72,7 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
     }, [month])
 
     function veriPercentage(): boolean {
-        if (typeof saldoOld != 'undefined' && saldoOld != null) {
+        if (saldoOld && typeof saldoOld != 'undefined' && saldoOld != null) {
             if (saldo.saldoBruto >= saldoOld.saldoBruto) {
                 return true
             } else {
@@ -84,7 +84,7 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
     }
 
     function veriPercentageNumber(): number {
-        if (saldoOld) {
+        if (saldoOld && typeof saldoOld != 'undefined' && saldoOld != null) {
             return (saldo.saldoBruto-saldoOld.saldoBruto)/10000
         } else {
             return 0
@@ -132,10 +132,10 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
                                     <ContainerPercentageBalance>
                                         <IconPercentageBalance
                                             size={22}
-                                            receita={saldoOld && veriPercentage()}
-                                            name={`arrow-${saldoOld && veriPercentage() ? 'upward' : 'downward'}`}
+                                            receita={veriPercentage()}
+                                            name={`arrow-${veriPercentage() ? 'upward' : 'downward'}`}
                                         />
-                                        <PercentageBalance receita={saldoOld && veriPercentage()}>{veriPercentageNumber()}%</PercentageBalance>
+                                        <PercentageBalance receita={veriPercentage()}>{veriPercentageNumber()}%</PercentageBalance>
                                     </ContainerPercentageBalance>
                                 </SkeletonContent>
                             </HeaderBalance>
