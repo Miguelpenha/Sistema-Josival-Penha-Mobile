@@ -1,4 +1,4 @@
-import useSWR, { KeyedMutator } from 'swr'
+import useSWR from 'swr'
 import base from './base'
 import { AxiosRequestConfig } from 'axios'
 
