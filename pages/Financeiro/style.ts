@@ -24,19 +24,19 @@ export const ContainerSelect = styled.View`
     background-color: ${props => props.theme.backgroundColor};
 `
 
-export const ContainerIconSelectLeft = styled.TouchableOpacity`
-    margin-right: 1%;
+interface IContainerIconSelect {
+    rightOrLeft?: boolean
+}
+
+export const ContainerIconSelect = styled.TouchableOpacity<IContainerIconSelect>`
+    
     border-radius: ${RFPercentage(8.9)}px;
 
-    ${props => props.disabled && css`
-        opacity: 0.3;
+    ${props => props.rightOrLeft ? css`
+        margin-left: 1%;
+    ` : css`
+        margin-right: 1%;
     `}
-`
-
-export const ContainerIconSelectRight = styled.TouchableOpacity`
-    margin-left: 1%;
-    border-radius: ${RFPercentage(8.9)}px;
-
     ${props => props.disabled && css`
         opacity: 0.3;
     `}
@@ -59,23 +59,52 @@ export const ContainerBalance = styled.View`
     margin-top: 12%;
 `
 
-export const TitleBalance = styled.Text`
-    margin-left: 4%;
-    margin-bottom: 1.5%;
-    font-size: ${RFPercentage(2.7)}px;
-    color: ${props => props.theme.secondaryColor};
-`
-
 export const Balance = styled.View`
-    padding-top: 7%;
+    padding-top: 5%;
     padding-bottom: 2%;
     border-radius: ${RFPercentage(2.7)}px;
     background-color: ${props => props.theme.backgroundColor};
 `
 
-export const BalanceText = styled.Text`
+export const HeaderBalance = styled.View`
+    flex-direction: row;
+`
+
+export const TitleBalance = styled.Text`
+    margin-left: 13%;
+    margin-bottom: 4%;
+    font-size: ${RFPercentage(2.7)}px;
+    color: ${props => props.theme.secondaryColor};
+`
+
+export const ContainerPercentageBalance = styled.View`
+    margin-left: auto;
+    padding-right: 8%;
+    flex-direction: row;
+`
+
+interface IIconPercentageBalance {
+    receita?: boolean
+}
+
+export const IconPercentageBalance = styled(MaterialIcons)<IIconPercentageBalance>`
+    margin-bottom: 4%;
+    color: ${props => props.receita ? props.theme.receita : props.theme.despesa};
+`
+
+interface IPercentageBalance {
+    receita?: boolean
+}
+
+export const PercentageBalance = styled.Text<IPercentageBalance>`
     font-weight: bold;
-    align-self: center;
+    font-size: ${RFPercentage(2.3)}px;
+    color: ${props => props.receita ? props.theme.receita : props.theme.despesa};
+`
+
+export const BalanceText = styled.Text`
+    margin-left: 13%;
+    font-weight: bold;
     font-size: ${RFPercentage(5.4)}px;
     color: ${props => props.theme.primary};
 `
@@ -95,36 +124,28 @@ export const Row2ReceitaOrDespesa = styled.View`
     align-self: center;
 `
 
-export const ContainerIconReceita = styled.View`
+interface IContainerIcon {
+    receita?: boolean
+}
+
+export const ContainerIconReceitaOrDespesa = styled.View<IContainerIcon>`
     width: 21%;
-    height: 60%;
+    height: 55%;
     margin-right: 5%;
     align-self: center;
     border-radius: 50px;
     align-items: center;
     justify-content: center;
-    border: 2px solid ${props => props.theme.receita};
+    border: 2px solid ${props => props.receita ? props.theme.receita : props.theme.despesa};
 `
 
-export const IconReceita = styled(MaterialIcons)`
+interface IIconReceitaOrDespesa {
+    receita?: boolean
+}
+
+export const IconReceitaOrDespesa = styled(MaterialIcons)<IIconReceitaOrDespesa>`
     padding: 1.2%;
-    color: ${props => props.theme.receita};
-`
-
-export const ContainerIconDespesa = styled.View`
-    width: 21%;
-    height: 60%;
-    margin-right: 5%;
-    align-self: center;
-    border-radius: 50px;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid ${props => props.theme.despesa};
-`
-
-export const IconDespesa = styled(MaterialIcons)`
-    padding: 1%;
-    color: ${props => props.theme.despesa};
+    color: ${props => props.receita ? props.theme.receita : props.theme.despesa};
 `
 
 export const TitleReceitaOrDespesa = styled.Text`
@@ -132,14 +153,12 @@ export const TitleReceitaOrDespesa = styled.Text`
     color: ${props => props.theme.secondaryColor};
 `
 
-export const ValueReceita = styled.Text`
-    font-weight: bold;
-    font-size: ${RFPercentage(2.5)}px;
-    color: ${props => props.theme.receita};
-`
+interface IValueReceitaOrDespesa {
+    receita?: boolean
+}
 
-export const ValueDespesa = styled.Text`
+export const ValueReceitaOrDespesa = styled.Text<IValueReceitaOrDespesa>`
     font-weight: bold;
     font-size: ${RFPercentage(2.5)}px;
-    color: ${props => props.theme.despesa};
+    color: ${props => props.receita ? props.theme.receita : props.theme.despesa};
 `

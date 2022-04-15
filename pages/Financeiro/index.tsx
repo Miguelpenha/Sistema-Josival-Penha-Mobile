@@ -6,13 +6,36 @@ import 'intl'
 import 'intl/locale-data/jsonp/pt-BR'
 import { DateTime } from 'luxon'
 import { useTheme } from 'styled-components'
-import { ContainerPd, HeaderBack, ContainerSelect, ContainerIconSelectLeft, IconSelect, ValueSelect, ContainerIconSelectRight, ContainerBalance, TitleBalance, Balance, BalanceText, ContainerReceitaOrDespesaGeral, Row2ReceitaOrDespesa, ContainerReceitaOrDespesa, ContainerIconReceita, IconReceita, ContainerIconDespesa, IconDespesa, TitleReceitaOrDespesa, ValueReceita, ValueDespesa } from './style'
+import {
+    ContainerPd,
+    HeaderBack,
+    ContainerSelect,
+    ContainerIconSelect,
+    IconSelect,
+    ValueSelect,
+    ContainerBalance,
+    Balance,
+    HeaderBalance,
+    TitleBalance,
+    ContainerPercentageBalance,
+    IconPercentageBalance,
+    PercentageBalance,
+    BalanceText,
+    ContainerReceitaOrDespesaGeral,
+    Row2ReceitaOrDespesa,
+    ContainerReceitaOrDespesa,
+    ContainerIconReceitaOrDespesa,
+    IconReceitaOrDespesa,
+    TitleReceitaOrDespesa,
+    ValueReceitaOrDespesa
+} from './style'
 import LoadingData from '../../components/loadingData'
 import { View } from 'react-native'
 import mesesNumber from '../../utils/mesesNumber'
 import meses from '../../utils/meses'
 import SkeletonContent from 'react-native-skeleton-content'
 import { RFPercentage } from 'react-native-responsive-fontsize'
+import api from '../../base'
 
 interface Iprops {
     navigation: NativeStackScreenProps<Inavigation, 'Financeiro'>['navigation']
@@ -26,11 +49,47 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
             month: month
         }
     })
+    const [saldoOld, setSaldoOld] = useState<Isaldo>(undefined)
     const theme = useTheme()
 
     useEffect(() => {
+        async function getSaldoOld() {
+            if (mesesNumber[Number(month)-2]) {
+                const { data } = await api.get<Isaldo>('/financeiro/saldo', {
+                    params: {
+                        month: mesesNumber[Number(month)-2]
+                    }
+                })
+                
+                setSaldoOld(data)
+            } else {
+                setSaldoOld(null)
+            }
+        }
+        
+        getSaldoOld().then()
         mutateSaldo().then()
     }, [month])
+
+    function veriPercentage(): boolean {
+        if (saldoOld) {
+            if (saldo.saldoBruto >= saldoOld.saldoBruto) {
+                return true
+            } else {
+                return false
+            }
+        } else {
+            return true
+        }
+    }
+
+    function veriPercentageNumber(): number {
+        if (saldoOld) {
+            return (saldo.saldoBruto-saldoOld.saldoBruto)/10000
+        } else {
+            return 0
+        }
+    }
 
     return (
         <ContainerPd>
@@ -41,23 +100,45 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
                 />
                 <View>
                     <ContainerSelect>
-                        <ContainerIconSelectLeft
+                        <ContainerIconSelect
+                            rightOrLeft
                             disabled={month != '01' ? false : true}
                             onPress={() => month != '01' && setMonth(mesesNumber[Number(month)-2])}
                         >
                             <IconSelect name="chevron-left" size={30}/>
-                        </ContainerIconSelectLeft>
+                        </ContainerIconSelect>
                         <ValueSelect>{meses[Number(month)-1]}</ValueSelect>
-                        <ContainerIconSelectRight
+                        <ContainerIconSelect
                             disabled={month != '12' ? false : true}
                             onPress={() => month != '12' && setMonth(mesesNumber[Number(month)])}
                         >
                             <IconSelect name="chevron-right" size={30}/>
-                        </ContainerIconSelectRight>
+                        </ContainerIconSelect>
                     </ContainerSelect>
                     <ContainerBalance>
-                        <TitleBalance>Balanço</TitleBalance>
                         <Balance>
+                            <HeaderBalance>
+                                <TitleBalance>Balanço</TitleBalance>
+                                <SkeletonContent
+                                    isLoading={typeof saldoOld !== 'undefined' ? false : true}
+                                    layout={[
+                                        { key: 'saldo', width: '40%' , height: RFPercentage(4), alignSelf: 'flex-end', marginRight: '6%' }
+                                    ]}
+                                    boneColor={theme.secondary}
+                                    highlightColor={theme.backgroundColor}
+                                    animationDirection="diagonalTopRight"
+                                    animationType="pulse"
+                                >
+                                    <ContainerPercentageBalance>
+                                        <IconPercentageBalance
+                                            size={22}
+                                            receita={veriPercentage()}
+                                            name={`arrow-${veriPercentage() ? 'upward' : 'downward'}`}
+                                        />
+                                        <PercentageBalance receita={veriPercentage()}>{veriPercentageNumber()}%</PercentageBalance>
+                                    </ContainerPercentageBalance>
+                                </SkeletonContent>
+                            </HeaderBalance>
                             <SkeletonContent
                                 isLoading={month && saldo ? false : true}
                                 containerStyle={{}}
@@ -73,9 +154,9 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
                             </SkeletonContent>
                             <ContainerReceitaOrDespesaGeral>
                                 <ContainerReceitaOrDespesa>
-                                    <ContainerIconReceita>
-                                        <IconReceita name="arrow-upward" size={20}/>
-                                    </ContainerIconReceita>
+                                    <ContainerIconReceitaOrDespesa receita>
+                                        <IconReceitaOrDespesa receita name="arrow-upward" size={20}/>
+                                    </ContainerIconReceitaOrDespesa>
                                     <Row2ReceitaOrDespesa>
                                         <TitleReceitaOrDespesa>Receita</TitleReceitaOrDespesa>
                                         <SkeletonContent
@@ -89,14 +170,14 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
                                             animationDirection="diagonalTopRight"
                                             animationType="pulse"
                                         >
-                                            <ValueReceita>{saldo && saldo.receitas}</ValueReceita>
+                                            <ValueReceitaOrDespesa receita>{saldo && saldo.receitas}</ValueReceitaOrDespesa>
                                         </SkeletonContent>
                                     </Row2ReceitaOrDespesa>
                                 </ContainerReceitaOrDespesa>
                                 <ContainerReceitaOrDespesa>
-                                    <ContainerIconDespesa>
-                                        <IconDespesa name="arrow-downward" size={20}/>
-                                    </ContainerIconDespesa>
+                                    <ContainerIconReceitaOrDespesa>
+                                        <IconReceitaOrDespesa name="arrow-downward" size={20}/>
+                                    </ContainerIconReceitaOrDespesa>
                                     <Row2ReceitaOrDespesa>
                                         <TitleReceitaOrDespesa>Despesa</TitleReceitaOrDespesa>
                                         <SkeletonContent
@@ -110,7 +191,7 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
                                             animationDirection="diagonalTopRight"
                                             animationType="pulse"
                                         >
-                                            <ValueDespesa>{saldo && saldo.despesas}</ValueDespesa>
+                                            <ValueReceitaOrDespesa>{saldo && saldo.despesas}</ValueReceitaOrDespesa>
                                         </SkeletonContent> 
                                     </Row2ReceitaOrDespesa>
                                 </ContainerReceitaOrDespesa>
