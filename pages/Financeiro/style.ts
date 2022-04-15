@@ -61,7 +61,6 @@ export const ContainerBalance = styled.View`
 
 export const Balance = styled.View`
     padding-top: 5%;
-    padding-bottom: 2%;
     border-radius: ${RFPercentage(2.7)}px;
     background-color: ${props => props.theme.backgroundColor};
 `
@@ -130,7 +129,7 @@ interface IContainerIcon {
 
 export const ContainerIconReceitaOrDespesa = styled.View<IContainerIcon>`
     width: 21%;
-    height: 55%;
+    height: 52%;
     margin-right: 5%;
     align-self: center;
     border-radius: 50px;
