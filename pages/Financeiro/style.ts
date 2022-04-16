@@ -29,7 +29,6 @@ interface IContainerIconSelect {
 }
 
 export const ContainerIconSelect = styled.TouchableOpacity<IContainerIconSelect>`
-    
     border-radius: ${RFPercentage(8.9)}px;
 
     ${props => props.rightOrLeft ? css`
@@ -79,6 +78,7 @@ export const TitleBalance = styled.Text`
 export const ContainerPercentageBalance = styled.View`
     margin-left: auto;
     padding-right: 8%;
+    margin-bottom: 4%;
     flex-direction: row;
 `
 
@@ -87,7 +87,6 @@ interface IIconPercentageBalance {
 }
 
 export const IconPercentageBalance = styled(MaterialIcons)<IIconPercentageBalance>`
-    margin-bottom: 4%;
     color: ${props => props.receita ? props.theme.receita : props.theme.despesa};
 `
 

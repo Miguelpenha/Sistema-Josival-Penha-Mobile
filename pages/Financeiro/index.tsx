@@ -6,6 +6,7 @@ import 'intl'
 import 'intl/locale-data/jsonp/pt-BR'
 import { DateTime } from 'luxon'
 import { useTheme } from 'styled-components'
+import api from '../../base'
 import {
     ContainerPd,
     HeaderBack,
@@ -34,16 +35,12 @@ import mesesNumber from '../../utils/mesesNumber'
 import meses from '../../utils/meses'
 import SkeletonContent from 'react-native-skeleton-content'
 import { RFPercentage } from 'react-native-responsive-fontsize'
-import api from '../../base'
-import { LineChart } from 'react-native-chart-kit'
-import { Dimensions  } from 'react-native'
 
 interface Iprops {
     navigation: NativeStackScreenProps<Inavigation, 'Financeiro'>['navigation']
 }
 
 const Financeiro: FC<Iprops> = ({ navigation }) => {
-    const { data: turmas } = get('/turmas')
     const [month, setMonth] = useState(DateTime.now().toLocaleString().split('/')[1])
     const { data: saldo, mutate: mutateSaldo } = get<Isaldo>('/financeiro/saldo', {
         params: {
@@ -94,7 +91,7 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
 
     return (
         <ContainerPd>
-            <LoadingData loading={turmas}>
+            <LoadingData loading={saldo}>
                 <HeaderBack
                     title="Financeiro"
                     onClick={() => navigation.goBack()}
@@ -131,7 +128,7 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
                             >
                                 <ContainerPercentageBalance>
                                     <IconPercentageBalance
-                                        size={22}
+                                        size={20}
                                         receita={typeof saldoOld !== 'undefined' && veriPercentage()}
                                         name={`arrow-${typeof saldoOld !== 'undefined' && veriPercentage() ? 'upward' : 'downward'}`}
                                     />
@@ -198,42 +195,6 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
                         </ContainerReceitaOrDespesaGeral>
                     </Balance>
                 </ContainerBalance>
-                {saldo && saldoOld && <LineChart
-                    width={Dimensions.get('window').width}
-                    height={300}
-                    data={{
-                        labels: [meses[Number(month)-2], meses[Number(month)-1]],
-                        datasets: [
-                            {
-                                data: [saldoOld.saldoBruto, saldo.saldoBruto]
-                            }
-                        ]
-                    }}
-                    style={{
-                        display: 'flex',
-                        bottom: 90,
-                        marginBottom: '80%',
-                        borderRadius: RFPercentage(2.7)
-                    }}
-                    chartConfig={{
-                        backgroundGradientFrom: theme.primary,
-                        backgroundGradientTo: theme.primary,
-                        color: () => theme.color,
-                        labelColor: () => theme.color,
-                        propsForDots: {
-                            r: '6',
-                            strokeWidth: '2',
-                            stroke: theme.secondaryColor
-                        },
-                        linejoinType: 'round',
-                        propsForLabels: {
-                            fontSize: '14'
-                        },
-                        propsForVerticalLabels: {
-                            fontSize: '18'
-                        }
-                    }}
-                />}
             </LoadingData>
         </ContainerPd>
     )
