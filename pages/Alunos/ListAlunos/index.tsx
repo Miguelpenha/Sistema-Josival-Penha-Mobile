@@ -1,10 +1,15 @@
-import React, { FC, memo } from 'react'
+import React, { FC, memo, useState } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { Ialuno, Inavigation } from '../../../types'
-import { FlatList } from 'react-native'
+import { FlatList, RefreshControl } from 'react-native'
 import Header from './Header'
+import { useTheme } from 'styled-components'
 import Aluno from '../../../components/Aluno'
 import { veriPago2 } from '../../../utils/veriPago'
+
+type IonRefresh = {
+  (): Promise<void>
+}
 
 interface Iprops {
     alunos: Ialuno[]
@@ -16,9 +21,10 @@ interface Iprops {
     navigation: NativeStackScreenProps<Inavigation, 'Alunos'>['navigation']
     financeiro: boolean | undefined
     next: Inavigation['Alunos']['next']
+    onRefresh: IonRefresh
 }
 
-const ListAlunos: FC<Iprops> = ({ alunos, title, filter, setFilter, atrasados, navigation, setAtrasados, financeiro, next }) => {
+const ListAlunos: FC<Iprops> = ({ alunos, title, filter, setFilter, atrasados, navigation, setAtrasados, financeiro, next, onRefresh }) => {
     const renderItem = ({ item: aluno }: { item: Ialuno }) => (
         <Aluno
           aluno={aluno}
@@ -48,10 +54,28 @@ const ListAlunos: FC<Iprops> = ({ alunos, title, filter, setFilter, atrasados, n
           }}
         />
     )
+    const theme = useTheme()
+    const [refreshing, setRefreshing] = useState(false)
+
+    async function onRefreshAction() {
+      setRefreshing(true)
+
+      await onRefresh()
+
+      setRefreshing(false)
+    }
 
     return (
         <FlatList
             data={alunos}
+            refreshControl={(
+              <RefreshControl
+                refreshing={refreshing}
+                colors={[theme.primary]}
+                onRefresh={onRefreshAction}
+                progressBackgroundColor={theme.secondary}
+              />
+            )}
             ListHeaderComponent={(
                 <Header
                   financeiro={financeiro}

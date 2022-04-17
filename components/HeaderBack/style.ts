@@ -34,4 +34,5 @@ export const Logo = styled(LogoJP)`
     width: 90%;
     height: auto;
     aspect-ratio: 2.6186961870;
+    margin-top: 2%;
 `

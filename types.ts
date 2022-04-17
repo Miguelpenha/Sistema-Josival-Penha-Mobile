@@ -66,6 +66,12 @@ export interface Ialuno {
   pagamentos: Ipagamentos
 }
 
+export interface Iturma {
+  _id: string
+  nome: string
+  alunos: number
+}
+
 export type Inavigation = {
   Home: undefined
   Pagamentos: {

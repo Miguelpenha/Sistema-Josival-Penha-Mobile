@@ -4,22 +4,18 @@ import { MaterialIcons } from '@expo/vector-icons'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 
 export const Header = styled.View`
-    width: 100%;
     margin-top: 10%;
     align-items: center;
     flex-direction: row;
-    justify-content: center;
 `
 
 export const Logo = styled(LogoJP)`
     width: 70%;
-    height: auto;
     margin-right: 14%;
     aspect-ratio: 2.6186961870;
 `
 
 export const ContainerSettings = styled.TouchableOpacity`
-    margin: 1.5%;
     margin-left: 2%;
     margin-right: auto;
 `
@@ -28,32 +24,23 @@ export const Settings = styled(MaterialIcons)`
     color: ${props => props.theme.primary};
 `
 
-export const Title = styled.Text`
-    width: 100%;
-    margin-top: 10%;
-    font-size: 28px;
+export const NameUser = styled.Text`
+    margin-top: 5%;
+    margin-left: 10%;
     font-weight: bold;
-    margin-bottom: 10%;
-    text-align: center;
-    align-self: center;
+    font-size: ${RFPercentage(4.4)}px;
     color: ${props => props.theme.primary};
 `
 
-export const Button = styled.TouchableOpacity`
-    width: 80%;
-    padding: 7%;
-    display: flex;
-    margin-bottom: 8%;
-    align-self: center;
-    align-items: center;
-    border-radius: 18.93px;
-    justify-content: center;
-    background-color: ${props => props.theme.primary};
+export const Message = styled.Text`
+    margin-top: 0.5%;
+    margin-left: 10%;
+    font-weight: bold;
+    margin-bottom: 10%;
+    font-size: ${RFPercentage(4)}px;
+    color: ${props => props.theme.secondaryColor};
 `
 
-export const TextButton = styled.Text`
-    font-weight: bold;
-    text-align: center;
-    font-size: ${RFPercentage(3.2)}px;
-    color: ${props => props.theme.color};
+export const Options = styled.FlatList`
+    flex-grow: 0;
 `

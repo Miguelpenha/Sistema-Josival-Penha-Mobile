@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { Inavigation } from '../../types'
 import { get } from '../../api'
 import ContainerPd from '../../components/ContainerPd'
 import LoadingData from '../../components/loadingData'
-import { Header, Logo, ContainerSettings, Settings, Title, Button, TextButton } from './style'
+import { Header, Logo, ContainerSettings, Settings, NameUser, Message, Options } from './style'
+import Option from './Option'
+import { Ioption } from './type'
+import { ListRenderItemInfo } from 'react-native'
+import options from './options'
+import 'intl'
+import 'intl/locale-data/jsonp/pt-BR'
+import { DateTime, HourNumbers } from 'luxon'
 
 type iveriGeral = {
   (): Promise<void>
@@ -18,9 +25,23 @@ interface Iprops {
 
 export default function Home({ navigation, veriGeral, find }: Iprops) {
   const { data: turmas } = get('/turmas')
+  const [hour, setHour] = useState(DateTime.now().hour)
 
-  veriGeral().then()
-  
+  useEffect(() => {
+    setInterval(() => hour != DateTime.now().hour && setHour(DateTime.now().hour), 500)
+    veriGeral().then()
+  })
+
+  function veriHour(hour: HourNumbers) {
+    if (hour >= 5 && hour < 12) {
+      return 'Bom dia'
+    } else if (hour >= 12 && hour < 18) {
+      return 'Boa tarde'
+    } else {
+      return 'Boa noite'
+    }
+  }
+
   return (
     <ContainerPd>
       <LoadingData loading={turmas}>
@@ -30,28 +51,17 @@ export default function Home({ navigation, veriGeral, find }: Iprops) {
           </ContainerSettings>
           <Logo/>
         </Header>
-        <Title>Selecione uma opção</Title>
-        <Button 
-          onPress={() => find ? navigation.navigate('Alunos', {
-            next: 'camera:aluno',
-            url: '/alunos'
-          }) : navigation.navigate('Turmas', {
-            success: false
-          })}
-        >
-          <TextButton>Adicionar foto a um aluno</TextButton>
-        </Button>
-        <Button onPress={() => navigation.navigate('Alunos', {
-          next: 'pagamentos:aluno',
-          url: '/alunos',
-          title: 'Escolher Aluno',
-          financeiro: true
-        })}>
-          <TextButton>Adicionar pagamento</TextButton>
-        </Button>
-        <Button onPress={() => navigation.navigate('Financeiro')}>
-          <TextButton>Financeiro</TextButton>
-        </Button>
+        <NameUser>Olá, {process.env.NAME_USER.split(' ')[0].trim()+' '}&#x1F44B;</NameUser>
+        <Message>{veriHour(hour)+' '}&#x1F604;</Message>
+        <Options
+          horizontal
+          data={options(navigation, find)}
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item, index) => String(index)}
+          renderItem={({ item }: ListRenderItemInfo<Ioption>) => (
+            <Option title={item.title} icon={item.icon} onClick={item.onClick}/>
+          )}
+        />
       </LoadingData>
     </ContainerPd>
   )

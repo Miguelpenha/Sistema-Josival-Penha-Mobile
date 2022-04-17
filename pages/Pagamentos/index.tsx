@@ -10,10 +10,12 @@ import { ListPagamentos, ContainerPagamentos, ContainerDate, ButtonCalendar, Tex
 import HeaderBack from '../../components/HeaderBack'
 import AlunoPagamento from './AlunoPagamento'
 import HeaderPagamentos from './HeaderPagamentos'
+import { RefreshControl, Text, SafeAreaView } from 'react-native'
 import mesesNumber from '../../utils/mesesNumber'
 import Pagamento from './Pagamento'
 import Calendar from './Calendar'
 import api from '../../base'
+import { KeyedMutator } from 'swr'
 
 type Iprops = NativeStackScreenProps<Inavigation, 'Pagamentos'>
 
@@ -37,12 +39,19 @@ interface imodalMensalidade {
 
 const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
     const { aluno: alunoParams } = route.params
-    const { data: aluno, mutate }: { data: Ialuno, mutate: Function } = get(`/alunos/${alunoParams.id}`)
+    const { data: aluno, mutate: mutateAluno }: { data: Ialuno, mutate: KeyedMutator<Ialuno> } = get(`/alunos/${alunoParams.id}`)
     const theme = useTheme()
     const [modalDate, setModalDate] = useState<imodalDate>(null)
     const [modalMensalidade, setModalMensalidade] = useState<imodalMensalidade>(null)
     const modalDateRef = useRef<Modalize>(null)
     const modalMensalidadeRef = useRef<Modalize>(null)
+    const [refreshing, setRefreshing] = useState(false)
+
+    async function onRefreshAction() {
+      setRefreshing(true)
+
+      mutateAluno().then(() => setRefreshing(false))
+    }
     const openModalDate = (date: string, setDate: IsetDate) => {
         modalDateRef.current.open()
         setModalDate({
@@ -77,10 +86,20 @@ const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
                     )}
                 />
                 <HeaderPagamentos/>
-                <ListPagamentos>
+                <ListPagamentos
+                    refreshControl={(
+                        <RefreshControl
+                            refreshing={refreshing}
+                            colors={[theme.primary]}
+                            onRefresh={onRefreshAction}
+                            progressBackgroundColor={theme.secondary}
+                            progressViewOffset={-35}
+                        />
+                    )}
+                >
                     <ContainerPagamentos>
                         {mesesNumber.map((mês, index) => (
-                            <Pagamento mês={mês} key={index} index={index} aluno={aluno} openModalDate={openModalDate} onSubmit={() => mutate().then(() => mutate().then())}/>
+                            <Pagamento mês={mês} key={index} index={index} aluno={aluno} openModalDate={openModalDate} onSubmit={() => mutateAluno().then(() => mutateAluno().then())}/>
                         ))}
                     </ContainerPagamentos>
                 </ListPagamentos>
@@ -110,7 +129,7 @@ const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
                                 })
                             )
 
-                            mutate().then(() => modalMensalidade?.setMensalidade(mensalidade))
+                            mutateAluno().then(() => modalMensalidade?.setMensalidade(mensalidade))
                         }}>
                             <TextButtonSubmitMensalidade>
                                 Salvar

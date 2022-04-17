@@ -38,7 +38,7 @@ export const TitleMensalidade = styled.Text`
     font-weight: bold;
     text-align: center;
     font-size: ${RFPercentage(3.6)}px;
-    color: ${props => props.theme.color};
+    color: ${props => props.theme.secondaryColor};
 `
 
 export const InputMensalidade = styled.TextInput`
@@ -59,7 +59,7 @@ export const ButtonSubmitMensalidade = styled.TouchableOpacity`
     align-self: center;
     align-items: center;
     border-radius: ${RFPercentage(2.9)}px;
-    background-color: ${props => props.theme.check};
+    background-color: ${props => props.theme.receita};
 `
 
 export const TextButtonSubmitMensalidade = styled.Text`

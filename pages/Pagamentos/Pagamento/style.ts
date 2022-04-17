@@ -9,9 +9,9 @@ interface IContainer {
 
 export const Container = styled.View<IContainer>`
     width: 95%;
-    margin-top: 1.8%;
+    margin-top: 2.5%;
     align-self: center;
-    margin-bottom: 1.8%;
+    margin-bottom: 2.5%;
     
     ${props => props.open && css`
         border-radius: ${RFPercentage(2.7)}px;
