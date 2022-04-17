@@ -60,7 +60,7 @@ export const ContainerSwitch = styled.View`
     margin-top: 3%;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 `
 
 export const TextSwitchPago = styled.Text`
@@ -79,7 +79,7 @@ export const Button = styled.TouchableOpacity`
     align-self: center;
     align-items: center;
     border-radius: ${RFPercentage(2.9)}px;
-    background-color: ${props => props.theme.check};
+    background-color: ${props => props.theme.receita};
 `
 
 export const TextButton = styled.Text`

@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react'
-import { Ialuno } from '../../../types'
+import { Ialuno, IpaymentMethods } from '../../../types'
 import { Container, ContainerPagamento, Month, ContainerStatus, Status, Vencimento, IconBack } from './style'
 import meses from '../../../utils/meses'
 import veriPago from '../../../utils/veriPago'
@@ -13,15 +13,24 @@ interface IopenModalDate {
     (date: string, setDate: IsetDate): void
 }
 
+interface IsetMethod {
+    (method: IpaymentMethods): void
+}
+
+interface IopenModalPaymentMethods {
+    (method: IpaymentMethods, setMethod: IsetMethod): void
+}
+
 interface Iprops {
     mês: string
     index: number
     aluno: Ialuno
     openModalDate: IopenModalDate
+    openModalPaymentsMethod: IopenModalPaymentMethods
     onSubmit: Function
 }
 
-const Pagamento: FC<Iprops> = ({ aluno, mês, index, openModalDate, onSubmit }) => {
+const Pagamento: FC<Iprops> = ({ aluno, mês, index, openModalDate, openModalPaymentsMethod, onSubmit }) => {
     const [open, setOpen] = useState(false)
     
     if (aluno) {
@@ -37,7 +46,7 @@ const Pagamento: FC<Iprops> = ({ aluno, mês, index, openModalDate, onSubmit }) 
                             <Vencimento>{aluno.pagamentos[mês].vencimento}</Vencimento>
                             <IconBack name={open ? 'expand-less' : 'expand-more'} size={25}/>
                         </ContainerPagamento>
-                        <CadastrarPagamento open={open} setOpen={setOpen} pagamento={aluno.pagamentos[mês]} openModalDate={openModalDate} idAluno={aluno.id} mês={mês} onSubmit={onSubmit}/>
+                        <CadastrarPagamento openModalPaymentsMethods={openModalPaymentsMethod} open={open} setOpen={setOpen} pagamento={aluno.pagamentos[mês]} openModalDate={openModalDate} idAluno={aluno.id} mês={mês} onSubmit={onSubmit}/>
                     </Container>
                 )}
             </>

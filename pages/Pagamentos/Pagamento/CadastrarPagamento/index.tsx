@@ -1,5 +1,5 @@
 import React, { FC, useState, memo } from 'react'
-import { Ipagamento } from '../../../../types'
+import { Ipagamento, IpaymentMethods } from '../../../../types'
 import { useTheme } from 'styled-components'
 import { Container, Row1, Campo, Label, ContainerInputDate, InputDate, ContainerInputValor, InputValor, ContainerSwitch, TextSwitchPago, SwitchPago, Button, TextButton } from './style'
 import submit from './submit'
@@ -13,22 +13,32 @@ interface IsetDate {
 
 interface IopenModalDate {
     (date: string, setDate: IsetDate): void
-} 
+}
+
+interface IsetMethod {
+    (method: IpaymentMethods): void
+}
+
+interface IopenModalPaymentMethods {
+    (method: IpaymentMethods, setMethod: IsetMethod): void
+}
 
 interface Iprops {
     open: boolean
     pagamento: Ipagamento
     setOpen: React.Dispatch<React.SetStateAction<boolean>>
     openModalDate: IopenModalDate
+    openModalPaymentsMethods: IopenModalPaymentMethods
     idAluno: string
     mês: string
     onSubmit: Function
 }
 
-const CadastrarPagamento: FC<Iprops> = ({ open, pagamento, setOpen, openModalDate, idAluno, mês, onSubmit }) => {
+const CadastrarPagamento: FC<Iprops> = ({ open, pagamento, setOpen, openModalDate, openModalPaymentsMethods, idAluno, mês, onSubmit }) => {
     const [date, setDate] = useState(pagamento.vencimento)
     const [valor, setValor] = useState(pagamento.value)
     const [pago, setPago] = useState(pagamento.pago)
+    const [paymentMethod, setPaymentMethod] = useState(pagamento.forma)
     const theme = useTheme()
 
     if (open) {
@@ -58,7 +68,13 @@ const CadastrarPagamento: FC<Iprops> = ({ open, pagamento, setOpen, openModalDat
                         </ContainerInputValor>
                     </Campo>
                 </Row1>
-                <ContainerSwitch>  
+                <ContainerSwitch>
+                <Campo>
+                    <Label>Forma</Label>
+                    <ContainerInputDate onPress={() => openModalPaymentsMethods(paymentMethod, method => setPaymentMethod(method))}>
+                        <InputDate>{paymentMethod}</InputDate>
+                    </ContainerInputDate>
+                </Campo>
                     <TextSwitchPago>Pago</TextSwitchPago>
                     <SwitchPago
                         value={pago}
@@ -68,7 +84,7 @@ const CadastrarPagamento: FC<Iprops> = ({ open, pagamento, setOpen, openModalDat
                     />
                 </ContainerSwitch>
                 <Button onPress={() => {
-                    submit(date, valor, pago, pagamento.forma, idAluno, mês)
+                    submit(date, valor, pago, paymentMethod, idAluno, mês)
                     setOpen(false)
                     onSubmit()
                 }}>

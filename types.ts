@@ -17,7 +17,7 @@ export interface Itheme {
 export interface Ipagamento {
   value: string
   pago: boolean
-  forma: string
+  forma: IpaymentMethods
   valueBruto: number
   vencimento: string
   vencimentoSistema: String
@@ -31,6 +31,8 @@ export interface Isaldo {
   despesas: string
   despesasBrutas: Number
 }
+
+export type IpaymentMethods = 'Espécie' | 'Pix' | 'Boleto' | 'Cartão'
 
 interface Imeses {
   '01': Ipagamento
