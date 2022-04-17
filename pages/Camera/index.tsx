@@ -6,7 +6,7 @@ import { Camera as CameraExpo, CameraCapturedPicture } from 'expo-camera'
 import * as fileSystem from 'expo-file-system'
 // import * as MediaLibrary from 'expo-media-library'
 import { IconMaterial, Container, ContainerCamera, CameraComponent, Options, ButtonBack, ContainerFlip, ContainerCircle, IconFontAwesome, ContainerFlash } from './style'
-import { url, key } from '../../env'
+import { API_URL, API_KEY } from '../../env'
 
 type Iprops = NativeStackScreenProps<Inavigation, 'Camera'>
 
@@ -35,9 +35,9 @@ const Camera: FC<Iprops> = ({ route, navigation }) => {
 
             // await MediaLibrary.createAssetAsync(foto.uri)
             
-            await fileSystem.uploadAsync(`${url}/alunos/fotos`, foto!.uri, {
+            await fileSystem.uploadAsync(`${API_URL}/alunos/fotos`, foto!.uri, {
                 headers: {
-                    'Authorization': `key ${key}`
+                    'Authorization': `key ${API_KEY}`
                 },
                 fieldName: 'foto',
                 httpMethod: 'PATCH',

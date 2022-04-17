@@ -1,10 +1,10 @@
 import axios from 'axios'
-import { url, key } from './env'
+import { API_URL, API_KEY } from './env'
 
 const api = axios.create({
-    baseURL: url,
+    baseURL: API_URL,
     headers: {
-        'Authorization': `key ${key}`
+        'Authorization': `key ${API_KEY}`
     }
 })
 
