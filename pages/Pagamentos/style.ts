@@ -1,5 +1,5 @@
-import { RFPercentage } from 'react-native-responsive-fontsize'
 import styled from 'styled-components/native'
+import { RFPercentage } from 'react-native-responsive-fontsize'
 
 export const ListPagamentos = styled.ScrollView`
     
@@ -12,6 +12,7 @@ export const ContainerPagamentos = styled.View`
 
 export const ContainerDate = styled.View`
     padding-bottom: 40%;
+    background-color: red;
 `
 
 export const ButtonCalendar = styled.TouchableOpacity`
@@ -29,6 +30,28 @@ export const TextButtonCalendar = styled.Text`
     color: ${props => props.theme.color};
 `
 
+export const ContainerPaymentsMethod = styled.ScrollView`
+    padding-top: 8%;
+    padding-bottom: 40%;
+`
+
+export const MethodPayment = styled.TouchableOpacity`
+    width: 45%;
+    padding-top: 5%;
+    margin-bottom: 8%;
+    align-self: center;
+    padding-bottom: 5%;
+    border-radius: ${RFPercentage(2)}px;
+    background-color: ${props => props.theme.primary};
+`
+
+export const TextMethodPayment = styled.Text`
+    text-align: center;
+    font-weight: bold;
+    font-size: ${RFPercentage(3.5)}px;
+    color: ${props => props.theme.backgroundColor};
+`
+
 export const ContainerMensalidade = styled.View`
     padding-bottom: 100%;
 `
@@ -37,7 +60,7 @@ export const TitleMensalidade = styled.Text`
     margin-top: 10%;
     font-weight: bold;
     text-align: center;
-    font-size: ${RFPercentage(3.6)}px;
+    font-size: ${RFPercentage(3.2)}px;
     color: ${props => props.theme.secondaryColor};
 `
 

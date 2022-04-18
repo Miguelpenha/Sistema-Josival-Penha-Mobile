@@ -1,7 +1,7 @@
 import React, { FC, useState, memo } from 'react'
 import { Ipagamento, IpaymentMethods } from '../../../../types'
 import { useTheme } from 'styled-components'
-import { Container, Row1, Campo, Label, ContainerInputDate, InputDate, ContainerInputValor, InputValor, ContainerSwitch, TextSwitchPago, SwitchPago, Button, TextButton } from './style'
+import { Container, Row1, Campo, Label, ContainerInputDate, InputDate, ContainerInputValor, InputValor, Row2, ContainerSwitch, TextSwitchPago, SwitchPago, Button, TextButton } from './style'
 import submit from './submit'
 import dinero from 'dinero.js'
 
@@ -68,21 +68,23 @@ const CadastrarPagamento: FC<Iprops> = ({ open, pagamento, setOpen, openModalDat
                         </ContainerInputValor>
                     </Campo>
                 </Row1>
-                <ContainerSwitch>
-                <Campo>
-                    <Label>Forma</Label>
-                    <ContainerInputDate onPress={() => openModalPaymentsMethods(paymentMethod, method => setPaymentMethod(method))}>
-                        <InputDate>{paymentMethod}</InputDate>
-                    </ContainerInputDate>
-                </Campo>
-                    <TextSwitchPago>Pago</TextSwitchPago>
-                    <SwitchPago
-                        value={pago}
-                        thumbColor={theme.color}
-                        onValueChange={() => setPago(!pago)}
-                        trackColor={{false: theme.despesa, true: theme.receita}}
-                    />
-                </ContainerSwitch>
+                <Row2>
+                    <Campo>
+                        <Label>Forma</Label>
+                        <ContainerInputDate onPress={() => openModalPaymentsMethods(paymentMethod, method => setPaymentMethod(method))}>
+                            <InputDate>{paymentMethod}</InputDate>
+                        </ContainerInputDate>
+                    </Campo>
+                    <ContainerSwitch>
+                        <TextSwitchPago>Pago</TextSwitchPago>
+                        <SwitchPago
+                            value={pago}
+                            thumbColor={theme.color}
+                            onValueChange={() => setPago(!pago)}
+                            trackColor={{false: theme.despesa, true: theme.receita}}
+                        />
+                    </ContainerSwitch>
+                </Row2>
                 <Button onPress={() => {
                     submit(date, valor, pago, paymentMethod, idAluno, mês)
                     setOpen(false)

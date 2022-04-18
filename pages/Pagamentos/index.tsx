@@ -6,7 +6,21 @@ import { useTheme } from 'styled-components'
 import { Modalize } from 'react-native-modalize'
 import ContainerPd from '../../components/ContainerPd'
 import LoadingData from '../../components/loadingData'
-import { ListPagamentos, ContainerPagamentos, ContainerDate, ButtonCalendar, TextButtonCalendar, InputMensalidade, ContainerMensalidade, TitleMensalidade, ButtonSubmitMensalidade, TextButtonSubmitMensalidade } from './style'
+import {
+    ListPagamentos,
+    ContainerPagamentos,
+    ContainerDate,
+    ButtonCalendar,
+    TextButtonCalendar,
+    ContainerPaymentsMethod,
+    MethodPayment,
+    TextMethodPayment,
+    InputMensalidade,
+    ContainerMensalidade,
+    TitleMensalidade,
+    ButtonSubmitMensalidade,
+    TextButtonSubmitMensalidade
+} from './style'
 import HeaderBack from '../../components/HeaderBack'
 import AlunoPagamento from './AlunoPagamento'
 import HeaderPagamentos from './HeaderPagamentos'
@@ -16,6 +30,7 @@ import Pagamento from './Pagamento'
 import Calendar from './Calendar'
 import api from '../../base'
 import { KeyedMutator } from 'swr'
+import paymentMethods from '../../utils/paymentMethods'
 
 type Iprops = NativeStackScreenProps<Inavigation, 'Pagamentos'>
 
@@ -85,8 +100,10 @@ const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
         })
     }
     const closeModalDate = () => modalDateRef.current.close()
+    const closeModalPaymentsMethod = () => modalPaymentMethodsRef.current.close()
     const closeModalMensalidade = () => modalMensalidadeRef.current.close()
     const [mensalidade, setMensalidade] = useState(modalMensalidade?.mensalidade)
+
     return (
         <ContainerPd>
             <LoadingData loading={aluno}>
@@ -130,9 +147,19 @@ const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
                     </ContainerDate>
                 </Modalize>
                 <Modalize ref={modalPaymentMethodsRef} modalStyle={{backgroundColor: theme.backgroundColor}}>
-                    
+                    <ContainerPaymentsMethod>
+                        {paymentMethods.map((payment, index) => (
+                            <MethodPayment key={index} onPress={async () => {
+                                closeModalPaymentsMethod()
+
+                                modalPaymentMethods?.setMethod(payment)
+                            }}>
+                                <TextMethodPayment>{payment}</TextMethodPayment>
+                            </MethodPayment>
+                        ))}
+                    </ContainerPaymentsMethod>
                 </Modalize>
-                <Modalize ref={modalMensalidadeRef} modalStyle={{backgroundColor: theme.backgroundColor}} onClose={() => {}}>
+                <Modalize ref={modalMensalidadeRef} modalStyle={{backgroundColor: theme.backgroundColor}}>
                     <ContainerMensalidade>
                         <TitleMensalidade>Modificar valor de todas as mensalidades</TitleMensalidade>
                         <InputMensalidade keyboardType="decimal-pad" defaultValue={modalMensalidade?.mensalidade} onChangeText={setMensalidade}/>

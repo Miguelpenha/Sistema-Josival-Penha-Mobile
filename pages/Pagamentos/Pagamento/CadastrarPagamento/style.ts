@@ -56,11 +56,17 @@ export const InputValor = styled.TextInput`
     ${styleInput}
 `
 
-export const ContainerSwitch = styled.View`
+export const Row2 = styled.View`
     margin-top: 3%;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
+`
+
+export const ContainerSwitch = styled.View`
+    height: 60%;
+    flex-direction: row;
+    align-self: flex-end;
 `
 
 export const TextSwitchPago = styled.Text`
@@ -69,13 +75,13 @@ export const TextSwitchPago = styled.Text`
 `
 
 export const SwitchPago = styled.Switch`
-    margin-left: 5%;
+    
 `
 
 export const Button = styled.TouchableOpacity`
     width: 35%;
     padding: 2%;
-    margin-top: 4%;
+    margin-top: 8%;
     align-self: center;
     align-items: center;
     border-radius: ${RFPercentage(2.9)}px;
