@@ -49,7 +49,7 @@ export const TextMethodPayment = styled.Text`
     text-align: center;
     font-weight: bold;
     font-size: ${RFPercentage(3.5)}px;
-    color: ${props => props.theme.backgroundColor};
+    color: ${props => props.theme.color};
 `
 
 export const ContainerMensalidade = styled.View`
