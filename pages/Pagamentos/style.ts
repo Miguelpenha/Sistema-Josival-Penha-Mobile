@@ -12,7 +12,6 @@ export const ContainerPagamentos = styled.View`
 
 export const ContainerDate = styled.View`
     padding-bottom: 40%;
-    background-color: red;
 `
 
 export const ButtonCalendar = styled.TouchableOpacity`
