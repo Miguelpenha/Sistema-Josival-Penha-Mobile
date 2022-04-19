@@ -5,8 +5,10 @@ import ContainerPd from '../../components/ContainerPd'
 import HeaderBack from '../../components/HeaderBack'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { dark as darkTheme, light as lightTheme } from '../../theme'
-import { ContainerSwitch, TextSwitch, Switch, Version } from './style'
+import { ScrollView } from 'react-native'
+import { ContainerSwitch, TextSwitch, Switch, Button, IconButton, TextButton, Version } from './style'
 import Constants from 'expo-constants'
+import updateApp from '../../utils/updateApp'
 
 type IsetTheme = {
     (theme: Iprops['theme']): void
@@ -59,14 +61,20 @@ const Settings: FC<Iprops> = ({ navigation, theme, modeView, setTheme, setModeVi
     return (
         <ContainerPd>
             <HeaderBack onClick={() => navigation.goBack()}/>
-            <ContainerSwitch>
-                <TextSwitch>Tema escuro</TextSwitch>
-                <Switch trackColor={{false: darkTheme.secondary, true: lightTheme.secondary}} thumbColor={dark ? darkTheme.secondary : lightTheme.secondary} value={dark} onChange={() => dark ? setDark(false) : setDark(true)}/>
-            </ContainerSwitch>
-            <ContainerSwitch>
-                <TextSwitch>Buscar alunos</TextSwitch>
-                <Switch trackColor={{false: darkTheme.secondary, true: lightTheme.secondary}} thumbColor={dark ? darkTheme.secondary : lightTheme.secondary} value={modeViewAlunosFind} onChange={() => modeViewAlunosFind ? setModeViewAlunosFind(false) : setModeViewAlunosFind(true)}/>
-            </ContainerSwitch>
+            <ScrollView>
+                <ContainerSwitch>
+                    <TextSwitch>Tema escuro</TextSwitch>
+                    <Switch trackColor={{false: darkTheme.secondary, true: lightTheme.secondary}} thumbColor={dark ? darkTheme.secondary : lightTheme.secondary} value={dark} onChange={() => dark ? setDark(false) : setDark(true)}/>
+                </ContainerSwitch>
+                <ContainerSwitch>
+                    <TextSwitch>Buscar alunos</TextSwitch>
+                    <Switch trackColor={{false: darkTheme.secondary, true: lightTheme.secondary}} thumbColor={dark ? darkTheme.secondary : lightTheme.secondary} value={modeViewAlunosFind} onChange={() => modeViewAlunosFind ? setModeViewAlunosFind(false) : setModeViewAlunosFind(true)}/>
+                </ContainerSwitch>
+                <Button onPress={() => updateApp().then()}>
+                    <IconButton name="sync" size={32}/>
+                    <TextButton>Verificar atualizações</TextButton>
+                </Button>
+            </ScrollView>
             <Version>Versão {Constants.manifest.version}</Version>
         </ContainerPd>
     )

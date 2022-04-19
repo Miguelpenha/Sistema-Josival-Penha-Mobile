@@ -19,22 +19,11 @@ import AddPagamento from './pages/AddPagamento'
 import Financeiro from './pages/Financeiro'
 import SelectMonth from './pages/SelectMonth'
 import AppLoading from 'expo-app-loading'
-import * as Updates from 'expo-updates'
+import updateApp from './utils/updateApp'
 
-export default function App() {
+function App() {
   useEffect(() => {
-    async function updateApp() {
-      const { isAvailable } = await Updates.checkForUpdateAsync()
-      
-      if (isAvailable) {
-        if (Updates.releaseChannel === 'production') {
-          await Updates.fetchUpdateAsync()
-          await Updates.reloadAsync()
-        }
-      }
-    }
-
-    process.env.NODE_ENV === 'production' && updateApp().then()
+    updateApp().then()
   }, [])
 
   const [pronto, setPronto] = useState(false)
@@ -148,3 +137,5 @@ export default function App() {
     )
   }
 }
+
+export default App
