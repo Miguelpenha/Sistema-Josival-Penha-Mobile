@@ -6,7 +6,7 @@ import HeaderBack from '../../components/HeaderBack'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { dark as darkTheme, light as lightTheme } from '../../theme'
 import { ScrollView } from 'react-native'
-import { ContainerSwitch, TextSwitch, Switch, Button, IconButton, TextButton, Version } from './style'
+import { ContainerSwitch, TextSwitch, Switch, Button, IconUpdateButton, TextButton, Version } from './style'
 import Constants from 'expo-constants'
 import updateApp from '../../utils/updateApp'
 
@@ -29,6 +29,7 @@ interface Iprops {
 const Settings: FC<Iprops> = ({ navigation, theme, modeView, setTheme, setModeView }) => {
     const [dark, setDark] = useState(theme==='light' ? false : true)
     const [modeViewAlunosFind, setModeViewAlunosFind] = useState(modeView)
+    const [checkUpdating, setCheckUpdating] = useState(false)
 
     useEffect(() => {
         async function veri() {
@@ -70,8 +71,14 @@ const Settings: FC<Iprops> = ({ navigation, theme, modeView, setTheme, setModeVi
                     <TextSwitch>Buscar alunos</TextSwitch>
                     <Switch trackColor={{false: darkTheme.secondary, true: lightTheme.secondary}} thumbColor={dark ? darkTheme.secondary : lightTheme.secondary} value={modeViewAlunosFind} onChange={() => modeViewAlunosFind ? setModeViewAlunosFind(false) : setModeViewAlunosFind(true)}/>
                 </ContainerSwitch>
-                <Button onPress={() => updateApp().then()}>
-                    <IconButton name="sync" size={32}/>
+                <Button disabled={checkUpdating} onPress={async () => {
+                    setCheckUpdating(true)
+
+                    await updateApp()
+
+                    setCheckUpdating(false)
+                }} loading={checkUpdating}>
+                    <IconUpdateButton checkUpdating={checkUpdating} name="sync" size={32}/>
                     <TextButton>Verificar atualizações</TextButton>
                 </Button>
             </ScrollView>
