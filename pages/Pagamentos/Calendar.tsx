@@ -16,7 +16,7 @@ const Calendar: FC<Iprops> = ({ date, setDate }) => {
     return (
         <DatePicker
             mode="calendar"
-            onSelectedChange={date => setDate(convertDate(date))}
+            onSelectedChange={(date: string) => setDate(convertDate(date))}
             selected={convertDate(date)}
             current={convertDate(date)}
             options={{

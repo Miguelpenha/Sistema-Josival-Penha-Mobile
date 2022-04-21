@@ -1,4 +1,4 @@
-import React, { FC, useRef, createRef, useState } from 'react'
+import React, { FC, useState } from 'react'
 import { Ialuno } from '../../../types'
 import dinero from 'dinero.js'
 import PerfilAluno from './PerfilAluno'

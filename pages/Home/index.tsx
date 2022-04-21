@@ -13,13 +13,13 @@ import 'intl'
 import 'intl/locale-data/jsonp/pt-BR'
 import { DateTime, HourNumbers } from 'luxon'
 
-type iveriGeral = {
+type IveriGeral = {
   (): Promise<void>
 }
 
 interface Iprops {
   navigation: NativeStackScreenProps<Inavigation, 'Alunos'>['navigation']
-  veriGeral: iveriGeral
+  veriGeral: IveriGeral
   find: boolean
 }
 

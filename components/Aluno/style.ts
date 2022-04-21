@@ -31,11 +31,11 @@ export const ContainerData = styled.View`
     margin-left: 2%;
 `
 
-interface Itext {
+interface IText {
     bold?: boolean
 }
 
-export const Text = styled.Text<Itext>`  
+export const Text = styled.Text<IText>`  
     width: 100%;
     text-align: left;
     padding-left: 2%;
