@@ -35,7 +35,6 @@ export const NameUser = styled.Text`
 export const Message = styled.Text`
     margin-top: 0.5%;
     margin-left: 10%;
-    font-weight: bold;
     margin-bottom: 10%;
     font-size: ${RFPercentage(4)}px;
     color: ${props => props.theme.secondaryColor};

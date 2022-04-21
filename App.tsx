@@ -22,10 +22,6 @@ import AppLoading from 'expo-app-loading'
 import updateApp from './utils/updateApp'
 
 function App() {
-  useEffect(() => {
-    updateApp().then()
-  }, [])
-
   const [pronto, setPronto] = useState(false)
   const [theme, setTheme] = useState<'light' | 'dark' | null | undefined>(Appearance.getColorScheme())
   const [modeViewAlunosFind, setModeViewAlunosFind] = useState(true)
@@ -68,6 +64,9 @@ function App() {
   async function veriGeral() {
     await themeVeri()
     await modeViewAlunosFindVeri()
+    await updateApp()
+    
+    setPronto(true)
   }
 
   useEffect(() => {
@@ -77,9 +76,13 @@ function App() {
   useEffect(() => {
     modeViewAlunosFindVeri().then()
   }, [modeViewAlunosFind])
+
+  useEffect(() => {
+    veriGeral().then()
+  }, [])
   
   if (!pronto) {
-    return <AppLoading startAsync={veriGeral} onFinish={() => setPronto(true)} onError={(err) => console.log(err)}/>
+    return <AppLoading/>
   } else {
     return (
       <ThemeProvider theme={theme === 'dark' ? dark : light}>
