@@ -62,12 +62,17 @@ function App() {
   }
 
   async function veriGeral() {
-    await themeVeri()
-    await modeViewAlunosFindVeri()
-    await updateApp()
-    
-    setPronto(true)
+    updateApp().then(async () => {
+      await themeVeri()
+      await modeViewAlunosFindVeri()
+      
+      setPronto(true)
+    })
   }
+
+  useEffect(() => {
+    veriGeral().then()
+  }, [])
 
   useEffect(() => {
     themeVeri().then()
@@ -76,10 +81,6 @@ function App() {
   useEffect(() => {
     modeViewAlunosFindVeri().then()
   }, [modeViewAlunosFind])
-
-  useEffect(() => {
-    veriGeral().then()
-  }, [])
   
   if (!pronto) {
     return <AppLoading/>
