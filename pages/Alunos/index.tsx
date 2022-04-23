@@ -17,7 +17,7 @@ const Alunos: FC<Iprops> = ({ route, navigation }) => {
   
   return (
     <ContainerPd>
-      <LoadingData loading={alunos}>
+      <LoadingData loading={alunos} onClick={() => navigation.goBack()}>
         <ListAlunos alunos={alunos} atrasados={atrasados} filter={filter} financeiro={financeiro} navigation={navigation} next={next} setAtrasados={setAtrasados} setFilter={setFilter} title={title} onRefresh={async () => mutateAlunos().then()}/>
       </LoadingData>
     </ContainerPd>

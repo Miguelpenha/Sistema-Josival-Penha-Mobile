@@ -44,7 +44,7 @@ export default function Home({ navigation, veriGeral, find }: Iprops) {
 
   return (
     <ContainerPd>
-      <LoadingData loading={turmas}>
+      <LoadingData loading={turmas} buttonBack={false}>
         <Header>
           <ContainerSettings onPress={() => navigation.navigate('Settings')}>
             <Settings name="settings" size={40}/>

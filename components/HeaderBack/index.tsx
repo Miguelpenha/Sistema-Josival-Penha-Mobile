@@ -7,6 +7,7 @@ interface Iprops {
     logo?: boolean
     style?: ViewStyle
     onClick: Function
+    buttonBack?: boolean
     styleTitle?: TextStyle
     styleLogo?: ImageStyle
     iconSizeButtonBack?: number
@@ -15,15 +16,23 @@ interface Iprops {
     styleContainerHeader?: ViewStyle
 }
 
-const HeaderBack: FC<Iprops> = ({ style, onClick, styleButtonBack, iconSizeButtonBack, styleButtonBackIcon, styleContainerHeader, title, styleTitle, logo=true, styleLogo }) => {
+const HeaderBack: FC<Iprops> = ({ style, onClick, buttonBack=true, styleButtonBack, iconSizeButtonBack, styleButtonBackIcon, styleContainerHeader, title, styleTitle, logo=true, styleLogo }) => {
+    if (!styleButtonBack) {
+        styleButtonBack = {
+            alignSelf: 'center'
+        }
+    }
+
     return (
         <Container style={style}>
-            <ButtonBack
-                onClick={onClick}
-                style={styleButtonBack}
-                iconSize={iconSizeButtonBack}
-                styleIcon={styleButtonBackIcon}
-            />
+            {buttonBack && (
+                <ButtonBack
+                    onClick={onClick}
+                    style={styleButtonBack}
+                    iconSize={iconSizeButtonBack}
+                    styleIcon={styleButtonBackIcon}
+                />
+            )}
             <ContainerHeader style={styleContainerHeader}>
                 {title && <Title style={styleTitle}>{title}</Title>}
                 {!title && logo && <Logo style={styleLogo}/>}

@@ -30,7 +30,7 @@ const Turmas: FC<Iprops> = ({ route, navigation }) => {
   
   return (
     <ContainerPd>
-      <LoadingData loading={turmas}>
+      <LoadingData loading={turmas} onClick={() => navigation.goBack()}>
         <FlatList
           refreshControl={(
             <RefreshControl

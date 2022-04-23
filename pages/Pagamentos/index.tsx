@@ -106,7 +106,7 @@ const Pagamentos: FC<Iprops> = ({ route, navigation }) => {
 
     return (
         <ContainerPd>
-            <LoadingData loading={aluno}>
+            <LoadingData loading={aluno} onClick={() => navigation.goBack()}>
                 <HeaderBack
                     title="Escolher pagamento"
                     onClick={() => navigation.goBack()}

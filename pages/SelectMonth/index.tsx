@@ -17,7 +17,7 @@ const SelectMonth: FC<Iprops> = ({ navigation }) => {
     
     return (
         <ContainerPd>
-            <LoadingData loading={turmas}>
+            <LoadingData loading={turmas} onClick={() => navigation.goBack()}>
                 <HeaderBack
                     title="Escolha o mês"
                     onClick={() => navigation.goBack()}

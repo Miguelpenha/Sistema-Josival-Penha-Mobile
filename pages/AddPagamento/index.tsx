@@ -15,7 +15,7 @@ const AddPagamento: FC<Iprops> = ({ navigation }) => {
     
     return (
         <ContainerPd>
-            <LoadingData loading={turmas}>
+            <LoadingData loading={turmas} onClick={() => navigation.goBack()}>
                 <HeaderBack
                     title="Cadastrar Pagamento"
                     onClick={() => navigation.goBack()}

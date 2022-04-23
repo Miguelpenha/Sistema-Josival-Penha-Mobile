@@ -1,12 +1,21 @@
-import React from 'react'
-import { Container, Logo, Load, Texto } from './style'
+import React, { FC } from 'react'
+import ContainerPd from '../ContainerPd'
+import HeaderBack from '../HeaderBack'
+import { Load, Texto } from './style'
 
-export default function Loading() {
+interface Iprops {
+    onClick?: Function
+    buttonBack?: boolean
+}
+
+const Loading: FC<Iprops> = ({ onClick, buttonBack=true }) => {
     return (
-        <Container>
-            <Logo/>
+        <ContainerPd>
+            <HeaderBack onClick={onClick} buttonBack={buttonBack} styleLogo={!buttonBack && {alignSelf: 'center', width: '80%'}}/>
             <Load source={require('../../animations/loading.json')} autoPlay/>
             <Texto>Buscando dados...</Texto>
-        </Container>
+        </ContainerPd>
     )
 }
+
+export default Loading

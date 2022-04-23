@@ -91,7 +91,7 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
 
     return (
         <ContainerPd>
-            <LoadingData loading={saldo}>
+            <LoadingData loading={saldo} onClick={() => navigation.goBack()}>
                 <HeaderBack
                     title="Financeiro"
                     onClick={() => navigation.goBack()}
