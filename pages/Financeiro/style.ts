@@ -55,6 +55,7 @@ export const ValueSelect = styled.Text`
 `
 
 export const ContainerBalance = styled.View`
+    height: 26%;
     margin-top: 12%;
 `
 
@@ -128,7 +129,7 @@ interface IContainerIcon {
 
 export const ContainerIconReceitaOrDespesa = styled.View<IContainerIcon>`
     width: 21%;
-    height: 52%;
+    height: 58%;
     margin-right: 5%;
     align-self: center;
     border-radius: 50px;

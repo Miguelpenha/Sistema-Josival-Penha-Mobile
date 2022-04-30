@@ -31,10 +31,12 @@ import {
     ValueReceitaOrDespesa
 } from './style'
 import LoadingData from '../../components/loadingData'
+import { ScrollView } from 'react-native'
 import mesesNumber from '../../utils/mesesNumber'
 import meses from '../../utils/meses'
 import SkeletonContent from 'react-native-skeleton-content'
 import { RFPercentage } from 'react-native-responsive-fontsize'
+import { VictoryPie, VictoryTheme } from 'victory-native'
 
 interface Iprops {
     navigation: NativeStackScreenProps<Inavigation, 'Financeiro'>['navigation']
@@ -92,109 +94,150 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
     return (
         <ContainerPd>
             <LoadingData loading={saldo} onClick={() => navigation.goBack()}>
-                <HeaderBack
-                    title="Financeiro"
-                    onClick={() => navigation.goBack()}
-                />
-                <ContainerSelect>
-                    <ContainerIconSelect
-                        rightOrLeft
-                        disabled={month != '01' ? false : true}
-                        onPress={() => month != '01' && setMonth(mesesNumber[Number(month)-2])}
-                    >
-                        <IconSelect name="chevron-left" size={30}/>
-                    </ContainerIconSelect>
-                    <ValueSelect>{meses[Number(month)-1]}</ValueSelect>
-                    <ContainerIconSelect
-                        disabled={month != '12' ? false : true}
-                        onPress={() => month != '12' && setMonth(mesesNumber[Number(month)])}
-                    >
-                        <IconSelect name="chevron-right" size={30}/>
-                    </ContainerIconSelect>
-                </ContainerSelect>
-                <ContainerBalance>
-                    <Balance>
-                        <HeaderBalance>
-                            <TitleBalance>Balanço</TitleBalance>
+                <ScrollView>
+                    <HeaderBack
+                        title="Financeiro"
+                        onClick={() => navigation.goBack()}
+                    />
+                    <ContainerSelect>
+                        <ContainerIconSelect
+                            rightOrLeft
+                            disabled={month != '01' ? false : true}
+                            onPress={() => month != '01' && setMonth(mesesNumber[Number(month)-2])}
+                        >
+                            <IconSelect name="chevron-left" size={30}/>
+                        </ContainerIconSelect>
+                        <ValueSelect>{meses[Number(month)-1]}</ValueSelect>
+                        <ContainerIconSelect
+                            disabled={month != '12' ? false : true}
+                            onPress={() => month != '12' && setMonth(mesesNumber[Number(month)])}
+                        >
+                            <IconSelect name="chevron-right" size={30}/>
+                        </ContainerIconSelect>
+                    </ContainerSelect>
+                    <ContainerBalance>
+                        <Balance>
+                            <HeaderBalance>
+                                <TitleBalance>Balanço</TitleBalance>
+                                <SkeletonContent
+                                    isLoading={typeof saldoOld !== 'undefined' ? false : true}
+                                    layout={[
+                                        { key: 'saldo', width: '40%' , height: RFPercentage(4), alignSelf: 'flex-end', marginRight: '6%' }
+                                    ]}
+                                    boneColor={theme.secondary}
+                                    highlightColor={theme.backgroundColor}
+                                    animationDirection="diagonalTopRight"
+                                    animationType="pulse"
+                                >
+                                    <ContainerPercentageBalance>
+                                        <IconPercentageBalance
+                                            size={20}
+                                            receita={typeof saldoOld !== 'undefined' && veriPercentage()}
+                                            name={`arrow-${typeof saldoOld !== 'undefined' && veriPercentage() ? 'upward' : 'downward'}`}
+                                        />
+                                        <PercentageBalance receita={typeof saldoOld !== 'undefined' && veriPercentage()}>{typeof saldoOld !== 'undefined' && veriPercentageNumber()}%</PercentageBalance>
+                                    </ContainerPercentageBalance>
+                                </SkeletonContent>
+                            </HeaderBalance>
                             <SkeletonContent
-                                isLoading={typeof saldoOld !== 'undefined' ? false : true}
+                                isLoading={month && saldo ? false : true}
+                                containerStyle={{}}
                                 layout={[
-                                    { key: 'saldo', width: '40%' , height: RFPercentage(4), alignSelf: 'flex-end', marginRight: '6%' }
+                                    { key: 'saldo', width: '80%' , height: RFPercentage(7.25), alignSelf: 'center' }
                                 ]}
                                 boneColor={theme.secondary}
                                 highlightColor={theme.backgroundColor}
                                 animationDirection="diagonalTopRight"
                                 animationType="pulse"
                             >
-                                <ContainerPercentageBalance>
-                                    <IconPercentageBalance
-                                        size={20}
-                                        receita={typeof saldoOld !== 'undefined' && veriPercentage()}
-                                        name={`arrow-${typeof saldoOld !== 'undefined' && veriPercentage() ? 'upward' : 'downward'}`}
-                                    />
-                                    <PercentageBalance receita={typeof saldoOld !== 'undefined' && veriPercentage()}>{typeof saldoOld !== 'undefined' && veriPercentageNumber()}%</PercentageBalance>
-                                </ContainerPercentageBalance>
+                                <BalanceText>{saldo && saldo.saldo}</BalanceText>
                             </SkeletonContent>
-                        </HeaderBalance>
-                        <SkeletonContent
-                            isLoading={month && saldo ? false : true}
-                            containerStyle={{}}
-                            layout={[
-                                { key: 'saldo', width: '80%' , height: RFPercentage(7.25), alignSelf: 'center' }
-                            ]}
-                            boneColor={theme.secondary}
-                            highlightColor={theme.backgroundColor}
-                            animationDirection="diagonalTopRight"
-                            animationType="pulse"
-                        >
-                            <BalanceText>{saldo && saldo.saldo}</BalanceText>
-                        </SkeletonContent>
-                        <ContainerReceitaOrDespesaGeral>
-                            <ContainerReceitaOrDespesa>
-                                <ContainerIconReceitaOrDespesa receita>
-                                    <IconReceitaOrDespesa receita name="arrow-upward" size={20}/>
-                                </ContainerIconReceitaOrDespesa>
-                                <Row2ReceitaOrDespesa>
-                                    <TitleReceitaOrDespesa>Receita</TitleReceitaOrDespesa>
-                                    <SkeletonContent
-                                        isLoading={month && saldo ? false : true}
-                                        containerStyle={{}}
-                                        layout={[
-                                            { key: 'saldo', width: '220%' , height: RFPercentage(3.4) }
-                                        ]}
-                                        boneColor={theme.secondary}
-                                        highlightColor={theme.backgroundColor}
-                                        animationDirection="diagonalTopRight"
-                                        animationType="pulse"
-                                    >
-                                        <ValueReceitaOrDespesa receita>{saldo && saldo.receitas}</ValueReceitaOrDespesa>
-                                    </SkeletonContent>
-                                </Row2ReceitaOrDespesa>
-                            </ContainerReceitaOrDespesa>
-                            <ContainerReceitaOrDespesa>
-                                <ContainerIconReceitaOrDespesa>
-                                    <IconReceitaOrDespesa name="arrow-downward" size={20}/>
-                                </ContainerIconReceitaOrDespesa>
-                                <Row2ReceitaOrDespesa>
-                                    <TitleReceitaOrDespesa>Despesa</TitleReceitaOrDespesa>
-                                    <SkeletonContent
-                                        isLoading={month && saldo ? false : true}
-                                        containerStyle={{}}
-                                        layout={[
-                                            { key: 'saldo', width: '190%' , height: RFPercentage(3.4) }
-                                        ]}
-                                        boneColor={theme.secondary}
-                                        highlightColor={theme.backgroundColor}
-                                        animationDirection="diagonalTopRight"
-                                        animationType="pulse"
-                                    >
-                                        <ValueReceitaOrDespesa>{saldo && saldo.despesas}</ValueReceitaOrDespesa>
-                                    </SkeletonContent> 
-                                </Row2ReceitaOrDespesa>
-                            </ContainerReceitaOrDespesa>
-                        </ContainerReceitaOrDespesaGeral>
-                    </Balance>
-                </ContainerBalance>
+                            <ContainerReceitaOrDespesaGeral>
+                                <ContainerReceitaOrDespesa>
+                                    <ContainerIconReceitaOrDespesa receita>
+                                        <IconReceitaOrDespesa receita name="arrow-upward" size={20}/>
+                                    </ContainerIconReceitaOrDespesa>
+                                    <Row2ReceitaOrDespesa>
+                                        <TitleReceitaOrDespesa>Receita</TitleReceitaOrDespesa>
+                                        <SkeletonContent
+                                            isLoading={month && saldo ? false : true}
+                                            containerStyle={{}}
+                                            layout={[
+                                                { key: 'saldo', width: '220%' , height: RFPercentage(3.6), marginBottom: '20%' }
+                                            ]}
+                                            boneColor={theme.secondary}
+                                            highlightColor={theme.backgroundColor}
+                                            animationDirection="diagonalTopRight"
+                                            animationType="pulse"
+                                        >
+                                            <ValueReceitaOrDespesa receita>{saldo && saldo.receitas}</ValueReceitaOrDespesa>
+                                        </SkeletonContent>
+                                    </Row2ReceitaOrDespesa>
+                                </ContainerReceitaOrDespesa>
+                                <ContainerReceitaOrDespesa>
+                                    <ContainerIconReceitaOrDespesa>
+                                        <IconReceitaOrDespesa name="arrow-downward" size={20}/>
+                                    </ContainerIconReceitaOrDespesa>
+                                    <Row2ReceitaOrDespesa>
+                                        <TitleReceitaOrDespesa>Despesa</TitleReceitaOrDespesa>
+                                        <SkeletonContent
+                                            isLoading={month && saldo ? false : true}
+                                            containerStyle={{}}
+                                            layout={[
+                                                { key: 'saldo', width: '190%' , height: RFPercentage(3.4), marginBottom: '20%' }
+                                            ]}
+                                            boneColor={theme.secondary}
+                                            highlightColor={theme.backgroundColor}
+                                            animationDirection="diagonalTopRight"
+                                            animationType="pulse"
+                                        >
+                                            <ValueReceitaOrDespesa>{saldo && saldo.despesas}</ValueReceitaOrDespesa>
+                                        </SkeletonContent> 
+                                    </Row2ReceitaOrDespesa>
+                                </ContainerReceitaOrDespesa>
+                            </ContainerReceitaOrDespesaGeral>
+                        </Balance>
+                    </ContainerBalance>
+                    <SkeletonContent
+                        isLoading={month && saldo ? false : true}
+                        containerStyle={{}}
+                        layout={[{
+                            key: 'saldo',
+                            width: '68%',
+                            height: RFPercentage(35),
+                            marginTop: '16%',
+                            borderRadius: RFPercentage(25),
+                            marginRight: 'auto',
+                            marginLeft: 'auto'
+                        }]}
+                        boneColor={theme.backgroundColor}
+                        highlightColor={theme.secondary}
+                        animationDirection="diagonalTopRight"
+                        animationType="pulse"
+                    >
+                        {saldo && (
+                            <VictoryPie
+                                innerRadius={RFPercentage(9)}
+                                theme={VictoryTheme.material}
+                                padding={{right: 65, left: 65, top: -60}}
+                                data={[
+                                    { x: 'Receitas', y: saldo.receitasBrutas, color: theme.receita },
+                                    { x: 'Despesas', y: saldo.despesasBrutas, color: theme.despesa }
+                                ]}
+                                style={{
+                                    data: {
+                                        fill: ({ datum }) => datum.color
+                                    },
+                                    labels: {
+                                        fill: ({ datum }) => datum.color,
+                                        padding: RFPercentage(1.6),
+                                        fontSize: RFPercentage(2.4)
+                                    }
+                                }}
+                            />
+                        )}
+                    </SkeletonContent>
+                </ScrollView>
             </LoadingData>
         </ContainerPd>
     )
