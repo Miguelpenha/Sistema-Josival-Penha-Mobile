@@ -220,18 +220,25 @@ const Financeiro: FC<Iprops> = ({ navigation }) => {
                                 innerRadius={RFPercentage(9)}
                                 theme={VictoryTheme.material}
                                 padding={{right: 65, left: 65, top: -60}}
+                                animate={{
+                                    onLoad: { duration: 1500 },
+                                    duration: 1500,
+                                    easing: 'circle'
+                                }}
                                 data={[
                                     { x: 'Receitas', y: saldo.receitasBrutas, color: theme.receita },
                                     { x: 'Despesas', y: saldo.despesasBrutas, color: theme.despesa }
                                 ]}
                                 style={{
                                     data: {
-                                        fill: ({ datum }) => datum.color
+                                        fill: ({ datum }) => datum.color,
+                                        stroke: theme.secondary,
+                                        strokeWidth: 4
                                     },
                                     labels: {
                                         fill: ({ datum }) => datum.color,
                                         padding: RFPercentage(1.6),
-                                        fontSize: RFPercentage(2.4)
+                                        fontSize: RFPercentage(2.5)
                                     }
                                 }}
                             />
