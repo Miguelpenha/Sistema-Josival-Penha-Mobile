@@ -4,7 +4,9 @@ module.exports = api => {
   return {
     presets: ['babel-preset-expo'],
     plugins: [
-      'inline-dotenv',
+      ['inline-dotenv', {
+        systemVar: 'overwrite'
+      }],
       'react-native-reanimated/plugin'
     ]
   }

@@ -1,6 +1,6 @@
+import { AxiosRequestConfig } from 'axios'
 import useSWR from 'swr'
 import base from './base'
-import { AxiosRequestConfig } from 'axios'
 
 export default function api<Idata>(url: string, config?: AxiosRequestConfig) {
     const { data, error, mutate } = useSWR(url, async url => {
@@ -17,7 +17,7 @@ export function get<Idata>(url: string, config?: AxiosRequestConfig) {
     const { data, error, mutate } = useSWR(url, async url => {
         const response = await base.get(url, config)
         const data: Idata = await response.data
-
+        
         return data
     })
     
