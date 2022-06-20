@@ -72,6 +72,7 @@ export interface Iturma {
   _id: string
   nome: string
   alunos: number
+  professora: string
 }
 
 export type Inavigation = {

@@ -3,7 +3,8 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import { MaterialIcons } from '@expo/vector-icons'
 
 export const ContainerSwitch = styled.View`
-    margin-top: 2%;
+    margin-bottom: 2%;
+    align-items: center;
     flex-direction: row;
     justify-content: center;
 `

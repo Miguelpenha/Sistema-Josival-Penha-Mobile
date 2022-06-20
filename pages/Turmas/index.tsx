@@ -4,13 +4,12 @@ import { Inavigation, Iturma } from '../../types'
 import { KeyedMutator } from 'swr'
 import { get } from '../../api'
 import { useTheme } from 'styled-components'
+import { ListRenderItemInfo, View, FlatList, RefreshControl } from 'react-native'
+import Turma from '../../components/Turma'
+import { HeaderBack, Title } from './style'
+import Check from './Check'
 import ContainerPd from '../../components/ContainerPd'
 import LoadingData from '../../components/loadingData'
-import { FlatList, RefreshControl, View } from 'react-native'
-import HeaderBack from '../../components/HeaderBack'
-import { Title } from './style'
-import Check from './Check'
-import Turma from '../../components/Turma'
 
 type Iprops = NativeStackScreenProps<Inavigation, 'Turmas'>
 
@@ -27,11 +26,43 @@ const Turmas: FC<Iprops> = ({ route, navigation }) => {
       setRefreshing(false)
     ))
   }
+
+  function renderItem({ item }: ListRenderItemInfo<Iturma>) {
+    if (item.alunos >= 1) {
+      return (
+        <Turma
+          turma={item}
+          onClick={turmaId => (
+            navigation.navigate('Alunos', {
+              url: `/turmas/alunos/${turmaId}`,
+              next: 'camera:aluno'
+            })
+          )}
+        />
+      )
+    } else {
+      return null
+    }
+  }
+
+  function Header() {
+    return (
+      <View>
+        <HeaderBack onClick={() => navigation.goBack()}/>
+        <Check success={success}/>
+        <Title>Escolha uma turma</Title>
+      </View>
+    )
+  }
   
   return (
     <ContainerPd>
       <LoadingData loading={turmas} onClick={() => navigation.goBack()}>
         <FlatList
+          data={turmas}
+          renderItem={renderItem}
+          ListHeaderComponent={Header}
+          keyExtractor={item => item._id}
           refreshControl={(
             <RefreshControl
               refreshing={refreshing}
@@ -40,33 +71,6 @@ const Turmas: FC<Iprops> = ({ route, navigation }) => {
               progressBackgroundColor={theme.secondary}
             />
           )}
-          data={turmas}
-          ListHeaderComponent={() => (
-            <View>
-              <HeaderBack onClick={() => navigation.goBack()}/>
-              <Check success={success}/>
-              <Title>Escolha uma turma</Title>
-            </View>
-          )}
-          renderItem={({ item }) => {
-            if (item.alunos >= 1) {
-              return (
-                <Turma
-                  id={item._id}
-                  nome={item.nome}
-                  onClick={turma => (
-                    navigation.navigate('Alunos', {
-                      url: `/turmas/alunos/${turma}`,
-                      next: 'camera:aluno'
-                    })
-                  )}
-                />
-              )
-            } else {
-              return null
-            }
-          }}
-          keyExtractor={item => item._id}
         />
       </LoadingData>
     </ContainerPd>
