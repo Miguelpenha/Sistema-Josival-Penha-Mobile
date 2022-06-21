@@ -1,12 +1,15 @@
 import styled from 'styled-components/native'
+import HeaderBackNotStyled from '../../components/HeaderBack'
+import { RFPercentage } from 'react-native-responsive-fontsize'
+
+export const HeaderBack = styled(HeaderBackNotStyled)`
+    margin-bottom: 0%;
+`
 
 export const Title = styled.Text`
-    width: 80%;
-    margin-top: 5%;
-    font-size: 25px;
-    margin-bottom: 5%;
+    margin: 6%;
     font-weight: bold;
-    text-align: center;
     align-self: center;
-    color: ${props => props.theme.primary};
+    font-size: ${RFPercentage(4)}px;
+    color: ${props => props.theme.secondaryColor};
 `
