@@ -1,16 +1,14 @@
 import styled from 'styled-components/native'
-import Lottie from 'lottie-react-native'
+import { RFPercentage } from 'react-native-responsive-fontsize'
 
-export const Load = styled(Lottie)`
-    width: 70%;
-    margin-top: 12%;
-    margin-left: auto;
-    margin-right: auto;
+export const Load = styled.ActivityIndicator`
+    margin-top: 25%;
+    align-self: center;
 `
 
 export const Texto = styled.Text`
     margin-top: 5%;
-    font-size: 27px;
-    text-align: center;
+    align-self: center;
+    font-size: ${RFPercentage(4.5)}px;
     color: ${props => props.theme.primary};
 `

@@ -24,7 +24,7 @@ interface Iprops {
 }
 
 export default function Home({ navigation, veriGeral, find }: Iprops) {
-  const { data: turmas } = get('/turmas')
+  const { data: turmas } = get('/turma')
   const [hour, setHour] = useState(DateTime.now().hour)
 
   useEffect(() => {
