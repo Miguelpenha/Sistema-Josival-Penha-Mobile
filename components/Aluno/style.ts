@@ -16,15 +16,14 @@ export const Container = styled.TouchableOpacity`
 `
 
 export const ContainerImg = styled.TouchableOpacity`
-    width: auto;
-    border-radius: 30px;
+    align-self: center;
+    border-radius: ${RFPercentage(3.5)}px;
 `
 
 export const Img = styled.Image`
-    width: 40px;
-    height: 40px;
-    aspect-ratio: 1;
-    border-radius: 50px;
+    width: ${RFPercentage(5.5)}px;
+    height: ${RFPercentage(5.5)}px;
+    border-radius: ${RFPercentage(3.5)}px;
 `
 
 export const ContainerData = styled.View`
@@ -36,9 +35,6 @@ interface IText {
 }
 
 export const Text = styled.Text<IText>`  
-    width: 100%;
-    text-align: left;
-    padding-left: 2%;
     font-size: ${RFPercentage(2.5)}px;
     color: ${props => props.theme.secondaryColor};
 
@@ -57,8 +53,8 @@ export const ContainerStatus = styled.View<IContainerStatus>`
     padding: 5%;
     position: absolute;
     align-self: center;
-    border-radius: 20px;
     justify-content: center;
+    border-radius: ${RFPercentage(3.5)}px;
     background-color: ${props => {
         if (props.pago === 'Em dia') {
             return props.theme.receita

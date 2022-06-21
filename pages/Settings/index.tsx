@@ -5,8 +5,8 @@ import ContainerPd from '../../components/ContainerPd'
 import HeaderBack from '../../components/HeaderBack'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { dark as darkTheme, light as lightTheme } from '../../theme'
-import { ScrollView } from 'react-native'
-import { ContainerSwitch, TextSwitch, Switch, Button, IconUpdateButton, TextButton, Version } from './style'
+import { ScrollView, Platform } from 'react-native'
+import { ContainerSwitch, TextSwitch, Switch, Button, IconButton, LoadingIcon, TextButton, Version } from './style'
 import Constants from 'expo-constants'
 import updateApp from '../../utils/updateApp'
 
@@ -71,15 +71,19 @@ const Settings: FC<Iprops> = ({ navigation, theme, modeView, setTheme, setModeVi
                     <TextSwitch>Buscar alunos</TextSwitch>
                     <Switch trackColor={{false: darkTheme.secondary, true: lightTheme.secondary}} thumbColor={dark ? darkTheme.secondary : lightTheme.secondary} value={modeViewAlunosFind} onChange={() => modeViewAlunosFind ? setModeViewAlunosFind(false) : setModeViewAlunosFind(true)}/>
                 </ContainerSwitch>
-                <Button disabled={checkUpdating} onPress={async () => {
+                <Button loading={checkUpdating} disabled={checkUpdating} onPress={async () => {
                     setCheckUpdating(true)
 
                     await updateApp()
 
                     setCheckUpdating(false)
-                }} loading={checkUpdating}>
-                    <IconUpdateButton checkUpdating={checkUpdating} name="sync" size={32}/>
-                    <TextButton>Verificar atualizações</TextButton>
+                }}>
+                    {checkUpdating ? (
+                        <LoadingIcon color={dark ? darkTheme.color : lightTheme.color} size={Platform.OS === 'android' ? 30 : 'small'}/>
+                    ) : (
+                        <IconButton checkUpdating={checkUpdating} name="sync" size={32}/>
+                    )}
+                    <TextButton>{checkUpdating ? 'Verificando...' : 'Verificar atualizações'}</TextButton>
                 </Button>
             </ScrollView>
             <Version>Versão {Constants.manifest.version}</Version>

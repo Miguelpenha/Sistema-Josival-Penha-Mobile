@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components/native'
+import styled from 'styled-components/native'
 import { RFPercentage } from 'react-native-responsive-fontsize'
 import { MaterialIcons } from '@expo/vector-icons'
 
@@ -18,7 +18,7 @@ export const Switch = styled.Switch`
 `
 
 interface IButton {
-    loading?: boolean
+    loading: boolean
 }
 
 export const Button = styled.TouchableOpacity<IButton>`
@@ -28,23 +28,15 @@ export const Button = styled.TouchableOpacity<IButton>`
     align-items: center;
     flex-direction: row;
     border-radius: ${RFPercentage(2)}px;
-    background-color: ${props => props.loading ? '#c7dffe' : props.theme.primary};
+    background-color: ${props => props.loading ? props.theme.secondaryColor : props.theme.primary};
 `
 
 export const IconButton = styled(MaterialIcons)`
     color: ${props => props.theme.color};
 `
 
-interface IIconUpdateButton {
-    checkUpdating: boolean
-}
+export const LoadingIcon = styled.ActivityIndicator`
 
-export const IconUpdateButton = styled(IconButton)<IIconUpdateButton>`
-    ${props => props.checkUpdating ? css`
-        transform: rotate(90deg);
-    ` : css`
-        transform: rotate(0deg);
-    `};
 `
 
 export const TextButton = styled.Text`

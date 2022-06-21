@@ -40,8 +40,8 @@ const Aluno: FC<Iprops> = ({ aluno, filter, onClick, onClickFoto, financeiro, ba
                     }}/>
                 </ContainerImg>
                 <ContainerData>
-                    <TextLimit component={TextBold} limit={financeiro ? 13 : 26}>{aluno.nome}</TextLimit>
-                    <TextLimit component={Text} limit={financeiro ? 13 : 26}>
+                    <TextLimit component={TextBold} limit={financeiro ? 12 : 25}>{aluno.nome}</TextLimit>
+                    <TextLimit component={Text} limit={financeiro ? 12 : 25}>
                          {`${calcIdade(aluno.nascimento)} anos`}
                     </TextLimit>
                 </ContainerData>
