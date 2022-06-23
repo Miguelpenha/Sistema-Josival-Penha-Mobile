@@ -28,6 +28,11 @@ function options(navigation: NativeStackScreenProps<Inavigation, 'Alunos'>['navi
       title: 'Financeiro',
       icon: 'account-balance',
       onClick: () => navigation.navigate('Financeiro')
+    },
+    {
+      title: 'Documentos',
+      icon: 'description',
+      onClick: () => navigation.navigate('Documents')
     }
   ]
 }

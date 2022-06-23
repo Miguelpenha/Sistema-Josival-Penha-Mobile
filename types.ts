@@ -92,7 +92,7 @@ export type Inavigation = {
     foto: Ialuno['foto']
   }
   Alunos: {
-    next: 'camera:aluno' | 'pagamentos:aluno'
+    next: 'camera:aluno' | 'pagamentos:aluno' | 'documents:aluno'
     url: string
     title?: string
     financeiro?: boolean
@@ -101,4 +101,5 @@ export type Inavigation = {
   Turmas: {
     success: boolean
   }
+  Documents: undefined
 }

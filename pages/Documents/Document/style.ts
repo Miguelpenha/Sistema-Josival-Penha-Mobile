@@ -3,23 +3,22 @@ import { RFPercentage } from 'react-native-responsive-fontsize'
 import { MaterialIcons } from '@expo/vector-icons'
 
 export const Container = styled.TouchableOpacity`
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: ${RFPercentage(24)}px;
-    margin: ${RFPercentage(1)}px;
-    padding: ${RFPercentage(2)}px;
+    margin: 3%;
+    width: 43%;
+    padding: 3%;
     border-radius: ${RFPercentage(2)}px;
     background-color: ${props => props.theme.primary};
 `
 
 export const Icon = styled(MaterialIcons)`
     margin-bottom: 5%;
+    align-self: center;
     color: ${props => props.theme.color};
 `
 
 export const Title = styled.Text`
     font-weight: bold;
-    font-size: ${RFPercentage(3.2)}px;
+    text-align: center;
+    font-size: ${RFPercentage(2.8)}px;
     color: ${props => props.theme.color};
 `

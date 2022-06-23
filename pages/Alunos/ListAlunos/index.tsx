@@ -45,11 +45,13 @@ const ListAlunos: FC<Iprops> = ({ alunos, title, filter, setFilter, atrasados, n
             }
           }}
           onClickFoto={foto => navigation.navigate('Foto', { foto })}
-          onClick={aluno => {
+          onClick={async aluno => {
             if (next === 'camera:aluno') {
               navigation.navigate('Camera', { aluno: aluno.id })
             } else if (next === 'pagamentos:aluno') {
               navigation.navigate('Pagamentos', { aluno })
+            } else if (next === 'documents:aluno') {
+              navigation.navigate('Documents')
             }
           }}
         />
