@@ -1,6 +1,6 @@
 {
-  "name": "Sistema-Josival-Penha-Mobile",
-  "version": "1.0.0",
+  "name": "sistema-josival-penha-mobile",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
